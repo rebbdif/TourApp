@@ -24,7 +24,33 @@
     [self.view addSubview:self.imageView];
     self.imageView.image=[UIImage imageNamed:@"city2.jpg"];
     self.imageView.layer.opacity=0.3;
+    [self addButtons];
+}
+
+- (IBAction)clearDatabase:(id)sender {
+    [self deleteAllEntities: @"Route"];
+    [self deleteAllEntities:@"RouteNode"];
+    [self deleteAllEntities:@"MyDescription"];
+}
+
+- (void)deleteAllEntities:(NSString *)nameEntity {
     
+}
+
+- (IBAction)goToMap:(id)sender {
+    SLVMapVC *mapvc = [SLVMapVC new];
+    [self presentViewController:mapvc animated:YES completion:nil];
+}
+
+- (IBAction)storeButtonPressed:(id)sender {
+
+}
+
+- (IBAction)createRouteButtonPressed:(id)sender {
+
+}
+
+- (void)addButtons {
     UIButton *storeButton=[[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2-120,self.view.frame.size.height/2-30,240,60)] ;
     storeButton.backgroundColor=[UIColor redColor];
     [storeButton setTitle:@"Магазин маршрутов" forState:UIControlStateNormal];
@@ -66,29 +92,6 @@
     [clearDatabaseButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [clearDatabaseButton addTarget:self action:@selector(clearDatabase:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:clearDatabaseButton];
-}
-
-- (IBAction)clearDatabase:(id)sender {
-    [self deleteAllEntities: @"Route"];
-    [self deleteAllEntities:@"RouteNode"];
-    [self deleteAllEntities:@"MyDescription"];
-}
-
-- (void)deleteAllEntities:(NSString *)nameEntity {
-    
-}
-
-- (IBAction)goToMap:(id)sender {
-    SLVMapVC *mapvc = [SLVMapVC new];
-    [self presentViewController:mapvc animated:YES completion:nil];
-}
-
-- (IBAction)storeButtonPressed:(id)sender {
-
-}
-
-- (IBAction)createRouteButtonPressed:(id)sender {
-
 }
 
 @end

@@ -26,7 +26,7 @@
         <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SLVTag" inverseName="route" inverseEntity="SLVTag" syncable="YES"/>
     </entity>
     <entity name="SLVTag" representedClassName="SLVTag" syncable="YES">
-        <attribute name="identifier" optional="YES" syncable="YES"/>
+        <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="route" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SLVRoute" inverseName="tags" inverseEntity="SLVRoute" syncable="YES"/>
     </entity>

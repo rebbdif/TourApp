@@ -14,8 +14,10 @@
 
 - (instancetype)initWithNetworkService:(id<SLVNetworkProtocol>)networkService storage:(id<SLVStorageProtocol>)storage;
 
-- (NSUInteger)numberOfPoints;
+- (NSUInteger)numberOfObjects;
 
-- (NSUInteger)pointForIndex;
+- (id)objectForIndex:(NSUInteger)index;
+
+- (void)getNodesWithCompletion:(voidBlock)completion;
 
 @end

@@ -7,11 +7,13 @@
 //
 
 #import "SLVNodesPresenter.h"
+#import "SLVNode.h"
 
 @interface SLVNodesPresenter ()
 
 @property (nonatomic, strong) id<SLVNetworkProtocol> networkService;
 @property (nonatomic, strong) id<SLVStorageProtocol> storage;
+@property (nonatomic, copy) NSDictionary<NSNumber *, SLVNode *> *nodes;
 
 @end
 
@@ -24,6 +26,18 @@
         _storage = storage;
     }
     return self;
+}
+
+- (void)getNodesWithCompletion:(voidBlock)completion {
+    if (completion) completion();
+}
+
+- (NSUInteger)numberOfObjects {
+    return self.nodes.count;
+}
+
+- (id)objectForIndex:(NSUInteger)index {
+    return self.nodes[@(index)];
 }
 
 @end

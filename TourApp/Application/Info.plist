@@ -14,6 +14,14 @@
 	<string>6.0</string>
 	<key>CFBundleName</key>
 	<string>$(PRODUCT_NAME)</string>
+	<key>NSCameraUsageDescription</key>
+	<string>you can&apos;t take photos without it</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>you can&apos;t add photos to the route you creating without it</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Shows your location on the map</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Shows your location on the map and helps improve OpenStreetMap</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>

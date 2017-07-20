@@ -10,8 +10,11 @@
 #import "SLVMainVC.h"
 #import "SLVNodesPresenter.h"
 
+#import "SLVNode.h"
+#import "SLVInfo.h"
+
 @import Mapbox;
-@import MapboxDirections;
+//@import MapboxDirections;
 
 @interface SLVMapVC () <MGLMapViewDelegate, UIGestureRecognizerDelegate>
 
@@ -42,7 +45,11 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self showMap];
+    [self.presenter getNodesWithCompletion:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self showMap];
+        });
+    }];
 }
 
 #pragma mark - Nodes
@@ -57,51 +64,47 @@
 }
 
 - (void)showPoints {
-    for (NSUInteger index = 0; index < [self.presenter numberOfPoints]; ++ index) {
-        double longitude= [node.longitude doubleValue];
-        double latitude=[node.latitude doubleValue];
-        
-        MGLPointAnnotation *point = [[MGLPointAnnotation alloc] init];
-        point.coordinate = CLLocationCoordinate2DMake(latitude,longitude);
-        point.title = node.nodeName;
-        point.subtitle = [NSString stringWithFormat:@"coordinates %f, %f", latitude,longitude];
+    for (NSUInteger index = 0; index < [self.presenter numberOfObjects]; ++ index) {
+        SLVNode *node = [self.presenter objectForIndex:index];
+        double longitude = node.longitude;
+        double latitude = node.latitude;
+        MGLPointAnnotation *point = [MGLPointAnnotation new];
+        point.coordinate = CLLocationCoordinate2DMake(latitude, longitude);
+        point.title = node.name;
+        point.subtitle = [NSString stringWithFormat:@"coordinates %f, %f", latitude, longitude];
         [self.mapView addAnnotation:point];
     }
 }
 
 - (void)calculateBounds {
-    //    CLLocationCoordinate2D sw;
-    //    sw.latitude = [_model.thisNodes[0].latitude doubleValue], sw.longitude = [_model.thisNodes[0].longitude doubleValue];
-    //    CLLocationCoordinate2D ne = sw;
-    //
-    //    for (RouteNode *node in _model.thisNodes) {
-    //        @autoreleasepool {
-    //            const double longitude= [node.longitude doubleValue];
-    //            const double latitude=[node.latitude doubleValue];
-    //
-    //            if (latitude < sw.latitude) {
-    //                sw.latitude=latitude;
-    //            }
-    //            if (longitude < sw.longitude) {
-    //                sw.longitude = longitude;
-    //            }
-    //            if (latitude > ne.latitude) {
-    //                ne.latitude=latitude;
-    //            }
-    //            if (longitude > ne.longitude) {
-    //                ne.longitude = longitude;
-    //            }
-    //        }
-    //    }
-    //    MGLCoordinateBounds bounds;
-    //    double inset = 0.001;
-    //    ne.latitude += inset;
-    //    ne.longitude += inset;
-    //    sw.latitude -= inset;
-    //    sw.longitude -= inset;
-    //    bounds.ne = ne;
-    //    bounds.sw = sw;
-    //    [self.mapView setVisibleCoordinateBounds:bounds animated:YES];
+    CLLocationCoordinate2D sw = CLLocationCoordinate2DMake(90, 90);
+    CLLocationCoordinate2D ne = CLLocationCoordinate2DMake(-90, -90);
+    for (NSUInteger index = 0; index < [self.presenter numberOfObjects]; ++ index) {
+        SLVNode *node = [self.presenter objectForIndex:index];
+        const double longitude = node.longitude;
+        const double latitude = node.latitude;
+        if (latitude < sw.latitude) {
+            sw.latitude = latitude;
+        }
+        if (longitude < sw.longitude) {
+            sw.longitude = longitude;
+        }
+        if (latitude > ne.latitude) {
+            ne.latitude = latitude;
+        }
+        if (longitude > ne.longitude) {
+            ne.longitude = longitude;
+        }
+    }
+    MGLCoordinateBounds bounds;
+    double inset = 0.001;
+    ne.latitude += inset;
+    ne.longitude += inset;
+    sw.latitude -= inset;
+    sw.longitude -= inset;
+    bounds.ne = ne;
+    bounds.sw = sw;
+    [self.mapView setVisibleCoordinateBounds:bounds animated:YES];
 }
 
 #pragma mark - MGLMapViewDelegate
@@ -118,11 +121,7 @@
 #pragma mark - directions
 
 - (IBAction)showDirections:(UIButton *)sender {
-    [self showDirections];
-}
 
-- (void)showDirections {
-    //copy
 }
 
 #pragma mark Buttons
@@ -153,28 +152,25 @@
     [segmentedControl addTarget:self action:@selector(segmentedControlValueDidChange:) forControlEvents:UIControlEventValueChanged];
 }
 
--(void)configureButton:(UIButton*)button label:(NSString*)label image:(UIImage*)image frame:(CGRect)frame selector:(SEL)selector {
-    button.frame=frame;
-    button.layer.cornerRadius=frame.size.width/2;
-    button.layer.shadowOffset=CGSizeMake(2, 2);
-    button.layer.shadowRadius=0.5;
-    button.layer.borderColor=[UIColor grayColor].CGColor;
-    button.layer.borderWidth=0.1;
-    button.backgroundColor=[UIColor redColor];
-    button.layer.opacity=0.7;
+- (void)configureButton:(UIButton *)button label:(NSString *)label image:(UIImage *)image frame:(CGRect)frame selector:(SEL)selector {
+    button.frame = frame;
+    button.layer.cornerRadius = frame.size.width/2;
+    button.layer.shadowOffset = CGSizeMake(2, 2);
+    button.layer.shadowRadius = 0.5;
+    button.layer.borderColor = [UIColor grayColor].CGColor;
+    button.layer.borderWidth = 0.1;
+    button.backgroundColor = [UIColor redColor];
+    button.layer.opacity = 0.7;
     [button setTitle:label forState:UIControlStateNormal];
     [button setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
-    
     if (image) {
-        button.layer.contents=CFBridgingRelease([image CGImage]);
-        button.layer.contentsGravity=kCAGravityResize;
-        button.layer.masksToBounds=YES;
-        button.layer.shouldRasterize=YES;
+        button.layer.contents = CFBridgingRelease([image CGImage]);
+        button.layer.contentsGravity = kCAGravityResize;
+        button.layer.masksToBounds = YES;
+        button.layer.shouldRasterize = YES;
     }
-    
     [button addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
-    
 }
 
 //- (void)segmentedControlValueDidChange:(UISegmentedControl *)segment {
