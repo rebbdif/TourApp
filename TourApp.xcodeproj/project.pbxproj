@@ -1,0 +1,634 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		638F79A51F1FEDCA00F6E36C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 638F79A41F1FEDCA00F6E36C /* Assets.xcassets */; };
+		638F79B31F1FEDCB00F6E36C /* TourAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 638F79B21F1FEDCB00F6E36C /* TourAppTests.m */; };
+		638F79C31F1FEEFC00F6E36C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 638F79BF1F1FEEFC00F6E36C /* main.m */; };
+		638F79C41F1FEEFC00F6E36C /* SLVAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 638F79C11F1FEEFC00F6E36C /* SLVAppDelegate.m */; };
+		638F79C91F1FEF4F00F6E36C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 638F79C81F1FEF4F00F6E36C /* LaunchScreen.storyboard */; };
+		638F79DB1F20025600F6E36C /* SLVMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 638F79DA1F20025600F6E36C /* SLVMainVC.m */; };
+		638F79DE1F2004F900F6E36C /* SLVMapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 638F79DD1F2004F900F6E36C /* SLVMapVC.m */; };
+		638F79E11F20370600F6E36C /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 638F79E01F20370600F6E36C /* Masonry.framework */; };
+		638F79E31F20373700F6E36C /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 638F79E21F20373700F6E36C /* Mapbox.framework */; };
+		638F79E61F20375A00F6E36C /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 638F79E41F20373F00F6E36C /* OCMock.framework */; };
+		638F79E91F203AE300F6E36C /* Polyline.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 638F79E81F203AE300F6E36C /* Polyline.framework */; };
+		638F79F41F203BE800F6E36C /* SLVNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = 638F79ED1F203BE800F6E36C /* SLVNetworkService.m */; };
+		638F79F51F203BE800F6E36C /* SLVCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 638F79F01F203BE800F6E36C /* SLVCoreDataStack.m */; };
+		638F79F61F203BE800F6E36C /* SLVStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 638F79F31F203BE800F6E36C /* SLVStorageService.m */; };
+		638F79F91F203CE700F6E36C /* SLVNodesPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 638F79F81F203CE700F6E36C /* SLVNodesPresenter.m */; };
+		638F79FD1F20433E00F6E36C /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 638F79FB1F20433E00F6E36C /* DataModel.xcdatamodeld */; };
+		638F7A001F20465E00F6E36C /* SLVRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 638F79FF1F20465E00F6E36C /* SLVRoute.m */; };
+		638F7A031F20467000F6E36C /* SLVNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 638F7A021F20467000F6E36C /* SLVNode.m */; };
+		638F7A061F20467D00F6E36C /* SLVInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 638F7A051F20467D00F6E36C /* SLVInfo.m */; };
+		638F7A091F20468900F6E36C /* SLVTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 638F7A081F20468900F6E36C /* SLVTag.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		638F79AF1F1FEDCB00F6E36C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 638F798D1F1FEDC800F6E36C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 638F79941F1FEDC800F6E36C;
+			remoteInfo = TourApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		638F79951F1FEDC800F6E36C /* TourApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TourApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		638F79A41F1FEDCA00F6E36C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		638F79AE1F1FEDCB00F6E36C /* TourAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TourAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		638F79B21F1FEDCB00F6E36C /* TourAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TourAppTests.m; sourceTree = "<group>"; };
+		638F79B41F1FEDCB00F6E36C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		638F79BE1F1FEEFC00F6E36C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Application/Info.plist; sourceTree = "<group>"; };
+		638F79BF1F1FEEFC00F6E36C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Application/main.m; sourceTree = "<group>"; };
+		638F79C01F1FEEFC00F6E36C /* SLVAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVAppDelegate.h; path = Application/SLVAppDelegate.h; sourceTree = "<group>"; };
+		638F79C11F1FEEFC00F6E36C /* SLVAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVAppDelegate.m; path = Application/SLVAppDelegate.m; sourceTree = "<group>"; };
+		638F79C81F1FEF4F00F6E36C /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Application/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		638F79D91F20025600F6E36C /* SLVMainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVMainVC.h; path = Classes/MainMenu/SLVMainVC.h; sourceTree = "<group>"; };
+		638F79DA1F20025600F6E36C /* SLVMainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVMainVC.m; path = Classes/MainMenu/SLVMainVC.m; sourceTree = "<group>"; };
+		638F79DC1F2004F900F6E36C /* SLVMapVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVMapVC.h; path = Classes/Route/SLVMapVC.h; sourceTree = "<group>"; };
+		638F79DD1F2004F900F6E36C /* SLVMapVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVMapVC.m; path = Classes/Route/SLVMapVC.m; sourceTree = "<group>"; };
+		638F79E01F20370600F6E36C /* Masonry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Masonry.framework; path = Carthage/Build/iOS/Masonry.framework; sourceTree = "<group>"; };
+		638F79E21F20373700F6E36C /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mapbox.framework; path = Carthage/Build/iOS/Mapbox.framework; sourceTree = "<group>"; };
+		638F79E41F20373F00F6E36C /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = Carthage/Build/iOS/OCMock.framework; sourceTree = "<group>"; };
+		638F79E81F203AE300F6E36C /* Polyline.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Polyline.framework; path = Carthage/Build/iOS/Polyline.framework; sourceTree = "<group>"; };
+		638F79EB1F203BE800F6E36C /* SLVNetworkProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVNetworkProtocol.h; sourceTree = "<group>"; };
+		638F79EC1F203BE800F6E36C /* SLVNetworkService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVNetworkService.h; sourceTree = "<group>"; };
+		638F79ED1F203BE800F6E36C /* SLVNetworkService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLVNetworkService.m; sourceTree = "<group>"; };
+		638F79EF1F203BE800F6E36C /* SLVCoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVCoreDataStack.h; sourceTree = "<group>"; };
+		638F79F01F203BE800F6E36C /* SLVCoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLVCoreDataStack.m; sourceTree = "<group>"; };
+		638F79F11F203BE800F6E36C /* SLVStorageProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVStorageProtocol.h; sourceTree = "<group>"; };
+		638F79F21F203BE800F6E36C /* SLVStorageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVStorageService.h; sourceTree = "<group>"; };
+		638F79F31F203BE800F6E36C /* SLVStorageService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLVStorageService.m; sourceTree = "<group>"; };
+		638F79F71F203CE700F6E36C /* SLVNodesPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVNodesPresenter.h; path = Classes/Route/SLVNodesPresenter.h; sourceTree = "<group>"; };
+		638F79F81F203CE700F6E36C /* SLVNodesPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVNodesPresenter.m; path = Classes/Route/SLVNodesPresenter.m; sourceTree = "<group>"; };
+		638F79FC1F20433E00F6E36C /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		638F79FE1F20465E00F6E36C /* SLVRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVRoute.h; path = Entities/SLVRoute.h; sourceTree = "<group>"; };
+		638F79FF1F20465E00F6E36C /* SLVRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVRoute.m; path = Entities/SLVRoute.m; sourceTree = "<group>"; };
+		638F7A011F20467000F6E36C /* SLVNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVNode.h; path = Entities/SLVNode.h; sourceTree = "<group>"; };
+		638F7A021F20467000F6E36C /* SLVNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVNode.m; path = Entities/SLVNode.m; sourceTree = "<group>"; };
+		638F7A041F20467D00F6E36C /* SLVInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVInfo.h; sourceTree = "<group>"; };
+		638F7A051F20467D00F6E36C /* SLVInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLVInfo.m; sourceTree = "<group>"; };
+		638F7A071F20468900F6E36C /* SLVTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVTag.h; sourceTree = "<group>"; };
+		638F7A081F20468900F6E36C /* SLVTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLVTag.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		638F79921F1FEDC800F6E36C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				638F79E91F203AE300F6E36C /* Polyline.framework in Frameworks */,
+				638F79E61F20375A00F6E36C /* OCMock.framework in Frameworks */,
+				638F79E31F20373700F6E36C /* Mapbox.framework in Frameworks */,
+				638F79E11F20370600F6E36C /* Masonry.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		638F79AB1F1FEDCB00F6E36C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		638F798C1F1FEDC800F6E36C = {
+			isa = PBXGroup;
+			children = (
+				638F79971F1FEDC800F6E36C /* TourApp */,
+				638F79B11F1FEDCB00F6E36C /* TourAppTests */,
+				638F79961F1FEDC800F6E36C /* Products */,
+				638F79DF1F20370600F6E36C /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		638F79961F1FEDC800F6E36C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				638F79951F1FEDC800F6E36C /* TourApp.app */,
+				638F79AE1F1FEDCB00F6E36C /* TourAppTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		638F79971F1FEDC800F6E36C /* TourApp */ = {
+			isa = PBXGroup;
+			children = (
+				638F79C71F1FEF1A00F6E36C /* Helpers */,
+				638F79C61F1FEF1200F6E36C /* Services */,
+				638F79FA1F20429500F6E36C /* Entities */,
+				638F79C51F1FEF0B00F6E36C /* Classes */,
+				638F79BD1F1FEEE900F6E36C /* Application */,
+			);
+			path = TourApp;
+			sourceTree = "<group>";
+		};
+		638F79B11F1FEDCB00F6E36C /* TourAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				638F79B21F1FEDCB00F6E36C /* TourAppTests.m */,
+				638F79B41F1FEDCB00F6E36C /* Info.plist */,
+			);
+			path = TourAppTests;
+			sourceTree = "<group>";
+		};
+		638F79BD1F1FEEE900F6E36C /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				638F79A41F1FEDCA00F6E36C /* Assets.xcassets */,
+				638F79C81F1FEF4F00F6E36C /* LaunchScreen.storyboard */,
+				638F79BE1F1FEEFC00F6E36C /* Info.plist */,
+				638F79BF1F1FEEFC00F6E36C /* main.m */,
+				638F79C01F1FEEFC00F6E36C /* SLVAppDelegate.h */,
+				638F79C11F1FEEFC00F6E36C /* SLVAppDelegate.m */,
+			);
+			name = Application;
+			sourceTree = "<group>";
+		};
+		638F79C51F1FEF0B00F6E36C /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				638F79D21F1FF02E00F6E36C /* MainMenu */,
+				638F79D11F1FF02100F6E36C /* CreateRoute */,
+				638F79CF1F1FF00200F6E36C /* MyRoutes */,
+				638F79CD1F1FEFF500F6E36C /* Route */,
+				638F79CB1F1FEFDC00F6E36C /* RouteStore */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		638F79C61F1FEF1200F6E36C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				638F79EA1F203BE800F6E36C /* Network */,
+				638F79EE1F203BE800F6E36C /* Storage */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		638F79C71F1FEF1A00F6E36C /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		638F79CB1F1FEFDC00F6E36C /* RouteStore */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = RouteStore;
+			sourceTree = "<group>";
+		};
+		638F79CD1F1FEFF500F6E36C /* Route */ = {
+			isa = PBXGroup;
+			children = (
+				638F79DC1F2004F900F6E36C /* SLVMapVC.h */,
+				638F79DD1F2004F900F6E36C /* SLVMapVC.m */,
+				638F79F71F203CE700F6E36C /* SLVNodesPresenter.h */,
+				638F79F81F203CE700F6E36C /* SLVNodesPresenter.m */,
+			);
+			name = Route;
+			sourceTree = "<group>";
+		};
+		638F79CF1F1FF00200F6E36C /* MyRoutes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = MyRoutes;
+			sourceTree = "<group>";
+		};
+		638F79D11F1FF02100F6E36C /* CreateRoute */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = CreateRoute;
+			sourceTree = "<group>";
+		};
+		638F79D21F1FF02E00F6E36C /* MainMenu */ = {
+			isa = PBXGroup;
+			children = (
+				638F79D91F20025600F6E36C /* SLVMainVC.h */,
+				638F79DA1F20025600F6E36C /* SLVMainVC.m */,
+			);
+			name = MainMenu;
+			sourceTree = "<group>";
+		};
+		638F79DF1F20370600F6E36C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				638F79E81F203AE300F6E36C /* Polyline.framework */,
+				638F79E41F20373F00F6E36C /* OCMock.framework */,
+				638F79E21F20373700F6E36C /* Mapbox.framework */,
+				638F79E01F20370600F6E36C /* Masonry.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		638F79EA1F203BE800F6E36C /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				638F79EB1F203BE800F6E36C /* SLVNetworkProtocol.h */,
+				638F79EC1F203BE800F6E36C /* SLVNetworkService.h */,
+				638F79ED1F203BE800F6E36C /* SLVNetworkService.m */,
+			);
+			name = Network;
+			path = Services/Network;
+			sourceTree = "<group>";
+		};
+		638F79EE1F203BE800F6E36C /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				638F79EF1F203BE800F6E36C /* SLVCoreDataStack.h */,
+				638F79F01F203BE800F6E36C /* SLVCoreDataStack.m */,
+				638F79F11F203BE800F6E36C /* SLVStorageProtocol.h */,
+				638F79F21F203BE800F6E36C /* SLVStorageService.h */,
+				638F79F31F203BE800F6E36C /* SLVStorageService.m */,
+			);
+			name = Storage;
+			path = Services/Storage;
+			sourceTree = "<group>";
+		};
+		638F79FA1F20429500F6E36C /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				638F79FB1F20433E00F6E36C /* DataModel.xcdatamodeld */,
+				638F79FE1F20465E00F6E36C /* SLVRoute.h */,
+				638F79FF1F20465E00F6E36C /* SLVRoute.m */,
+				638F7A011F20467000F6E36C /* SLVNode.h */,
+				638F7A021F20467000F6E36C /* SLVNode.m */,
+				638F7A041F20467D00F6E36C /* SLVInfo.h */,
+				638F7A051F20467D00F6E36C /* SLVInfo.m */,
+				638F7A071F20468900F6E36C /* SLVTag.h */,
+				638F7A081F20468900F6E36C /* SLVTag.m */,
+			);
+			name = Entities;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		638F79941F1FEDC800F6E36C /* TourApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 638F79B71F1FEDCB00F6E36C /* Build configuration list for PBXNativeTarget "TourApp" */;
+			buildPhases = (
+				638F79911F1FEDC800F6E36C /* Sources */,
+				638F79921F1FEDC800F6E36C /* Frameworks */,
+				638F79931F1FEDC800F6E36C /* Resources */,
+				638F79E71F20377B00F6E36C /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TourApp;
+			productName = TourApp;
+			productReference = 638F79951F1FEDC800F6E36C /* TourApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		638F79AD1F1FEDCB00F6E36C /* TourAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 638F79BA1F1FEDCB00F6E36C /* Build configuration list for PBXNativeTarget "TourAppTests" */;
+			buildPhases = (
+				638F79AA1F1FEDCB00F6E36C /* Sources */,
+				638F79AB1F1FEDCB00F6E36C /* Frameworks */,
+				638F79AC1F1FEDCB00F6E36C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				638F79B01F1FEDCB00F6E36C /* PBXTargetDependency */,
+			);
+			name = TourAppTests;
+			productName = TourAppTests;
+			productReference = 638F79AE1F1FEDCB00F6E36C /* TourAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		638F798D1F1FEDC800F6E36C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = SLV;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = serebryanyy;
+				TargetAttributes = {
+					638F79941F1FEDC800F6E36C = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 4BVAFGEHDW;
+						ProvisioningStyle = Automatic;
+					};
+					638F79AD1F1FEDCB00F6E36C = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 4BVAFGEHDW;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 638F79941F1FEDC800F6E36C;
+					};
+				};
+			};
+			buildConfigurationList = 638F79901F1FEDC800F6E36C /* Build configuration list for PBXProject "TourApp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 638F798C1F1FEDC800F6E36C;
+			productRefGroup = 638F79961F1FEDC800F6E36C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				638F79941F1FEDC800F6E36C /* TourApp */,
+				638F79AD1F1FEDCB00F6E36C /* TourAppTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		638F79931F1FEDC800F6E36C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				638F79C91F1FEF4F00F6E36C /* LaunchScreen.storyboard in Resources */,
+				638F79A51F1FEDCA00F6E36C /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		638F79AC1F1FEDCB00F6E36C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		638F79E71F20377B00F6E36C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Mapbox.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Masonry.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ocmock.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Polyline.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		638F79911F1FEDC800F6E36C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				638F79DB1F20025600F6E36C /* SLVMainVC.m in Sources */,
+				638F79F61F203BE800F6E36C /* SLVStorageService.m in Sources */,
+				638F79F91F203CE700F6E36C /* SLVNodesPresenter.m in Sources */,
+				638F7A031F20467000F6E36C /* SLVNode.m in Sources */,
+				638F7A001F20465E00F6E36C /* SLVRoute.m in Sources */,
+				638F79F41F203BE800F6E36C /* SLVNetworkService.m in Sources */,
+				638F79DE1F2004F900F6E36C /* SLVMapVC.m in Sources */,
+				638F79F51F203BE800F6E36C /* SLVCoreDataStack.m in Sources */,
+				638F79FD1F20433E00F6E36C /* DataModel.xcdatamodeld in Sources */,
+				638F7A091F20468900F6E36C /* SLVTag.m in Sources */,
+				638F7A061F20467D00F6E36C /* SLVInfo.m in Sources */,
+				638F79C41F1FEEFC00F6E36C /* SLVAppDelegate.m in Sources */,
+				638F79C31F1FEEFC00F6E36C /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		638F79AA1F1FEDCB00F6E36C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				638F79B31F1FEDCB00F6E36C /* TourAppTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		638F79B01F1FEDCB00F6E36C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 638F79941F1FEDC800F6E36C /* TourApp */;
+			targetProxy = 638F79AF1F1FEDCB00F6E36C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		638F79B51F1FEDCB00F6E36C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		638F79B61F1FEDCB00F6E36C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		638F79B81F1FEDCB00F6E36C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 4BVAFGEHDW;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/TourApp/Application/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = serebryanyy.TourApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		638F79B91F1FEDCB00F6E36C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 4BVAFGEHDW;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/TourApp/Application/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = serebryanyy.TourApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		638F79BB1F1FEDCB00F6E36C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 4BVAFGEHDW;
+				INFOPLIST_FILE = TourAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = serebryanyy.TourAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TourApp.app/TourApp";
+			};
+			name = Debug;
+		};
+		638F79BC1F1FEDCB00F6E36C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 4BVAFGEHDW;
+				INFOPLIST_FILE = TourAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = serebryanyy.TourAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TourApp.app/TourApp";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		638F79901F1FEDC800F6E36C /* Build configuration list for PBXProject "TourApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				638F79B51F1FEDCB00F6E36C /* Debug */,
+				638F79B61F1FEDCB00F6E36C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		638F79B71F1FEDCB00F6E36C /* Build configuration list for PBXNativeTarget "TourApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				638F79B81F1FEDCB00F6E36C /* Debug */,
+				638F79B91F1FEDCB00F6E36C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		638F79BA1F1FEDCB00F6E36C /* Build configuration list for PBXNativeTarget "TourAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				638F79BB1F1FEDCB00F6E36C /* Debug */,
+				638F79BC1F1FEDCB00F6E36C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		638F79FB1F20433E00F6E36C /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				638F79FC1F20433E00F6E36C /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 638F79FC1F20433E00F6E36C /* DataModel.xcdatamodel */;
+			name = DataModel.xcdatamodeld;
+			path = Entities/DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 638F798D1F1FEDC800F6E36C /* Project object */;
+}
