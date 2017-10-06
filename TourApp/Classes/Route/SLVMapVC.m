@@ -8,13 +8,14 @@
 
 #import "SLVMapVC.h"
 #import "SLVMainVC.h"
+#import "SLVPlacesVC.h"
 #import "SLVNodesPresenter.h"
 
 #import "SLVNode.h"
 #import "SLVInfo.h"
 
 @import Mapbox;
-//@import MapboxDirections;
+@import MapboxDirections;
 
 @interface SLVMapVC () <MGLMapViewDelegate, UIGestureRecognizerDelegate>
 
@@ -37,14 +38,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _mapView = [MGLMapView new];
-    _mapView.frame = self.view.bounds;
-    [self.view addSubview:_mapView];
+    CGRect frame = self.view.frame;
+    self.mapView = [[MGLMapView alloc] initWithFrame:frame];
+    [self.view addSubview:self.mapView];
     self.mapView.delegate = self;
+    
     [self addMapButtons];
+    [self addSegmentedControl];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self.presenter getNodesWithCompletion:^{
         dispatch_async(dispatch_get_main_queue(), ^{
             [self showMap];
@@ -81,8 +85,9 @@
     CLLocationCoordinate2D ne = CLLocationCoordinate2DMake(-90, -90);
     for (NSUInteger index = 0; index < [self.presenter numberOfObjects]; ++ index) {
         SLVNode *node = [self.presenter objectForIndex:index];
-        const double longitude = node.longitude;
-        const double latitude = node.latitude;
+        const float longitude = node.longitude;
+        const float latitude = node.latitude;
+        NSLog(@"%f, %f", longitude, latitude);
         if (latitude < sw.latitude) {
             sw.latitude = latitude;
         }
@@ -121,10 +126,18 @@
 #pragma mark - directions
 
 - (IBAction)showDirections:(UIButton *)sender {
-
+    
 }
 
 #pragma mark Buttons
+
+- (void)addSegmentedControl {
+    UISegmentedControl *segmentedControl = [[UISegmentedControl alloc]initWithItems:@[@"nodes", @"map" ,@"main"]];
+    segmentedControl.frame = CGRectMake(self.view.frame.size.width / 2 - 100, 25, 200, 30);
+    [self.view addSubview:segmentedControl];
+    segmentedControl.selectedSegmentIndex = 1;
+    [segmentedControl addTarget:self action:@selector(segmentedControlValueDidChange:) forControlEvents:UIControlEventValueChanged];
+}
 
 - (void)addMapButtons {
     CGRect bounds = self.view.bounds;
@@ -144,12 +157,6 @@
     UIButton *makeDirectionsButton = [UIButton new];
     [self configureButton:makeDirectionsButton label:@"D" image:nil frame:CGRectMake(5, CGRectGetHeight(bounds) - 40, d, d) selector:@selector(showDirections:)];
     makeDirectionsButton.backgroundColor = [UIColor blueColor];
-    
-    UISegmentedControl *segmentedControl = [[UISegmentedControl alloc]initWithItems:@[@"nodes", @"map" ,@"main"]];
-    segmentedControl.frame = CGRectMake(self.view.frame.size.width / 2 - 100, 25, 200, 30);
-    [self.view addSubview:segmentedControl];
-    segmentedControl.selectedSegmentIndex = 1;
-    [segmentedControl addTarget:self action:@selector(segmentedControlValueDidChange:) forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)configureButton:(UIButton *)button label:(NSString *)label image:(UIImage *)image frame:(CGRect)frame selector:(SEL)selector {
@@ -173,21 +180,21 @@
     [self.view addSubview:button];
 }
 
-//- (void)segmentedControlValueDidChange:(UISegmentedControl *)segment {
-//    switch (segment.selectedSegmentIndex) {
-//        case 0: {
-//            RouteNodesVC *vc = [RouteNodesVC new];
-//            [self presentViewController:vc animated:YES completion:nil];
-//            break;
-//        } case 1: {
-//            break;
-//        } case 2: {
-//            MainVC *mainvc = [MainVC new];
-//            [self presentViewController:mainvc animated:YES completion:nil];
-//            break;
-//        }
-//    }
-//}
+- (void)segmentedControlValueDidChange:(UISegmentedControl *)segment {
+    switch (segment.selectedSegmentIndex) {
+        case 0: {
+            SLVPlacesVC *vc = [[SLVPlacesVC alloc] initWithPresenter:self.presenter];
+            [self presentViewController:vc animated:YES completion:nil];
+            break;
+        } case 1: {
+            break;
+        } case 2: {
+            SLVMainVC *mainvc = [SLVMainVC new];
+            [self presentViewController:mainvc animated:YES completion:nil];
+            break;
+        }
+    }
+}
 
 - (IBAction)zoomIn:(id)sender{
     @autoreleasepool {

@@ -13,6 +13,7 @@
 @dynamic identifier;
 @dynamic name;
 @dynamic author;
+@dynamic thumbnailURL;
 @dynamic thumbnail;
 
 @dynamic nodes;

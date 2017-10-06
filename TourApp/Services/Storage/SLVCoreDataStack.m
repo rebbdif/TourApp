@@ -35,11 +35,10 @@
 }
 
 - (void)setupPersistentStoreCoordinator {
-    NSURL *path = [[NSBundle mainBundle] URLForResource:@"Bolt" withExtension:@"momd"];
+    NSURL *path = [[NSBundle mainBundle] URLForResource:@"TourApp" withExtension:@"momd"];
     NSManagedObjectModel *coreDataModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:path];
     
     self.coreDataPSC = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:coreDataModel];
-    NSError *err = nil;
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSURL *applicationSupportFolder = [[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask].lastObject;
@@ -48,7 +47,9 @@
         [fileManager createDirectoryAtPath:applicationSupportFolder.path withIntermediateDirectories:NO attributes:nil error:nil];
     }
     NSURL *url = [applicationSupportFolder URLByAppendingPathComponent:@"db.sqlite"];
+    NSError *err = nil;
     [self.coreDataPSC addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:url options:nil error:&err];
+    if (err) NSLog(@"error %@ %@", err.userInfo, err.localizedDescription);
 }
 
 - (void)setupMainContext {

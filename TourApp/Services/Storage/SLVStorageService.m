@@ -24,7 +24,7 @@
     self = [super init];
     if (self) {
         _stack = [SLVCoreDataStack stack];
-        _saveSyncQueue = dispatch_queue_create("serebryanyy.Bolt.syncQueue", NULL);
+        _saveSyncQueue = dispatch_queue_create("serebryanyy.TourApp.syncQueue", NULL);
     }
     return self;
 }

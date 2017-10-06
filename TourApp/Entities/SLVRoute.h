@@ -18,6 +18,7 @@
 @property (nonatomic, copy) NSString *identifier;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *author;
+@property (nonatomic, strong) NSString *thumbnailURL;
 @property (nonatomic, strong) UIImage *thumbnail;
 
 @property (nonatomic, copy) NSOrderedSet<SLVNode *> *nodes;

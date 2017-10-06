@@ -8,6 +8,8 @@
 
 #import "SLVMainVC.h"
 #import "SLVMapVC.h"
+#import "SLVPlacesVC.h"
+#import "SLVPresenterFactory.h"
 
 @interface SLVMainVC ()
 
@@ -19,11 +21,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor=[UIColor whiteColor];
-    self.imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
     [self.view addSubview:self.imageView];
-    self.imageView.image=[UIImage imageNamed:@"city2.jpg"];
-    self.imageView.layer.opacity=0.3;
+    self.imageView.image = [UIImage imageNamed:@"city2.jpg"];
+    self.imageView.layer.opacity = 0.3;
     [self addButtons];
 }
 
@@ -38,7 +40,7 @@
 }
 
 - (IBAction)goToMap:(id)sender {
-    SLVMapVC *mapvc = [SLVMapVC new];
+    SLVPlacesVC *mapvc = [[SLVPlacesVC alloc] initWithPresenter:[SLVPresenterFactory nodesPresenter]];
     [self presentViewController:mapvc animated:YES completion:nil];
 }
 
@@ -51,8 +53,8 @@
 }
 
 - (void)addButtons {
-    UIButton *storeButton=[[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2-120,self.view.frame.size.height/2-30,240,60)] ;
-    storeButton.backgroundColor=[UIColor redColor];
+    UIButton *storeButton=[[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 120, self.view.frame.size.height / 2 - 30, 240, 60)] ;
+    storeButton.backgroundColor = [UIColor redColor];
     [storeButton setTitle:@"Магазин маршрутов" forState:UIControlStateNormal];
     [storeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [storeButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
@@ -63,8 +65,8 @@
     [storeButton addTarget:self action:@selector(storeButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:storeButton];
     
-    UIButton *createRouteButton=[[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2-120,self.view.frame.size.height/2-100,240,60)] ;
-    createRouteButton.backgroundColor=[UIColor redColor];
+    UIButton *createRouteButton=[[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 120,self.view.frame.size.height / 2 - 100, 240, 60)] ;
+    createRouteButton.backgroundColor = [UIColor redColor];
     [createRouteButton setTitle:@"Создать маршрут" forState:UIControlStateNormal];
     [createRouteButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [createRouteButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
@@ -75,9 +77,9 @@
     [createRouteButton addTarget:self action:@selector(createRouteButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:createRouteButton];
     
-    UIButton *toMapButton=[[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2-120,self.view.frame.size.height/2+40,240,60)] ;
-    toMapButton.backgroundColor=[UIColor redColor];
-    toMapButton.layer.opacity=0.7;
+    UIButton *toMapButton=[[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 120, self.view.frame.size.height / 2 + 40, 240, 60)] ;
+    toMapButton.backgroundColor = [UIColor redColor];
+    toMapButton.layer.opacity = 0.7;
     [toMapButton setTitle:@"Временная: к карте" forState:UIControlStateNormal];
     [toMapButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [toMapButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];

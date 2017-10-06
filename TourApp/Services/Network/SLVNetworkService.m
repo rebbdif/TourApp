@@ -1,6 +1,6 @@
 //
-//  DIFNetworkManager.m
-//  Bolt
+//  SLVNetworkService.m
+//  TourApp
 //
 //  Created by 1 on 01.05.17.
 //  Copyright © 2017 serebryanyy. All rights reserved.
@@ -28,9 +28,6 @@
 
 - (void)getDictionaryFromURL:(NSURL *)url withCompletionBlock:(void (^)(NSDictionary * data))completionBlock {
     NSURLSessionDataTask *task = [self.session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        });
         if (!data) {
             NSLog(@"Error while downloading data %@", error.userInfo);
         } else {
@@ -38,9 +35,6 @@
             completionBlock(result);
         }
     }];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    });
     [task resume];
 }
 

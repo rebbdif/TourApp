@@ -15,10 +15,13 @@
 
 @property (nonatomic, copy) NSString *identifier;
 @property (nonatomic, copy) NSString *name;
+@property (nonatomic, strong) NSString *thumbnailURL;
 @property (nonatomic, strong) UIImage *thumbnail;
 @property (nonatomic, assign) float latitude;
 @property (nonatomic, assign) float longitude;
 
 @property (nonatomic, strong) SLVInfo *info;
+
++ (instancetype)nodeWithDictionary:(NSDictionary *)dict context:(NSManagedObjectContext *)context;
 
 @end

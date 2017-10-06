@@ -8,14 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void (^networkCompletion)(NSDictionary * data);
+
 @protocol SLVNetworkProtocol <NSObject>
 
-/**
- Загружает json с URL сайта и парсит его
-
- @param url url, с которого идет загрузка
- @param completionBlock замыкание с полученным словарем в качестве параметра
- */
-- (void)getDictionaryFromURL:(NSURL *)url withCompletionBlock:(void (^)(NSDictionary * data))completionBlock;
+- (void)getDictionaryFromURL:(NSURL *)url withCompletionBlock:(networkCompletion)completionBlock;
 
 @end

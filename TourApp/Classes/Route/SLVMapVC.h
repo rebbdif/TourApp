@@ -13,5 +13,7 @@
 @interface SLVMapVC : UIViewController
 
 - (instancetype)initWithPresenter:(SLVNodesPresenter *)presenter;
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
 
 @end

@@ -20,4 +20,7 @@
 
 - (void)getNodesWithCompletion:(voidBlock)completion;
 
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
+
 @end
