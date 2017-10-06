@@ -44,7 +44,6 @@
     self.mapView.delegate = self;
     
     [self addMapButtons];
-    [self addSegmentedControl];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -131,14 +130,6 @@
 
 #pragma mark Buttons
 
-- (void)addSegmentedControl {
-    UISegmentedControl *segmentedControl = [[UISegmentedControl alloc]initWithItems:@[@"nodes", @"map" ,@"main"]];
-    segmentedControl.frame = CGRectMake(self.view.frame.size.width / 2 - 100, 25, 200, 30);
-    [self.view addSubview:segmentedControl];
-    segmentedControl.selectedSegmentIndex = 1;
-    [segmentedControl addTarget:self action:@selector(segmentedControlValueDidChange:) forControlEvents:UIControlEventValueChanged];
-}
-
 - (void)addMapButtons {
     CGRect bounds = self.view.bounds;
     
@@ -180,21 +171,7 @@
     [self.view addSubview:button];
 }
 
-- (void)segmentedControlValueDidChange:(UISegmentedControl *)segment {
-    switch (segment.selectedSegmentIndex) {
-        case 0: {
-            SLVPlacesVC *vc = [[SLVPlacesVC alloc] initWithPresenter:self.presenter];
-            [self presentViewController:vc animated:YES completion:nil];
-            break;
-        } case 1: {
-            break;
-        } case 2: {
-            SLVMainVC *mainvc = [SLVMainVC new];
-            [self presentViewController:mainvc animated:YES completion:nil];
-            break;
-        }
-    }
-}
+
 
 - (IBAction)zoomIn:(id)sender{
     @autoreleasepool {

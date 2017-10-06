@@ -15,9 +15,13 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         _name = [UILabel new];
+        [self addSubview:_name];
         _info = [UILabel new];
+        [self addSubview:_info];
         _thumbnail = [UIImageView new];
+         [self addSubview:_thumbnail];
         _attribute = [UIImageView new];
+         [self addSubview:_attribute];
     }
     return self;
 }
@@ -29,19 +33,24 @@
 - (void)updateConstraints {
     UIView *contentView = self.contentView;
     [self.thumbnail mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(contentView.mas_top).with.offset(8);
-        make.left.equalTo(contentView.mas_left).with.offset(8);
-        make.size.equalTo(@100);
+        make.top.equalTo(contentView.mas_top).with.offset(SLVStandardOffset);
+        make.left.equalTo(contentView.mas_left).with.offset(SLVStandardOffset);
+        make.size.equalTo(@(SLVCellThumbnailHeight));
     }];
     [self.name mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(contentView.mas_top).with.offset(8);
-        make.left.equalTo(self.thumbnail.mas_right).with.offset(18);
-        make.right.equalTo(contentView.mas_right).with.offset(41);
+        make.top.equalTo(contentView.mas_top).with.offset(SLVStandardOffset);
+        make.left.equalTo(self.thumbnail.mas_right).with.offset(SLVBigOffset);
+        make.right.equalTo(contentView.mas_right).with.offset(SLVStandardOffset);
     }];
-    [self.name mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.name).with.offset(17);
-        make.left.equalTo(self.thumbnail.mas_right).with.offset(19);
-        make.right.equalTo(contentView.mas_right).with.offset(40);
+    [self.attribute mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.equalTo(@(SLVCellAttributeSize));
+        make.centerY.equalTo(self.thumbnail.mas_centerY);
+        make.left.equalTo(contentView.mas_left).with.offset(SLVStandardOffset);
+    }];
+    [self.info mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.name.mas_bottom).with.offset(SLVBigOffset);
+        make.left.equalTo(self.thumbnail.mas_right).with.offset(SLVBigOffset);
+        make.right.equalTo(self.attribute.mas_left).with.offset(-SLVStandardOffset);
     }];
     [super updateConstraints];
 }

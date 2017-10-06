@@ -7,7 +7,7 @@
 //
 
 #import "SLVAppDelegate.h"
-#import "SLVMainVC.h"
+#import "SLVSegmentedController.h"
 
 @interface SLVAppDelegate ()
 
@@ -16,9 +16,9 @@
 @implementation SLVAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    SLVMainVC *mainVC = [SLVMainVC new];
+    SLVSegmentedController *segmentedVC = [SLVSegmentedController new];
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen.mainScreen bounds]];
-    self.window.rootViewController = mainVC;
+    self.window.rootViewController = segmentedVC;
     [self.window makeKeyAndVisible];
     return YES;
 }

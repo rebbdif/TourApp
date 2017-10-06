@@ -14,11 +14,14 @@
 
 #import "SLVNode.h"
 #import "SLVInfo.h"
+#import "SLVLoadingAnimation.h"
 
 @interface SLVPlacesVC () <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) SLVNodesPresenter *presenter;
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) SLVLoadingAnimation *spinner;
+
 
 @end
 
@@ -38,18 +41,19 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerClass:[SLVPlaceCell class] forCellReuseIdentifier:NSStringFromClass([SLVPlaceCell class])];
+    self.tableView.rowHeight = SLVCellHeight;
     [self.view addSubview:self.tableView];
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 116;
-    
-    [self addSegmentedControl];
+    _spinner = [[SLVLoadingAnimation alloc] initWithCenter:self.view.center];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self.view addSubview:self.spinner];
+    [self.spinner startAnimation];
     [self.presenter getNodesWithCompletion:^{
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
+            [self.spinner startAnimation];
         });
     }];
 }
@@ -61,7 +65,8 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.presenter numberOfObjects];
+    NSUInteger numberOfObjects = [self.presenter numberOfObjects];
+    return numberOfObjects;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -84,30 +89,6 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 1;
-}
-
-- (void)addSegmentedControl {
-    UISegmentedControl *segmentedControl = [[UISegmentedControl alloc]initWithItems:@[@"nodes", @"map" ,@"main"]];
-    segmentedControl.frame = CGRectMake(self.view.frame.size.width / 2 - 100, 25, 200, 30);
-    [self.view addSubview:segmentedControl];
-    segmentedControl.selectedSegmentIndex = 0;
-    [segmentedControl addTarget:self action:@selector(segmentedControlValueDidChange:) forControlEvents:UIControlEventValueChanged];
-}
-
-- (void)segmentedControlValueDidChange:(UISegmentedControl *)segment {
-    switch (segment.selectedSegmentIndex) {
-        case 0: {
-            break;
-        } case 1: {
-            SLVMapVC *vc = [[SLVMapVC alloc] initWithPresenter:self.presenter];
-            [self presentViewController:vc animated:YES completion:nil];
-            break;
-        } case 2: {
-            SLVMainVC *mainvc = [SLVMainVC new];
-            [self presentViewController:mainvc animated:YES completion:nil];
-            break;
-        }
-    }
 }
 
 @end
