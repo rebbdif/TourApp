@@ -18,19 +18,19 @@
         self.backgroundColor = UIColor.whiteColor;
         
         _name = [UILabel new];
-        [self addSubview:_name];
+        [self.contentView addSubview:_name];
         
         _info = [UILabel new];
         _info.backgroundColor = UIColor.redColor;
         _info.numberOfLines = 0;
         _info.adjustsFontSizeToFitWidth = NO;
-        _info.lineBreakMode = NSLineBreakByWordWrapping;
-        [self addSubview:_info];
+        _info.lineBreakMode = NSLineBreakByTruncatingTail;
+        [self.contentView addSubview:_info];
         
         _thumbnail = [UIImageView new];
         _thumbnail.backgroundColor = UIColor.redColor;
         _thumbnail.contentMode = UIViewContentModeScaleAspectFill;
-        [self addSubview:_thumbnail];
+        [self.contentView addSubview:_thumbnail];
         
         _attribute = [UIImageView new];
         _attribute.backgroundColor = UIColor.greenColor;
@@ -38,8 +38,7 @@
         UITapGestureRecognizer *singleTap =  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapAttribute:)];
         [singleTap setNumberOfTapsRequired:1];
         [_attribute addGestureRecognizer:singleTap];
-        
-        [self addSubview:_attribute];
+        [self.contentView addSubview:_attribute];
     }
     return self;
 }
@@ -56,6 +55,7 @@
         make.top.equalTo(contentView.mas_top).with.offset(SLVStandardOffset);
         make.left.equalTo(contentView.mas_left).with.offset(SLVStandardOffset);
         make.size.equalTo(@(SLVCellThumbnailHeight));
+        make.bottom.lessThanOrEqualTo(self.contentView.mas_bottom).with.offset(-SLVStandardOffset);
     }];
     [self.name mas_updateConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(contentView.mas_top).with.offset(SLVStandardOffset);

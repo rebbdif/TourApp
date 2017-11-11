@@ -49,7 +49,8 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerClass:[SLVPlaceCell class] forCellReuseIdentifier:NSStringFromClass([SLVPlaceCell class])];
-    self.tableView.rowHeight = SLVCellHeight;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 10;
     self.tableView.contentInset = UIEdgeInsetsMake(65, 0, 0, 0);
     [self.view addSubview:self.tableView];
     _spinner = [[SLVLoadingAnimation alloc] initWithCenter:self.view.center];
