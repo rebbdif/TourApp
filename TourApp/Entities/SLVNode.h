@@ -11,6 +11,8 @@
 @class UIImage;
 @class SLVInfo;
 
+static NSString * const SLVNodeEntityName = @"SLVNode";
+
 @interface SLVNode : NSManagedObject
 
 @property (nonatomic, copy) NSString *identifier;
