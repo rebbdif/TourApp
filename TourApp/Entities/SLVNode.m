@@ -7,6 +7,7 @@
 //
 
 #import "SLVNode.h"
+#import "SLVInfo.h"
 
 @implementation SLVNode
 
@@ -19,10 +20,12 @@
 
 @dynamic info;
 
-+ (instancetype)nodeWithDictionary:(NSDictionary *)dict context:(NSManagedObjectContext *)context {
++ (instancetype)nodeWithDictionary:(NSDictionary *)dict context:(NSManagedObjectContext *)context
+{
     NSString *nodeId = dict[@"identifier"];
     NSAssert(nodeId, @"cityId shouldnt be nil");
     __block SLVNode *node = nil;
+    
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([self class])];
     request.predicate = [NSPredicate predicateWithFormat:@"identifier == %@", nodeId];
     [context performBlockAndWait:^{
@@ -32,6 +35,7 @@
             node = results.lastObject;
         }
     }];
+    
     if (!node) {
         [context performBlockAndWait:^{
             node = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([self class]) inManagedObjectContext:context];
@@ -40,6 +44,7 @@
             node.thumbnailURL = dict[@"thumbnailURL"];
             node.latitude = [dict[@"latitude"] floatValue];
             node.longitude = [dict[@"longitude"] floatValue];
+            node.info = [SLVInfo infoWithDictionary:dict[@"Info"] context:context];
             NSError *error = nil;
             if (![context save:&error]) {
                 NSLog(@"Error saving context: %@\n%@", [error localizedDescription], [error userInfo]);

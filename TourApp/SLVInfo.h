@@ -16,4 +16,6 @@
 @property (nonatomic, copy) NSString *text;
 @property (nonatomic, copy) NSArray<UIImage *> *image;
 
++ (instancetype)infoWithDictionary:(NSDictionary *)dict context:(NSManagedObjectContext *)context;
+
 @end

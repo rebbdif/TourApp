@@ -19,11 +19,15 @@
 @property (nonatomic, copy) NSDictionary<NSNumber *, SLVNode *> *nodes;
 @property (nonatomic, copy) NSString *currentRouteIdentifier;
 
+@property (nonatomic, assign) NSInteger retryCount;
+
 @end
+
 
 @implementation SLVNodesPresenter
 
-- (instancetype)initWithNetworkService:(id<SLVNetworkProtocol>)networkService storage:(id<SLVStorageProtocol>)storage {
+- (instancetype)initWithNetworkService:(id<SLVNetworkProtocol>)networkService storage:(id<SLVStorageProtocol>)storage
+{
     self = [super init];
     if (self) {
         _networkService = networkService;
@@ -33,44 +37,56 @@
     return self;
 }
 
-- (NSString *)currentRouteIdentifier {
+- (NSString *)currentRouteIdentifier
+{
     NSString *currentRouteIdentifier = @"testRoute";
     return currentRouteIdentifier;
 }
 
-- (void)getNodesWithCompletion:(voidBlock)completion {
+- (void)getNodesWithCompletion:(voidBlock)completion
+{
+    self.retryCount = 0;
     NSArray<SLVNode *> *fetchedNodes = [self fetchNodes];
-    if (fetchedNodes.count == 0) {
+    NSLog(@"fetched: %@", @(fetchedNodes.count));
+    if (fetchedNodes.count == 0)
+    {
         [self downloadNodesWithCompletion:completion];
-    } else {
-        NSMutableDictionary *nodes = [NSMutableDictionary new];
-        for (NSUInteger i = 0; i < fetchedNodes.count; ++i) {
-            [nodes setObject:fetchedNodes[i] forKey:@(i)];
-        }
-        self.nodes = [nodes copy];
-        if (completion) completion();
+        return;
     }
+    NSMutableDictionary *nodes = [NSMutableDictionary new];
+    for (NSUInteger i = 0; i < fetchedNodes.count; ++i)
+    {
+        [nodes setObject:fetchedNodes[i] forKey:@(i)];
+    }
+    self.nodes = [nodes copy];
+    if (completion) completion();
 }
 
-- (NSArray<SLVNode *> *)fetchNodes {
+- (NSArray<SLVNode *> *)fetchNodes
+{
     NSArray<SLVNode *> *nodes = [self.storage fetchEntities:SLVNodeEntityName forKey:self.currentRouteIdentifier];
     NSLog(@"fetched %@ nodes", @(nodes.count));
     return nodes;
 }
 
-- (void)downloadNodesWithCompletion:(voidBlock)completion {
+- (void)downloadNodesWithCompletion:(voidBlock)completion
+{
     NSString *path = [NSString stringWithFormat:@"https://tourapp-eab67.firebaseio.com/Routes/%@.json", self.currentRouteIdentifier];
     NSURL *url = [NSURL URLWithString:path];
-    [self.networkService getDictionaryFromURL:url withCompletionBlock:^(NSDictionary *data) {
-        [self parseNodes:data];
-        if (completion) completion();
+    [self.networkService getDictionaryFromURL:url withCompletionBlock:^(NSDictionary *data)
+    {
+        NSLog(@"Downloaded %@ nodes %@", @(data.count), data[@"Nodes"]);
+        [self saveNodes:data];
+        [self getNodesWithCompletion:completion];
     }];
 }
 
-- (void)parseNodes:(NSDictionary *)data {
+- (void)saveNodes:(NSDictionary *)data
+{
     NSManagedObjectContext *privateContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     NSManagedObjectContext *mainContext = [self.storage mainContext];
     privateContext.parentContext = mainContext;
+    
     __block NSMutableDictionary *nodes = [NSMutableDictionary new];
     __block NSUInteger index = 0;
     [privateContext performBlockAndWait:^{
@@ -79,29 +95,28 @@
             [nodes setObject:node forKey:@(index)];
             ++index;
         }];
-        NSError *error = nil;
-        if (![privateContext save:&error]) {
-            abort();
-        }
-        NSManagedObjectContext *parentContext = privateContext.parentContext;
-        [parentContext performBlock:^{
-            NSError *error = nil;
-            if (![parentContext save:&error]) {
-                abort();
-            }
-        }];
+        
+        [self.storage savePrivateContext:privateContext];
+        
         self.nodes = [nodes copy];
-        [nodes enumerateKeysAndObjectsUsingBlock:^(id key, SLVNode *node, BOOL *stop) {
-            NSLog(@"%@ %f", node.name, node.latitude);
-        }];
+        [self logNodes:self.nodes];
     }];
 }
 
-- (NSUInteger)numberOfObjects {
+- (void)logNodes:(NSDictionary *)nodes
+{
+    [nodes enumerateKeysAndObjectsUsingBlock:^(id key, SLVNode *node, BOOL *stop) {
+        NSLog(@"%@ %f", node.name, node.latitude);
+    }];
+}
+
+- (NSUInteger)numberOfObjects
+{
     return self.nodes.count;
 }
 
-- (id)objectForIndex:(NSUInteger)index {
+- (id)objectForIndex:(NSUInteger)index
+{
     return self.nodes[@(index)];
 }
 

@@ -44,13 +44,14 @@
     return results[0];
 }
 
-- (NSArray *)fetchEntities:(NSString *)entity forKey:(NSString *)key {
+- (NSArray *)fetchEntities:(NSString *)entity forKey:(NSString *)key
+{
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:entity];
+    [request setReturnsObjectsAsFaults:NO];
     request.fetchBatchSize = 30;
-    request.predicate = request.predicate = [NSPredicate predicateWithFormat:@"identifier == %@", key];
-    __block NSArray *fetchedArray;
+  //  request.predicate = request.predicate = [NSPredicate predicateWithFormat:@"identifier == %@", key];
     NSError *error = nil;
-    fetchedArray = [self.mainContext executeFetchRequest:request error:&error];
+    NSArray *fetchedArray = [self.mainContext executeFetchRequest:request error:&error];
     if (error) {
         NSLog(@"storageService - error while fetching %@", error);
     }
@@ -69,8 +70,24 @@
     }];
 }
 
-- (NSManagedObjectContext *)mainContext {
+- (NSManagedObjectContext *)mainContext
+{
     return self.stack.mainContext;
+}
+
+- (void)savePrivateContext:(NSManagedObjectContext *)privateContext
+{
+    NSError *error = nil;
+    if (![privateContext save:&error]) {
+        abort();
+    }
+    NSManagedObjectContext *parentContext = privateContext.parentContext;
+    [parentContext performBlock:^{
+        NSError *error = nil;
+        if (![parentContext save:&error]) {
+            abort();
+        }
+    }];
 }
 
 @end

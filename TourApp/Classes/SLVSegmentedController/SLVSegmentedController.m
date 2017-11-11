@@ -11,6 +11,8 @@
 #import "SLVMapVC.h"
 #import "SLVMainVC.h"
 #import "SLVPlacesVC.h"
+#import "SLVPresenterFactory.h"
+
 
 typedef NS_ENUM(NSUInteger, SLVControllerIndex) {
     SLVControllerIndexNodes,
@@ -43,6 +45,7 @@ typedef NS_ENUM(NSUInteger, SLVControllerIndex) {
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self addSegmentedControl];
+    self.presenter = [SLVPresenterFactory nodesPresenter];
     self.placesVC = [[SLVPlacesVC alloc] initWithPresenter:self.presenter];
     self.mapVC = [[SLVMapVC alloc] initWithPresenter:self.presenter];
     self.mainVC = [SLVMainVC new];
