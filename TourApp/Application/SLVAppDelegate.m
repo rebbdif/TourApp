@@ -19,6 +19,7 @@
     SLVSegmentedController *segmentedVC = [SLVSegmentedController new];
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen.mainScreen bounds]];
     self.window.rootViewController = segmentedVC;
+    [segmentedVC setSelectedIndex:2];
     [self.window makeKeyAndVisible];
     return YES;
 }

@@ -13,8 +13,10 @@
 		5E2C71FD1FB0DC8900521931 /* SLVPresenterFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2C71FC1FB0DC8900521931 /* SLVPresenterFactory.m */; };
 		5ED6A44F1FB6F8DA00497146 /* SLVLoadingAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED6A44D1FB6F8DA00497146 /* SLVLoadingAnimation.m */; };
 		5ED6A4521FB6F90A00497146 /* SLVSegmentedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED6A4511FB6F90A00497146 /* SLVSegmentedController.m */; };
-		5ED6A4541FB6FAD100497146 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 638F79E41F20373F00F6E36C /* OCMock.framework */; };
-		5ED6A4551FB6FAD100497146 /* OCMock.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 638F79E41F20373F00F6E36C /* OCMock.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5ED6A4561FB6FEF300497146 /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 638F79E21F20373700F6E36C /* Mapbox.framework */; };
+		5ED6A4591FB6FEFD00497146 /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 638F79E01F20370600F6E36C /* Masonry.framework */; };
+		5ED6A45A1FB6FF0400497146 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 638F79E41F20373F00F6E36C /* OCMock.framework */; };
+		5ED6A4601FB6FFE700497146 /* MapboxDirections.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5ED6A4571FB6FEF700497146 /* MapboxDirections.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		638F79A51F1FEDCA00F6E36C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 638F79A41F1FEDCA00F6E36C /* Assets.xcassets */; };
 		638F79B31F1FEDCB00F6E36C /* TourAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 638F79B21F1FEDCB00F6E36C /* TourAppTests.m */; };
 		638F79C31F1FEEFC00F6E36C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 638F79BF1F1FEEFC00F6E36C /* main.m */; };
@@ -22,9 +24,6 @@
 		638F79C91F1FEF4F00F6E36C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 638F79C81F1FEF4F00F6E36C /* LaunchScreen.storyboard */; };
 		638F79DB1F20025600F6E36C /* SLVMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 638F79DA1F20025600F6E36C /* SLVMainVC.m */; };
 		638F79DE1F2004F900F6E36C /* SLVMapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 638F79DD1F2004F900F6E36C /* SLVMapVC.m */; };
-		638F79E11F20370600F6E36C /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 638F79E01F20370600F6E36C /* Masonry.framework */; };
-		638F79E31F20373700F6E36C /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 638F79E21F20373700F6E36C /* Mapbox.framework */; };
-		638F79E61F20375A00F6E36C /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 638F79E41F20373F00F6E36C /* OCMock.framework */; };
 		638F79F41F203BE800F6E36C /* SLVNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = 638F79ED1F203BE800F6E36C /* SLVNetworkService.m */; };
 		638F79F51F203BE800F6E36C /* SLVCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 638F79F01F203BE800F6E36C /* SLVCoreDataStack.m */; };
 		638F79F61F203BE800F6E36C /* SLVStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 638F79F31F203BE800F6E36C /* SLVStorageService.m */; };
@@ -53,8 +52,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				5ED6A4551FB6FAD100497146 /* OCMock.framework in Embed Frameworks */,
 				638F7A0B1F205A3900F6E36C /* Polyline.framework in Embed Frameworks */,
+				5ED6A4601FB6FFE700497146 /* MapboxDirections.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -74,6 +73,8 @@
 		5ED6A4501FB6F90A00497146 /* SLVSegmentedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVSegmentedController.h; path = Classes/SLVSegmentedController/SLVSegmentedController.h; sourceTree = "<group>"; };
 		5ED6A4511FB6F90A00497146 /* SLVSegmentedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVSegmentedController.m; path = Classes/SLVSegmentedController/SLVSegmentedController.m; sourceTree = "<group>"; };
 		5ED6A4531FB6F96700497146 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		5ED6A4571FB6FEF700497146 /* MapboxDirections.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapboxDirections.framework; path = Carthage/Build/iOS/MapboxDirections.framework; sourceTree = "<group>"; };
+		5ED6A45C1FB6FF7000497146 /* MapboxDirections.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = MapboxDirections.framework.dSYM; path = Carthage/Build/iOS/MapboxDirections.framework.dSYM; sourceTree = "<group>"; };
 		638F79951F1FEDC800F6E36C /* TourApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TourApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		638F79A41F1FEDCA00F6E36C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		638F79AE1F1FEDCB00F6E36C /* TourAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TourAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,10 +118,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5ED6A4541FB6FAD100497146 /* OCMock.framework in Frameworks */,
-				638F79E61F20375A00F6E36C /* OCMock.framework in Frameworks */,
-				638F79E31F20373700F6E36C /* Mapbox.framework in Frameworks */,
-				638F79E11F20370600F6E36C /* Masonry.framework in Frameworks */,
+				5ED6A4561FB6FEF300497146 /* Mapbox.framework in Frameworks */,
+				5ED6A4591FB6FEFD00497146 /* Masonry.framework in Frameworks */,
+				5ED6A45A1FB6FF0400497146 /* OCMock.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +278,8 @@
 		638F79DF1F20370600F6E36C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5ED6A45C1FB6FF7000497146 /* MapboxDirections.framework.dSYM */,
+				5ED6A4571FB6FEF700497146 /* MapboxDirections.framework */,
 				638F79E81F203AE300F6E36C /* Polyline.framework */,
 				638F79E41F20373F00F6E36C /* OCMock.framework */,
 				638F79E21F20373700F6E36C /* Mapbox.framework */,
@@ -436,8 +438,9 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Mapbox.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Masonry.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/ocmock.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/OCMock.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Polyline.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/MapboxDirections.framework",
 			);
 			outputPaths = (
 			);
