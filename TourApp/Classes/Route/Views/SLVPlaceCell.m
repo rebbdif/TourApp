@@ -14,14 +14,14 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        _state = SLVCellStateNormal;
         self.backgroundColor = UIColor.whiteColor;
+        
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
         
         _name = [UILabel new];
         [self.contentView addSubview:_name];
         
         _info = [UILabel new];
-        _info.backgroundColor = UIColor.redColor;
         _info.numberOfLines = 0;
         _info.adjustsFontSizeToFitWidth = NO;
         _info.lineBreakMode = NSLineBreakByTruncatingTail;
@@ -43,42 +43,74 @@
     return self;
 }
 
-+ (BOOL)requiresConstraintBasedLayout
-{
-    return YES;
-}
-
 - (void)updateConstraints
 {
     UIView *contentView = self.contentView;
-    [self.thumbnail mas_updateConstraints:^(MASConstraintMaker *make) {
+    [self.thumbnail mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(contentView.mas_top).with.offset(SLVStandardOffset);
         make.left.equalTo(contentView.mas_left).with.offset(SLVStandardOffset);
         make.size.equalTo(@(SLVCellThumbnailHeight));
         make.bottom.lessThanOrEqualTo(self.contentView.mas_bottom).with.offset(-SLVStandardOffset);
     }];
-    [self.name mas_updateConstraints:^(MASConstraintMaker *make) {
+    [self.name mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(contentView.mas_top).with.offset(SLVStandardOffset);
         make.left.equalTo(self.thumbnail.mas_right).with.offset(SLVBigOffset);
         make.right.equalTo(contentView.mas_right).with.offset(SLVStandardOffset);
+        make.height.mas_equalTo(SLVCellTitleHeight);
     }];
-    [self.attribute mas_updateConstraints:^(MASConstraintMaker *make) {
+    [self.attribute mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(SLVCellAttributeSize);
         make.centerY.equalTo(self.thumbnail.mas_centerY);
         make.right.equalTo(contentView.mas_right).with.offset(-8);
     }];
-    [self.info mas_updateConstraints:^(MASConstraintMaker *make) {
+
+    self.extended ? [self updateConstraintsForStateExtended] : [self updateConstraintsForStateNormal];
+
+    [super updateConstraints];
+}
+
+- (void)updateConstraintsForStateNormal
+{
+    UIView *contentView = self.contentView;
+    [self.info mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.name.mas_bottom).with.offset(SLVBigOffset);
         make.left.equalTo(self.thumbnail.mas_right).with.offset(SLVBigOffset);
         make.right.equalTo(self.attribute.mas_left).with.offset(-SLVStandardOffset);
         make.bottom.equalTo(contentView.mas_bottom).with.offset(-SLVStandardOffset);
+        make.height.mas_equalTo(SLVCellInfoHeight);
     }];
-    [super updateConstraints];
+}
+
+- (void)updateConstraintsForStateExtended
+{
+    UIView *contentView = self.contentView;
+    [self.info mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.name.mas_bottom).with.offset(SLVBigOffset);
+        make.left.equalTo(self.thumbnail.mas_right).with.offset(SLVBigOffset);
+        make.right.equalTo(self.attribute.mas_left).with.offset(- SLVStandardOffset);
+        make.bottom.equalTo(contentView.mas_bottom).with.offset(-SLVStandardOffset);
+    }];
 }
 
 - (IBAction)didTapAttribute:(id)sender
 {
-    self.info.textColor = UIColor.blueColor;
+    self.extended = !self.extended;
+    [self updateConstraints];
+    [self turnAttribute];
+    [self.delegate cellDidChangeState:self];
+}
+
+- (void)turnAttribute
+{
+    self.extended ?
+    (self.attribute.backgroundColor = UIColor.blueColor) :
+    (self.attribute.backgroundColor = UIColor.greenColor);
+}
+
+
++ (BOOL)requiresConstraintBasedLayout
+{
+    return YES;
 }
 
 @end

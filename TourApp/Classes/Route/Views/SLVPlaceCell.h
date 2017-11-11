@@ -8,17 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class SLVPlaceCell;
 
-/**
- @brief состояние ячейки
 
- - SLVCellStateNormal: нормальное
- - SLVCellStateExtended: расширенное, чтобы весь текст из описания помещался
- */
-typedef NS_ENUM(NSUInteger, SLVCellState) {
-    SLVCellStateNormal,
-    SLVCellStateExtended,
-};
+@protocol SLVPlaceCellDelegate
+
+- (void)cellDidChangeState:(SLVPlaceCell *)cell;
+
+@end
 
 
 @interface SLVPlaceCell : UITableViewCell
@@ -27,13 +24,8 @@ typedef NS_ENUM(NSUInteger, SLVCellState) {
 @property (nonatomic, strong) UILabel *info;
 @property (nonatomic, strong) UIImageView *thumbnail;
 @property (nonatomic, strong) UIImageView *attribute;
-@property (nonatomic, assign) SLVCellState state;
+@property (nonatomic, assign) BOOL extended;
 
-/**
- Тапнули на стрелочку справа
-
- @param sender ага
- */
-- (IBAction)didTapAttribute:(id)sender;
+@property (nonatomic, weak) id<SLVPlaceCellDelegate> delegate;
 
 @end

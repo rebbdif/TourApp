@@ -87,6 +87,7 @@
 - (void)configureCell:(SLVPlaceCell *)cell forIndexPath:(NSIndexPath *)indexPath
 {
     SLVNode *currentNode = [self.presenter objectForIndex:indexPath.row];
+    cell.delegate = self;
     cell.name.text = currentNode.name;
     cell.info.text = currentNode.info.text;
     cell.thumbnail.image = currentNode.thumbnail ?: [UIImage imageNamed:@"eye"];
@@ -109,6 +110,14 @@
     return 1;
 }
 
+#pragma mark - SLVPlaceCellDelegate
 
+- (IBAction)cellDidChangeState:(SLVPlaceCell *)cell
+{
+    [UIView animateWithDuration:0.5 animations:^{
+    [self.tableView beginUpdates];
+    [self.tableView endUpdates];
+    }];
+}
 
 @end

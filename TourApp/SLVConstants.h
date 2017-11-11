@@ -12,6 +12,9 @@
 static const NSInteger SLVCellHeight = 116;
 static const NSInteger SLVCellThumbnailHeight = 100;
 static const NSInteger SLVCellAttributeSize = 24;
+static const NSInteger SLVCellInfoHeight = 63;
+static const NSInteger SLVCellTitleHeight = 25;
+
 
 static const NSInteger SLVStandardOffset = 8;
 static const NSInteger SLVBigOffset = 16;
