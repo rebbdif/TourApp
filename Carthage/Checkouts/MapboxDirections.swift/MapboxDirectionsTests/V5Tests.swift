@@ -55,6 +55,10 @@ class V5Tests: XCTestCase {
         XCTAssertNotNil(route)
         XCTAssertNotNil(route!.coordinates)
         XCTAssertEqual(route!.coordinates!.count, 28_442)
+        XCTAssertEqual(route!.accessToken, BogusToken)
+        XCTAssertEqual(route!.apiEndpoint, URL(string: "https://api.mapbox.com"))
+        XCTAssertEqual(route!.routeIdentifier, "cj725hpi30yp2ztm2ehbcipmh")
+        
         
         // confirming actual decoded values is important because the Directions API
         // uses an atypical precision level for polyline encoding
@@ -69,6 +73,16 @@ class V5Tests: XCTestCase {
         let leg = route!.legs.first!
         XCTAssertEqual(leg.name, "I 80, I 80;US 30")
         XCTAssertEqual(leg.steps.count, 59)
+        
+        let firstStep = leg.steps.first
+        XCTAssertNotNil(firstStep)
+        let firstStepIntersections = firstStep?.intersections
+        XCTAssertNotNil(firstStepIntersections)
+        let firstIntersection = firstStepIntersections?.first
+        XCTAssertNotNil(firstIntersection)
+        let roadClasses = firstIntersection?.outletRoadClasses
+        XCTAssertNotNil(roadClasses)
+        XCTAssertTrue(roadClasses?.contains([.toll, .restricted]) ?? false)
         
         let step = leg.steps[43]
         XCTAssertEqual(round(step.distance), 688)

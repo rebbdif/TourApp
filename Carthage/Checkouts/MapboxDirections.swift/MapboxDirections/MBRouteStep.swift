@@ -179,16 +179,20 @@ public enum ManeuverType: Int, CustomStringConvertible {
     case useLane
      
     /**
-     The step requires the user to enter, traverse, and exit a roundabout (traffic circle or rotary).
+     The step requires the user to enter and traverse a roundabout (traffic circle or rotary).
      
      The step has no name, but the exit name is the name of the road to take to exit the roundabout. The exit index indicates the number of roundabout exits up to and including the exit to take.
+     
+     If `RouteOptions.includesExitRoundaboutManeuver` is set to `true`, this step is followed by an `.exitRoundabout` maneuver. Otherwise, this step represents the entire roundabout maneuver, from the entrance to the exit.
      */
     case takeRoundabout
     
     /**
-     The step requires the user to enter, traverse, and exit a large, named roundabout (traffic circle or rotary).
+     The step requires the user to enter and traverse a large, named roundabout (traffic circle or rotary).
      
      The step’s name is the name of the roundabout. The exit name is the name of the road to take to exit the roundabout. The exit index indicates the number of rotary exits up to and including the exit that the user must take.
+     
+      If `RouteOptions.includesExitRoundaboutManeuver` is set to `true`, this step is followed by an `.exitRotary` maneuver. Otherwise, this step represents the entire roundabout maneuver, from the entrance to the exit.
      */
     case takeRotary
     
@@ -198,6 +202,20 @@ public enum ManeuverType: Int, CustomStringConvertible {
      The step’s name is the name of the road to take after exiting the roundabout. This maneuver type is called out separately because the user may perceive the roundabout as an ordinary intersection with an island in the middle. If this distinction is unimportant to you, you may treat the maneuver as either an ordinary `turn` or as a `takeRoundabout`.
      */
     case turnAtRoundabout
+    
+    /**
+     The step requires the user to exit a roundabout (traffic circle or rotary).
+     
+     This maneuver type follows a `.takeRoundabout` maneuver. It is only used when `RouteOptions.includesExitRoundaboutManeuver` is set to true.
+     */
+    case exitRoundabout
+    
+    /**
+     The step requires the user to exit a large, named roundabout (traffic circle or rotary).
+     
+     This maneuver type follows a `.takeRotary` maneuver. It is only used when `RouteOptions.includesExitRoundaboutManeuver` is set to true.
+     */
+    case exitRotary
     
     /**
      The step requires the user to respond to a change in travel conditions.
@@ -251,6 +269,10 @@ public enum ManeuverType: Int, CustomStringConvertible {
             type = .takeRoundabout
         case "roundabout turn":
             type = .turnAtRoundabout
+        case "exit roundabout":
+            type = .exitRoundabout
+        case "exit rotary":
+            type = .exitRotary
         case "notification":
             type = .heedWarning
         case "arrive":
@@ -291,6 +313,10 @@ public enum ManeuverType: Int, CustomStringConvertible {
             return "roundabout"
         case .turnAtRoundabout:
             return "roundabout turn"
+        case .exitRoundabout:
+            return "exit roundabout"
+        case .exitRotary:
+            return "exit rotary"
         case .heedWarning:
             return "notification"
         case .arrive:
@@ -447,7 +473,7 @@ struct Road {
             self.destinations = destination?.tagValues(separatedBy: ",")
         }
         
-        self.exitCodes = exits?.tagValues(separatedBy: ",")
+        self.exitCodes = exits?.tagValues(separatedBy: ";")
         self.codes = codes
         self.rotaryNames = rotaryName?.tagValues(separatedBy: ";")
     }
@@ -468,10 +494,14 @@ open class RouteStep: NSObject, NSSecureCoding {
         let road = Road(name: name, ref: json["ref"] as? String, exits: json["exits"] as? String, destination: json["destinations"] as? String, rotaryName: json["rotary_name"] as? String)
         if maneuverType == .takeRotary || maneuverType == .takeRoundabout {
             names = road.rotaryNames
+            phoneticNames = (json["rotary_pronunciation"] as? String)?.tagValues(separatedBy: ";")
             exitNames = road.names
+            phoneticExitNames = (json["pronunciation"] as? String)?.tagValues(separatedBy: ";")
         } else {
             names = road.names
+            phoneticNames = (json["pronunciation"] as? String)?.tagValues(separatedBy: ";")
             exitNames = nil
+            phoneticExitNames = nil
         }
         exitCodes = road.exitCodes
         codes = road.codes
@@ -577,9 +607,11 @@ open class RouteStep: NSObject, NSSecureCoding {
         exitIndex = decoder.containsValue(forKey: "exitIndex") ? decoder.decodeInteger(forKey: "exitIndex") : nil
         exitCodes = decoder.decodeObject(of: [NSArray.self, NSString.self], forKey: "exitCodes") as? [String]
         exitNames = decoder.decodeObject(of: [NSArray.self, NSString.self], forKey: "exitNames") as? [String]
+        phoneticExitNames = decoder.decodeObject(of: [NSArray.self, NSString.self], forKey: "phoneticExitNames") as? [String]
         distance = decoder.decodeDouble(forKey: "distance")
         expectedTravelTime = decoder.decodeDouble(forKey: "expectedTravelTime")
         names = decoder.decodeObject(of: [NSArray.self, NSString.self], forKey: "names") as? [String]
+        phoneticNames = decoder.decodeObject(of: [NSArray.self, NSString.self], forKey: "phoneticNames") as? [String]
         
         guard let transportTypeDescription = decoder.decodeObject(of: NSString.self, forKey: "transportType") as String? else {
             return nil
@@ -627,9 +659,11 @@ open class RouteStep: NSObject, NSSecureCoding {
         
         coder.encode(exitCodes, forKey: "exitCodes")
         coder.encode(exitNames, forKey: "exitNames")
+        coder.encode(phoneticExitNames, forKey: "phoneticExitNames")
         coder.encode(distance, forKey: "distance")
         coder.encode(expectedTravelTime, forKey: "expectedTravelTime")
         coder.encode(names, forKey: "names")
+        coder.encode(phoneticNames, forKey: "phoneticNames")
         coder.encode(transportType?.description, forKey: "transportType")
         coder.encode(codes, forKey: "codes")
         coder.encode(destinationCodes, forKey: "destinationCodes")
@@ -752,6 +786,15 @@ open class RouteStep: NSObject, NSSecureCoding {
      */
     public let exitNames: [String]?
     
+    /**
+     A phonetic or phonemic transcription indicating how to pronounce the names in the `exitNames` property.
+     
+     This property is only set for roundabout (traffic circle or rotary) maneuvers.
+     
+     The transcription is written in the [International Phonetic Alphabet](https://en.wikipedia.org/wiki/International_Phonetic_Alphabet).
+     */
+    open let phoneticExitNames: [String]?
+    
     // MARK: Getting Details About the Approach to the Next Maneuver
     
     /**
@@ -776,6 +819,15 @@ open class RouteStep: NSObject, NSSecureCoding {
      If the maneuver is a roundabout maneuver, the outlet to take is named in the `exitNames` property; the `names` property is only set for large roundabouts that have their own names.
      */
     open let names: [String]?
+    
+    /**
+     A phonetic or phonemic transcription indicating how to pronounce the names in the `names` property.
+     
+     The transcription is written in the [International Phonetic Alphabet](https://en.wikipedia.org/wiki/International_Phonetic_Alphabet).
+     
+     If the maneuver traverses a large, named roundabout, the `exitPronunciationHints` property contains a hint about how to pronounce the names of the outlet to take.
+     */
+    open let phoneticNames: [String]?
     
     /**
      Any route reference codes assigned to the road or path leading from this step’s maneuver to the next step’s maneuver.
@@ -817,6 +869,13 @@ open class RouteStep: NSObject, NSSecureCoding {
      Each item in the array corresponds to a cross street, starting with the intersection at the maneuver location indicated by the coordinates property and continuing with each cross street along the step.
     */
     public let intersections: [Intersection]?
+    
+    func debugQuickLookObject() -> Any? {
+        if let coordinates = coordinates {
+            return debugQuickLookURL(illustrating: coordinates)
+        }
+        return nil
+    }
 }
 
 // MARK: Support for Directions API v4
@@ -865,4 +924,40 @@ internal class RouteStepV4: RouteStep {
         
         self.init(finalHeading: heading, maneuverType: maneuverType, maneuverDirection: maneuverDirection, maneuverLocation: maneuverLocation, name: name, coordinates: nil, json: json)
     }
+}
+
+func debugQuickLookURL(illustrating coordinates: [CLLocationCoordinate2D], profileIdentifier: MBDirectionsProfileIdentifier = .automobile) -> URL? {
+    guard let accessToken = defaultAccessToken else {
+        return nil
+    }
+    
+    let styleIdentifier: String
+    let identifierOfLayerAboveOverlays: String
+    switch profileIdentifier {
+    case MBDirectionsProfileIdentifier.automobileAvoidingTraffic:
+        styleIdentifier = "mapbox/traffic-day-v2"
+        identifierOfLayerAboveOverlays = "poi-driving-scalerank4"
+    case MBDirectionsProfileIdentifier.cycling, MBDirectionsProfileIdentifier.walking:
+        styleIdentifier = "mapbox/outdoors-v10"
+        identifierOfLayerAboveOverlays = "housenum-label"
+    default:
+        styleIdentifier = "mapbox/streets-v10"
+        identifierOfLayerAboveOverlays = "housenum-label"
+    }
+    let styleIdentifierComponent = "/\(styleIdentifier)/static"
+    
+    var allowedCharacterSet = CharacterSet.urlPathAllowed
+    allowedCharacterSet.remove(charactersIn: "/)")
+    let encodedPolyline = encodeCoordinates(coordinates, precision: 1e5).addingPercentEncoding(withAllowedCharacters: allowedCharacterSet)!
+    let overlaysComponent = "/path-10+3802DA-0.6(\(encodedPolyline))"
+    
+    let path = "/styles/v1\(styleIdentifierComponent)\(overlaysComponent)/auto/680x360@2x"
+    
+    var components = URLComponents()
+    components.queryItems = [
+        URLQueryItem(name: "before_layer", value: identifierOfLayerAboveOverlays),
+        URLQueryItem(name: "access_token", value: accessToken),
+    ]
+    
+    return URL(string: "https://api.mapbox.com\(path)?\(components.percentEncodedQuery!)")
 }

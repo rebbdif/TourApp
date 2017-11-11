@@ -68,6 +68,8 @@ open class Route: NSObject, NSSecureCoding {
             return nil
         }
         routeOptions = options
+        
+        routeIdentifier = decoder.decodeObject(of: NSString.self, forKey: "routeIdentifier") as String?
     }
     
     open static var supportsSecureCoding = true
@@ -83,6 +85,7 @@ open class Route: NSObject, NSSecureCoding {
         coder.encode(distance, forKey: "distance")
         coder.encode(expectedTravelTime, forKey: "expectedTravelTime")
         coder.encode(routeOptions, forKey: "routeOptions")
+        coder.encode(routeIdentifier, forKey: "routeIdentifier")
     }
     
     // MARK: Getting the Route Geometry
@@ -161,6 +164,34 @@ open class Route: NSObject, NSSecureCoding {
      The route options object’s profileIdentifier property reflects the primary mode of transportation used for the route. Individual steps along the route might use different modes of transportation as necessary.
      */
     open let routeOptions: RouteOptions
+    
+    /**
+     The [access token](https://www.mapbox.com/help/define-access-token/) used to make the directions request.
+     
+     This property is set automatically if a request is made via `Directions.calculate(_:completionHandler:)`.
+     */
+    open var accessToken: String?
+    
+    /**
+     The endpoint used to make the directions request.
+     
+     This property is set automatically if a request is made via `Directions.calculate(_:completionHandler:)`.
+     */
+    open var apiEndpoint: URL?
+    
+    func debugQuickLookObject() -> Any? {
+        if let coordinates = coordinates {
+            return debugQuickLookURL(illustrating: coordinates, profileIdentifier: routeOptions.profileIdentifier)
+        }
+        return nil
+    }
+    
+    /**
+     A unique identifier for a directions request.
+     
+     Each route produced by a single call to `Directions.calculate(_:completionHandler:)` has the same route identifier.
+     */
+    open var routeIdentifier: String?
 }
 
 // MARK: Support for Directions API v4

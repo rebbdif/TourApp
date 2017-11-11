@@ -50,6 +50,13 @@ public class Intersection: NSObject, NSSecureCoding {
      */
     public let usableApproachLanes: IndexSet?
     
+    /**
+     The road classes of the road that the containing step uses to leave the intersection.
+     
+     If road class information is unavailable, this property is set to `nil`.
+     */
+    public let outletRoadClasses: RoadClasses?
+    
     internal init(json: JSONDictionary) {
         location = CLLocationCoordinate2D(geoJSON: json["location"] as! [Double])
         headings = json["bearings"] as! [CLLocationDirection]
@@ -77,10 +84,16 @@ public class Intersection: NSObject, NSSecureCoding {
             approachLanes = nil
             usableApproachLanes = nil
         }
+        
+        if let classStrings = json["classes"] as? [String] {
+            outletRoadClasses = RoadClasses(descriptions: classStrings)
+        } else {
+            outletRoadClasses = nil
+        }
     }
     
     public required init?(coder decoder: NSCoder) {
-        guard let locationDictionary = decoder.decodeObject(of: [NSDictionary.self, NSString.self, NSNumber.self], forKey: "maneuverLocation") as? [String: CLLocationDegrees],
+        guard let locationDictionary = decoder.decodeObject(of: [NSDictionary.self, NSString.self, NSNumber.self], forKey: "location") as? [String: CLLocationDegrees],
             let latitude = locationDictionary["latitude"],
             let longitude = locationDictionary["longitude"] else {
             return nil
@@ -102,6 +115,12 @@ public class Intersection: NSObject, NSSecureCoding {
         
         approachLanes = decoder.decodeObject(of: [NSArray.self, Lane.self], forKey: "approachLanes") as? [Lane]
         usableApproachLanes = decoder.decodeObject(of: NSIndexSet.self, forKey: "usableApproachLanes") as IndexSet?
+        
+        guard let descriptions = decoder.decodeObject(of: NSString.self, forKey: "outletRoadClasses") as String?,
+            let outletRoadClasses = RoadClasses(descriptions: descriptions.components(separatedBy: ",")) else {
+                return nil
+        }
+        self.outletRoadClasses = outletRoadClasses
     }
     
     open static var supportsSecureCoding = true
@@ -120,5 +139,7 @@ public class Intersection: NSObject, NSSecureCoding {
         
         coder.encode(approachLanes, forKey: "approachLanes")
         coder.encode(usableApproachLanes, forKey: "usableApproachLanes")
+        
+        coder.encode(outletRoadClasses?.description, forKey: "outletRoadClasses")
     }
 }

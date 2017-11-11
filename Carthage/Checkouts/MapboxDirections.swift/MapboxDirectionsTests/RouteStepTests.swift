@@ -78,7 +78,7 @@ class RoadTests: XCTestCase {
 
         r = Road(name: "", ref: nil, exits: "123 A", destination: nil, rotaryName: nil)
         XCTAssertEqual(r.exitCodes ?? [], [ "123 A" ])
-        r = Road(name: "", ref: nil, exits: "123A,123B", destination: nil, rotaryName: nil)
+        r = Road(name: "", ref: nil, exits: "123A;123B", destination: nil, rotaryName: nil)
         XCTAssertEqual(r.exitCodes ?? [], [ "123A", "123B" ])
     }
 
@@ -118,6 +118,7 @@ class RouteStepTests: XCTestCase {
             ],
             "distance": 1669.7,
             "duration": 75.6,
+            "pronunciation": "ˈaɪˌfoʊ̯n ˈtɛn",
         ] as [String: Any]
         
         let step = RouteStep(finalHeading: 59, maneuverType: .reachFork, maneuverDirection: .left, maneuverLocation: CLLocationCoordinate2D(latitude: 37.853913, longitude: -122.220694), name: "", coordinates: coordinates, json: json)
@@ -152,6 +153,7 @@ class RouteStepTests: XCTestCase {
         XCTAssertEqual(unarchivedStep.distance, step.distance)
         XCTAssertEqual(unarchivedStep.expectedTravelTime, step.expectedTravelTime)
         XCTAssertEqual(unarchivedStep.names ?? [], step.names ?? [])
+        XCTAssertEqual(unarchivedStep.phoneticNames ?? [], step.phoneticNames ?? [])
         XCTAssertEqual(unarchivedStep.transportType, step.transportType)
         XCTAssertEqual(unarchivedStep.destinations ?? [], step.destinations ?? [])
     }

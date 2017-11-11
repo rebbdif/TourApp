@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
   # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 
   s.name         = "MapboxDirections.swift"
-  s.version      = "0.10.0"
+  s.version      = "0.10.6"
   s.summary      = "Mapbox Directions API wrapper for Swift and Objective-C."
 
   s.description  = <<-DESC
@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
                    DESC
 
   s.homepage     = "https://www.mapbox.com/directions/"
-  s.documentation_url = "https://mapbox.github.io/mapbox-navigation-ios/directions/"
+  s.documentation_url = "https://www.mapbox.com/mapbox-navigation-ios/directions/"
 
   # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 
@@ -44,6 +44,6 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.module_name = "MapboxDirections"
 
-  s.dependency "Polyline", "~> 4.1"
+  s.dependency "Polyline", "4.1.1"
 
 end

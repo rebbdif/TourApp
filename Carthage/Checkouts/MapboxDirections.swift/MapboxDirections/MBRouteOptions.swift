@@ -10,11 +10,17 @@ public enum RouteShapeFormat: UInt, CustomStringConvertible {
      */
     case geoJSON
     /**
-     The route’s shape is delivered in [encoded polyline algorithm](https://developers.google.com/maps/documentation/utilities/polylinealgorithm) format.
+     The route’s shape is delivered in [encoded polyline algorithm](https://developers.google.com/maps/documentation/utilities/polylinealgorithm) format with 1×10<sup>−5</sup> precision.
      
-     This machine-readable format is considerably more compact than `geoJSON`.
+     This machine-readable format is considerably more compact than `geoJSON` but less precise than `polyline6`.
      */
     case polyline
+    /**
+     The route’s shape is delivered in [encoded polyline algorithm](https://developers.google.com/maps/documentation/utilities/polylinealgorithm) format with 1×10<sup>−6</sup> precision.
+     
+     This format is an order of magnitude more precise than `polyline`.
+     */
+    case polyline6
     
     public init?(description: String) {
         let format: RouteShapeFormat
@@ -23,6 +29,8 @@ public enum RouteShapeFormat: UInt, CustomStringConvertible {
             format = .geoJSON
         case "polyline":
             format = .polyline
+        case "polyline6":
+            format = .polyline6
         default:
             return nil
         }
@@ -35,6 +43,8 @@ public enum RouteShapeFormat: UInt, CustomStringConvertible {
             return "geojson"
         case .polyline:
             return "polyline"
+        case .polyline6:
+            return "polyline6"
         }
     }
 }
@@ -169,6 +179,8 @@ open class RouteOptions: NSObject, NSSecureCoding {
             return nil
         }
         self.attributeOptions = attributeOptions
+        
+        includesExitRoundaboutManeuver = decoder.decodeBool(forKey: "includesExitRoundaboutManeuver")
     }
     
     open static var supportsSecureCoding = true
@@ -182,6 +194,7 @@ open class RouteOptions: NSObject, NSSecureCoding {
         coder.encode(shapeFormat.description, forKey: "shapeFormat")
         coder.encode(routeShapeResolution.description, forKey: "routeShapeResolution")
         coder.encode(attributeOptions.description, forKey: "attributeOptions")
+        coder.encode(includesExitRoundaboutManeuver, forKey: "includesExitRoundaboutManeuver")
     }
     
     // MARK: Specifying the Path of the Route
@@ -277,11 +290,18 @@ open class RouteOptions: NSObject, NSSecureCoding {
     }
     
     /**
-     An array of geocoding query strings to include in the request URL.
+     An array of directions query strings to include in the request URL.
      */
     internal var queries: [String] {
         return waypoints.map { "\($0.coordinate.longitude),\($0.coordinate.latitude)" }
     }
+    
+    /**
+     A Boolean value indicating whether the route includes a `ManeuverType.exitRoundabout` or `ManeuverType.exitRotary` step when traversing a roundabout or rotary, respectively.
+     
+     If this option is set to `true`, a route that traverses a roundabout includes both a `ManeuverType.takeRoundabout` step and a `ManeuverType.exitRoundabout` step; likewise, a route that traverses a large, named roundabout includes both a `ManeuverType.takeRotary` step and a `ManeuverType.exitRotary` step. Otherwise, it only includes a `ManeuverType.takeRoundabout` or `ManeuverType.takeRotary` step. This option is set to `false` by default.
+     */
+    open var includesExitRoundaboutManeuver = false
     
     /**
      An array of URL parameters to include in the request URL.
@@ -292,8 +312,12 @@ open class RouteOptions: NSObject, NSSecureCoding {
             URLQueryItem(name: "geometries", value: String(describing: shapeFormat)),
             URLQueryItem(name: "overview", value: String(describing: routeShapeResolution)),
             URLQueryItem(name: "steps", value: String(includesSteps)),
-            URLQueryItem(name: "continue_straight", value: String(!allowsUTurnAtWaypoint)),
+            URLQueryItem(name: "continue_straight", value: String(!allowsUTurnAtWaypoint))
         ]
+        
+        if includesExitRoundaboutManeuver {
+            params.append(URLQueryItem(name: "roundabout_exits", value: String(includesExitRoundaboutManeuver)))
+        }
         
         // Include headings and heading accuracies if any waypoint has a nonnegative heading.
         if !waypoints.filter({ $0.heading >= 0 }).isEmpty {
