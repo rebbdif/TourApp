@@ -44,10 +44,10 @@
     return results[0];
 }
 
-- (NSArray *)fetchEntities:(NSString *)entity withPredicate:(NSPredicate *)predicate {
+- (NSArray *)fetchEntities:(NSString *)entity forKey:(NSString *)key {
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:entity];
     request.fetchBatchSize = 30;
-    request.predicate = predicate;
+    request.predicate = request.predicate = [NSPredicate predicateWithFormat:@"identifier == %@", key];
     __block NSArray *fetchedArray;
     NSError *error = nil;
     fetchedArray = [self.mainContext executeFetchRequest:request error:&error];

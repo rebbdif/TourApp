@@ -53,7 +53,7 @@
     [self.presenter getNodesWithCompletion:^{
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
-            [self.spinner startAnimation];
+            [self.spinner stopAnimation];
         });
     }];
 }

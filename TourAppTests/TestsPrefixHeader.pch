@@ -1,0 +1,14 @@
+//
+//  TestsPrefixHeader.pch
+//  TourApp
+//
+//  Created by 1 on 07.10.17.
+//  Copyright © 2017 serebryanyy. All rights reserved.
+//
+
+#ifndef TestsPrefixHeader_pch
+#define TestsPrefixHeader_pch
+
+#import <OCMock/OCMock.h>
+
+#endif /* TestsPrefixHeader_pch */

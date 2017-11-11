@@ -17,7 +17,6 @@
 @property (nonatomic, strong) id<SLVNetworkProtocol> networkService;
 @property (nonatomic, strong) id<SLVStorageProtocol> storage;
 @property (nonatomic, copy) NSDictionary<NSNumber *, SLVNode *> *nodes;
-
 @property (nonatomic, copy) NSString *currentRouteIdentifier;
 
 @end
@@ -34,22 +33,29 @@
     return self;
 }
 
-- (void)assignCurrentRouteIdentifier {
-    self.currentRouteIdentifier = @"testRoute";
+- (NSString *)currentRouteIdentifier {
+    NSString *currentRouteIdentifier = @"testRoute";
+    return currentRouteIdentifier;
 }
 
 - (void)getNodesWithCompletion:(voidBlock)completion {
-    [self assignCurrentRouteIdentifier];
     NSArray<SLVNode *> *fetchedNodes = [self fetchNodes];
     if (fetchedNodes.count == 0) {
         [self downloadNodesWithCompletion:completion];
     } else {
+        NSMutableDictionary *nodes = [NSMutableDictionary new];
+        for (NSUInteger i = 0; i < fetchedNodes.count; ++i) {
+            [nodes setObject:fetchedNodes[i] forKey:@(i)];
+        }
+        self.nodes = [nodes copy];
         if (completion) completion();
     }
 }
 
 - (NSArray<SLVNode *> *)fetchNodes {
-    return 0;
+    NSArray<SLVNode *> *nodes = [self.storage fetchEntities:SLVNodeEntityName forKey:self.currentRouteIdentifier];
+    NSLog(@"fetched %@ nodes", @(nodes.count));
+    return nodes;
 }
 
 - (void)downloadNodesWithCompletion:(voidBlock)completion {

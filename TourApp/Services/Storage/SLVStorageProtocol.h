@@ -15,7 +15,7 @@ typedef void (^voidBlock)(void);
 
 - (id)fetchEntity:(NSString *)entity forKey:(NSString *)key;
 
-- (NSArray *)fetchEntities:(NSString *)entity withPredicate:(NSPredicate *)predicate;
+- (NSArray *)fetchEntities:(NSString *)entity forKey:(NSString *)key;
 
 /**
  Сохраняет изменения главного контекста

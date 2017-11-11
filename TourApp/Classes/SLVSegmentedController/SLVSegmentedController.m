@@ -12,6 +12,11 @@
 #import "SLVMainVC.h"
 #import "SLVPlacesVC.h"
 
+typedef NS_ENUM(NSUInteger, SLVControllerIndex) {
+    SLVControllerIndexNodes,
+    SLVControllerIndexMap,
+    SLVControllerIndexMain,
+};
 
 @interface SLVSegmentedController ()
 
@@ -43,6 +48,7 @@
     self.mainVC = [SLVMainVC new];
     self.viewControllers = @[self.placesVC, self.mapVC, self.mainVC];
     self.tabBar.hidden = YES;
+    self.selectedIndex = SLVControllerIndexMain;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -62,17 +68,14 @@
 - (void)segmentedControlValueDidChange:(UISegmentedControl *)segment
 {
     switch (segment.selectedSegmentIndex) {
-        case 0: {
-            self.selectedIndex = 0;
-        //    self.selectedViewController = self.placesVC;
+        case SLVControllerIndexNodes: {
+            self.selectedIndex = SLVControllerIndexNodes;
             break;
-        } case 1: {
-            self.selectedIndex = 1;
-         //   self.selectedViewController = self.mapVC;
+        } case SLVControllerIndexMap: {
+            self.selectedIndex = SLVControllerIndexMap;
             break;
-        } case 2: {
-            self.selectedIndex = 2;
-        //    self.selectedViewController = self.mainVC;
+        } case SLVControllerIndexMain: {
+            self.selectedIndex = SLVControllerIndexMain;
             break;
         }
     }
