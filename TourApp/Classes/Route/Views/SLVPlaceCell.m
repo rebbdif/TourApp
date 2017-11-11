@@ -14,6 +14,7 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        _state = SLVCellStateNormal;
         self.backgroundColor = UIColor.whiteColor;
         
         _name = [UILabel new];
@@ -23,6 +24,7 @@
         _info.backgroundColor = UIColor.redColor;
         _info.numberOfLines = 0;
         _info.adjustsFontSizeToFitWidth = NO;
+        _info.lineBreakMode = NSLineBreakByWordWrapping;
         [self addSubview:_info];
         
         _thumbnail = [UIImageView new];
