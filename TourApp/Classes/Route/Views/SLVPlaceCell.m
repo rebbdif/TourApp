@@ -19,13 +19,14 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
         _name = [UILabel new];
-        _name.font = [UIFont monospacedDigitSystemFontOfSize:18 weight:UIFontWeightRegular];
+        _name.font = [UIFont monospacedDigitSystemFontOfSize:25 weight:UIFontWeightRegular];
         _name.textAlignment = NSTextAlignmentNatural;
-        _name.numberOfLines = 0;
+        _name.numberOfLines = 2;
         [self.contentView addSubview:_name];
         
         _info = [UILabel new];
         _info.numberOfLines = 0;
+        _info.font = [UIFont monospacedDigitSystemFontOfSize:18 weight:UIFontWeightRegular];
         _info.adjustsFontSizeToFitWidth = NO;
         _info.lineBreakMode = NSLineBreakByTruncatingTail;
         [self.contentView addSubview:_info];
@@ -61,20 +62,19 @@
         make.size.equalTo(@(SLVCellThumbnailHeight));
         make.bottom.lessThanOrEqualTo(self.contentView.mas_bottom).with.offset(-SLVStandardOffset);
     }];
-    [self.name mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.name mas_updateConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(contentView.mas_top).with.offset(SLVStandardOffset);
         make.left.equalTo(self.thumbnail.mas_right).with.offset(SLVBigOffset + SLVSmallOffset);
         make.right.equalTo(contentView.mas_right).with.offset(SLVStandardOffset);
-        make.height.mas_equalTo(SLVCellTitleHeight);
     }];
     [self.attribute mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(SLVCellAttributeSize);
         make.centerY.equalTo(self.thumbnail.mas_centerY);
         make.right.equalTo(contentView.mas_right).with.offset(-8);
     }];
-
+    
     self.extended ? [self updateConstraintsForStateExtended] : [self updateConstraintsForStateNormal];
-
+    
     [self shouldShowAttribute];
     
     [super updateConstraints];
@@ -84,11 +84,14 @@
 {
     UIView *contentView = self.contentView;
     [self.info mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.name.mas_bottom).with.offset(SLVBigOffset);
+        make.top.equalTo(self.name.mas_bottom).with.offset(SLVBigOffset).priorityMedium();
         make.left.equalTo(self.thumbnail.mas_right).with.offset(SLVBigOffset);
         make.right.equalTo(self.attribute.mas_left).with.offset(-SLVStandardOffset);
-        make.bottom.equalTo(contentView.mas_bottom).with.offset(-SLVStandardOffset);
+        make.bottom.equalTo(contentView.mas_bottom).with.offset(-SLVStandardOffset).priorityLow();
         make.height.mas_equalTo(SLVCellInfoHeight);
+    }];
+    [self.name mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(SLVCellTitleHeight);
     }];
 }
 
@@ -100,6 +103,9 @@
         make.left.equalTo(self.thumbnail.mas_right).with.offset(SLVBigOffset);
         make.right.equalTo(self.attribute.mas_left).with.offset(- SLVStandardOffset);
         make.bottom.equalTo(contentView.mas_bottom).with.offset(- SLVStandardOffset);
+    }];
+    [self.name mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_greaterThanOrEqualTo(SLVCellTitleHeight);
     }];
 }
 
@@ -125,7 +131,7 @@
     [UIView animateWithDuration:0.5
                      animations:^{
                          [self turnAttribute];
-                         [self changeThubmnail];
+                         [self emphasizeCell];
                      }];
     [self.delegate cellDidChangeState:self];
 }
@@ -145,16 +151,20 @@
     }
 }
 
-- (void)changeThubmnail
+- (void)emphasizeCell
 {
     if (self.extended)
     {
         self.name.font = [UIFont monospacedDigitSystemFontOfSize:25 weight:UIFontWeightBold];
+        self.name.numberOfLines = 0;
+        self.info.font = [UIFont monospacedDigitSystemFontOfSize:19 weight:UIFontWeightRegular];
         self.thumbnail.transform = CGAffineTransformMakeScale(1.1, 1.1);
     }
     else
     {
-        self.name.font = [UIFont monospacedDigitSystemFontOfSize:18 weight:UIFontWeightRegular];
+        self.name.font = [UIFont monospacedDigitSystemFontOfSize:25 weight:UIFontWeightRegular];
+        self.name.numberOfLines = 2;
+        self.info.font = [UIFont monospacedDigitSystemFontOfSize:18 weight:UIFontWeightRegular];
         self.thumbnail.transform = CGAffineTransformIdentity;
     }
 }
