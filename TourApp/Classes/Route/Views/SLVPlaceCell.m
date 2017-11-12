@@ -65,7 +65,7 @@
     [self.name mas_updateConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(contentView.mas_top).with.offset(SLVStandardOffset);
         make.left.equalTo(self.thumbnail.mas_right).with.offset(SLVBigOffset + SLVSmallOffset);
-        make.right.equalTo(contentView.mas_right).with.offset(SLVStandardOffset);
+        make.right.equalTo(contentView.mas_right).with.offset(- SLVStandardOffset);
     }];
     [self.attribute mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(SLVCellAttributeSize);
