@@ -78,6 +78,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [(SLVSegmentedController *)(self.parentViewController) selectControllerWithIndex:SLVControllerIndexMap];
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

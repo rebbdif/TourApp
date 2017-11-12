@@ -23,7 +23,7 @@
 + (instancetype)nodeWithDictionary:(NSDictionary *)dict context:(NSManagedObjectContext *)context
 {
     NSString *nodeId = dict[@"identifier"];
-    NSAssert(nodeId, @"cityId shouldnt be nil");
+    NSAssert(nodeId, @"id shouldnt be nil");
     __block SLVNode *node = nil;
     
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([self class])];
@@ -31,7 +31,8 @@
     [context performBlockAndWait:^{
         NSError *error = nil;
         NSArray<SLVNode *> *results = [context executeFetchRequest:request error:&error];
-        if (results) {
+        if (results)
+        {
             node = results.lastObject;
         }
     }];

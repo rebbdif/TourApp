@@ -16,7 +16,7 @@
 
 @property (nonatomic, strong) id<SLVNetworkProtocol> networkService;
 @property (nonatomic, strong) id<SLVStorageProtocol> storage;
-@property (nonatomic, copy) NSDictionary<NSNumber *, SLVNode *> *nodes;
+@property (nonatomic, copy) NSArray<SLVNode *> *nodes;
 @property (nonatomic, copy) NSString *currentRouteIdentifier;
 
 @property (nonatomic, assign) NSInteger retryCount;
@@ -32,14 +32,14 @@
     if (self) {
         _networkService = networkService;
         _storage = storage;
-        _nodes = [NSDictionary new];
+        _nodes = [NSArray new];
     }
     return self;
 }
 
 - (NSString *)currentRouteIdentifier
 {
-    NSString *currentRouteIdentifier = @"testRoute";
+    NSString *currentRouteIdentifier = @"testRoute2";
     return currentRouteIdentifier;
 }
 
@@ -53,18 +53,14 @@
         [self downloadNodesWithCompletion:completion];
         return;
     }
-    NSMutableDictionary *nodes = [NSMutableDictionary new];
-    for (NSUInteger i = 0; i < fetchedNodes.count; ++i)
-    {
-        [nodes setObject:fetchedNodes[i] forKey:@(i)];
-    }
-    self.nodes = [nodes copy];
+    self.nodes = [fetchedNodes copy];
     if (completion) completion();
 }
 
 - (NSArray<SLVNode *> *)fetchNodes
 {
-    NSArray<SLVNode *> *nodes = [self.storage fetchEntities:SLVNodeEntityName forKey:self.currentRouteIdentifier];
+    SLVRoute *currentRoute = [self.storage fetchEntity:SLVRouteEntityName forKey:self.currentRouteIdentifier];
+    NSArray<SLVNode *> *nodes = currentRoute.nodes.array;
     NSLog(@"fetched %@ nodes", @(nodes.count));
     return nodes;
 }
@@ -75,39 +71,48 @@
     NSURL *url = [NSURL URLWithString:path];
     [self.networkService getDictionaryFromURL:url withCompletionBlock:^(NSDictionary *data)
     {
-        NSLog(@"Downloaded %@ nodes %@", @(data.count), data[@"Nodes"]);
-        [self saveNodes:data];
+        [self processDownloadedData:data];
         [self getNodesWithCompletion:completion];
     }];
 }
 
-- (void)saveNodes:(NSDictionary *)data
+- (void)processDownloadedData:(NSDictionary *)data
 {
     NSManagedObjectContext *privateContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     NSManagedObjectContext *mainContext = [self.storage mainContext];
     privateContext.parentContext = mainContext;
     
-    __block NSMutableDictionary *nodes = [NSMutableDictionary new];
-    __block NSUInteger index = 0;
     [privateContext performBlockAndWait:^{
-        [data[@"Nodes"] enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-            SLVNode *node = [SLVNode nodeWithDictionary:obj context:privateContext];
-            [nodes setObject:node forKey:@(index)];
-            ++index;
-        }];
+        NSDictionary *downloadedRoute = data[@"Route"];
+        SLVRoute * route = [SLVRoute routeWithDictionary:downloadedRoute context:privateContext];
+        
+        NSDictionary *downloadedNodes = data[@"Nodes"];
+        [self saveNodes:downloadedNodes inContext:privateContext];
+        
+        route.nodes = [NSOrderedSet orderedSetWithArray:self.nodes];
         
         [self.storage savePrivateContext:privateContext];
-        
-        self.nodes = [nodes copy];
-        [self logNodes:self.nodes];
     }];
 }
 
-- (void)logNodes:(NSDictionary *)nodes
+- (void)saveNodes:(NSDictionary *)input inContext:(NSManagedObjectContext *)context
 {
-    [nodes enumerateKeysAndObjectsUsingBlock:^(id key, SLVNode *node, BOOL *stop) {
+    NSMutableArray *nodes = [NSMutableArray arrayWithCapacity:input.count];
+    for (NSDictionary *obj in input)
+    {
+        SLVNode *node = [SLVNode nodeWithDictionary:input[obj] context:context];
+        [nodes addObject:node];
+    }
+    self.nodes = [nodes copy];
+    [self logNodes:self.nodes];
+}
+
+- (void)logNodes:(NSArray *)nodes
+{
+    for (SLVNode *node in nodes)
+    {
         NSLog(@"%@ %f", node.name, node.latitude);
-    }];
+    }
 }
 
 - (NSUInteger)numberOfObjects
@@ -117,7 +122,7 @@
 
 - (id)objectForIndex:(NSUInteger)index
 {
-    return self.nodes[@(index)];
+    return self.nodes[index];
 }
 
 @end

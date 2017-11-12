@@ -49,7 +49,7 @@
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:entity];
     [request setReturnsObjectsAsFaults:NO];
     request.fetchBatchSize = 30;
-  //  request.predicate = request.predicate = [NSPredicate predicateWithFormat:@"identifier == %@", key];
+    request.predicate = [NSPredicate predicateWithFormat:@"identifier == %@", key];
     NSError *error = nil;
     NSArray *fetchedArray = [self.mainContext executeFetchRequest:request error:&error];
     if (error) {
