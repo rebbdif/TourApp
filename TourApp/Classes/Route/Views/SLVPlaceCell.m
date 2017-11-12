@@ -66,6 +66,8 @@
 
     self.extended ? [self updateConstraintsForStateExtended] : [self updateConstraintsForStateNormal];
 
+    [self shouldShowAttribute];
+    
     [super updateConstraints];
 }
 
@@ -92,6 +94,20 @@
     }];
 }
 
+- (void)shouldShowAttribute
+{
+    CGSize maxSize = CGSizeMake(self.contentView.frame.size.width - SLVCellThumbnailHeight - SLVBigOffset, CGFLOAT_MAX);
+    CGRect labelRect = [self.info.text boundingRectWithSize:maxSize
+                                          options:NSStringDrawingUsesLineFragmentOrigin
+                                       attributes:@{ NSFontAttributeName : self.info.font}
+                                          context:nil];
+    CGFloat infoLabelHeights = CGRectGetHeight(labelRect);
+    if (infoLabelHeights < SLVCellInfoHeight)
+    {
+        self.attribute.hidden = YES;
+    }
+}
+
 - (IBAction)didTapAttribute:(id)sender
 {
     self.extended = !self.extended;
@@ -106,7 +122,6 @@
     (self.attribute.backgroundColor = UIColor.blueColor) :
     (self.attribute.backgroundColor = UIColor.greenColor);
 }
-
 
 + (BOOL)requiresConstraintBasedLayout
 {
