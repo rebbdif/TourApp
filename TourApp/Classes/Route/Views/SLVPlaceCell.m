@@ -19,6 +19,9 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
         _name = [UILabel new];
+        _name.font = [UIFont monospacedDigitSystemFontOfSize:18 weight:UIFontWeightRegular];
+        _name.textAlignment = NSTextAlignmentNatural;
+        _name.numberOfLines = 0;
         [self.contentView addSubview:_name];
         
         _info = [UILabel new];
@@ -30,11 +33,17 @@
         _thumbnail = [UIImageView new];
         _thumbnail.backgroundColor = UIColor.redColor;
         _thumbnail.contentMode = UIViewContentModeScaleAspectFill;
+        _thumbnail.layer.cornerRadius = SLVCellThumbnailHeight / 2;
+        _thumbnail.layer.masksToBounds = YES;
         [self.contentView addSubview:_thumbnail];
         
         _attribute = [UIImageView new];
         _attribute.backgroundColor = UIColor.greenColor;
         _attribute.userInteractionEnabled = YES;
+        _attribute.image = [UIImage imageNamed:@"arrow"];
+        _attribute.layer.cornerRadius = SLVCellAttributeSize / 2;
+        _thumbnail.layer.masksToBounds = YES;
+
         UITapGestureRecognizer *singleTap =  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapAttribute:)];
         [singleTap setNumberOfTapsRequired:1];
         [_attribute addGestureRecognizer:singleTap];
@@ -46,15 +55,15 @@
 - (void)updateConstraints
 {
     UIView *contentView = self.contentView;
-    [self.thumbnail mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(contentView.mas_top).with.offset(SLVStandardOffset);
+    [self.thumbnail mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(contentView.mas_top).with.offset(SLVBigOffset);
         make.left.equalTo(contentView.mas_left).with.offset(SLVStandardOffset);
         make.size.equalTo(@(SLVCellThumbnailHeight));
         make.bottom.lessThanOrEqualTo(self.contentView.mas_bottom).with.offset(-SLVStandardOffset);
     }];
     [self.name mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(contentView.mas_top).with.offset(SLVStandardOffset);
-        make.left.equalTo(self.thumbnail.mas_right).with.offset(SLVBigOffset);
+        make.left.equalTo(self.thumbnail.mas_right).with.offset(SLVBigOffset + SLVSmallOffset);
         make.right.equalTo(contentView.mas_right).with.offset(SLVStandardOffset);
         make.height.mas_equalTo(SLVCellTitleHeight);
     }];
@@ -90,7 +99,7 @@
         make.top.equalTo(self.name.mas_bottom).with.offset(SLVBigOffset);
         make.left.equalTo(self.thumbnail.mas_right).with.offset(SLVBigOffset);
         make.right.equalTo(self.attribute.mas_left).with.offset(- SLVStandardOffset);
-        make.bottom.equalTo(contentView.mas_bottom).with.offset(-SLVStandardOffset);
+        make.bottom.equalTo(contentView.mas_bottom).with.offset(- SLVStandardOffset);
     }];
 }
 
@@ -98,9 +107,9 @@
 {
     CGSize maxSize = CGSizeMake(self.contentView.frame.size.width - SLVCellThumbnailHeight - SLVBigOffset, CGFLOAT_MAX);
     CGRect labelRect = [self.info.text boundingRectWithSize:maxSize
-                                          options:NSStringDrawingUsesLineFragmentOrigin
-                                       attributes:@{ NSFontAttributeName : self.info.font}
-                                          context:nil];
+                                                    options:NSStringDrawingUsesLineFragmentOrigin
+                                                 attributes:@{ NSFontAttributeName : self.info.font}
+                                                    context:nil];
     CGFloat infoLabelHeights = CGRectGetHeight(labelRect);
     if (infoLabelHeights < SLVCellInfoHeight)
     {
@@ -112,15 +121,42 @@
 {
     self.extended = !self.extended;
     [self updateConstraints];
-    [self turnAttribute];
+    
+    [UIView animateWithDuration:0.5
+                     animations:^{
+                         [self turnAttribute];
+                         [self changeThubmnail];
+                     }];
     [self.delegate cellDidChangeState:self];
 }
 
 - (void)turnAttribute
 {
-    self.extended ?
-    (self.attribute.backgroundColor = UIColor.blueColor) :
-    (self.attribute.backgroundColor = UIColor.greenColor);
+    if (self.extended)
+    {
+        self.attribute.backgroundColor = UIColor.blueColor;
+        self.attribute.transform = CGAffineTransformMakeRotation(M_PI_2);
+
+    }
+    else
+    {
+        self.attribute.backgroundColor = UIColor.greenColor;
+        self.attribute.transform = CGAffineTransformMakeRotation(0);
+    }
+}
+
+- (void)changeThubmnail
+{
+    if (self.extended)
+    {
+        self.name.font = [UIFont monospacedDigitSystemFontOfSize:25 weight:UIFontWeightBold];
+        self.thumbnail.transform = CGAffineTransformMakeScale(1.1, 1.1);
+    }
+    else
+    {
+        self.name.font = [UIFont monospacedDigitSystemFontOfSize:18 weight:UIFontWeightRegular];
+        self.thumbnail.transform = CGAffineTransformIdentity;
+    }
 }
 
 + (BOOL)requiresConstraintBasedLayout

@@ -18,6 +18,7 @@ static const NSInteger SLVCellTitleHeight = 25;
 
 static const NSInteger SLVStandardOffset = 8;
 static const NSInteger SLVBigOffset = 16;
+static const NSInteger SLVSmallOffset = 4;
 
 
 @interface SLVConstants : NSObject
