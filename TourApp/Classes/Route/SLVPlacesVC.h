@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "SLVNodesPresenter.h"
 
-@interface SLVPlacesVC : UIViewController
+@protocol SLVPlaceCellDelegate;
+
+
+@interface SLVPlacesVC : UIViewController <SLVPlaceCellDelegate>
 
 - (instancetype)initWithPresenter:(SLVNodesPresenter *)presenter;
 - (instancetype)init NS_UNAVAILABLE;

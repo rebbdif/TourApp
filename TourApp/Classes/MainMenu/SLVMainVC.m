@@ -40,11 +40,6 @@
     
 }
 
-- (IBAction)goToMap:(id)sender {
-    SLVPlacesVC *mapvc = [[SLVPlacesVC alloc] initWithPresenter:[SLVPresenterFactory nodesPresenter]];
-    [self presentViewController:mapvc animated:YES completion:nil];
-}
-
 - (IBAction)storeButtonPressed:(id)sender {
 
 }
@@ -84,7 +79,7 @@
     [toMapButton setTitle:@"Временная: к карте" forState:UIControlStateNormal];
     [toMapButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [toMapButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
-    [toMapButton addTarget:self action:@selector(goToMap:) forControlEvents:UIControlEventTouchUpInside];
+    //[toMapButton addTarget:self action:@selector(goToMap:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:toMapButton];
     
     UIButton *clearDatabaseButton=[[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2-120,self.view.frame.size.height/2+110,240,60)] ;

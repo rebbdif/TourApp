@@ -17,8 +17,8 @@
 
 @interface SLVNodesPresenterTests : XCTestCase
 
-@property (nonatomic, strong) SLVNodesPresenter *nodesPresenter;
-@property (nonatomic, strong) id<SLVNetworkProtocol> networkService;
+@property (nonatomic, strong) id nodesPresenter;
+@property (nonatomic, strong) id networkService;
 @property (nonatomic, strong) id<SLVStorageProtocol> storage;
 @property (nonatomic, copy) NSString *currentRouteIdentifier;
 
@@ -42,8 +42,8 @@
     [super setUp];
     self.storage = OCMProtocolMock(@protocol(SLVStorageProtocol));
     self.networkService = OCMProtocolMock(@protocol(SLVNetworkProtocol));
-    self.nodesPresenter = [[SLVNodesPresenter alloc] initWithNetworkService:self.networkService storage:self.storage];
     self.currentRouteIdentifier = @"testRoute";
+    self.nodesPresenter = OCMPartialMock([[SLVNodesPresenter alloc] initWithNetworkService:self.networkService storage:self.storage]);
 }
 
 - (void)tearDown {
@@ -73,15 +73,6 @@
     [self.nodesPresenter getNodesWithCompletion:nil];
     
     OCMVerify([self.nodesPresenter downloadNodesWithCompletion:nil]);
-}
-
-- (void)testDownloadNodes
-{
-    OCMStub([self.networkService getDictionaryFromURL:[OCMArg any] withCompletionBlock:[OCMArg any]]).andReturn([self mockedNodes]);
-    
-    [self.nodesPresenter downloadNodesWithCompletion:nil];
- 
-    OCMVerify([self.nodesPresenter parseNodes:[OCMArg any]]);
 }
 
 - (NSArray *)mockedNodes

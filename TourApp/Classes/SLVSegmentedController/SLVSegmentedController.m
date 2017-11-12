@@ -11,20 +11,16 @@
 #import "SLVMapVC.h"
 #import "SLVMainVC.h"
 #import "SLVPlacesVC.h"
+#import "SLVPresenterFactory.h"
 
-typedef NS_ENUM(NSUInteger, SLVControllerIndex) {
-    SLVControllerIndexNodes,
-    SLVControllerIndexMap,
-    SLVControllerIndexMain,
-};
 
 @interface SLVSegmentedController ()
 
+@property (nonatomic, strong) UISegmentedControl *segmentedControl;
 @property (nonatomic, strong) SLVNodesPresenter *presenter;
 @property (nonatomic, strong) SLVMapVC *mapVC;
 @property (nonatomic, strong) SLVMainVC *mainVC;
 @property (nonatomic, strong) SLVPlacesVC *placesVC;
-@property (nonatomic, strong) UISegmentedControl *segmentedControl;
 
 @end
 
@@ -43,6 +39,7 @@ typedef NS_ENUM(NSUInteger, SLVControllerIndex) {
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self addSegmentedControl];
+    self.presenter = [SLVPresenterFactory nodesPresenter];
     self.placesVC = [[SLVPlacesVC alloc] initWithPresenter:self.presenter];
     self.mapVC = [[SLVMapVC alloc] initWithPresenter:self.presenter];
     self.mainVC = [SLVMainVC new];
@@ -67,7 +64,20 @@ typedef NS_ENUM(NSUInteger, SLVControllerIndex) {
 
 - (void)segmentedControlValueDidChange:(UISegmentedControl *)segment
 {
-    switch (segment.selectedSegmentIndex) {
+    SLVControllerIndex selectedIndex = segment.selectedSegmentIndex;
+    [self showControllerFowIndex:selectedIndex];
+}
+
+
+- (void)selectControllerWithIndex:(SLVControllerIndex)controllerIndex
+{
+    self.segmentedControl.selectedSegmentIndex = controllerIndex;
+    [self showControllerFowIndex:controllerIndex];
+}
+
+- (void)showControllerFowIndex:(SLVControllerIndex)selectedIndex
+{
+    switch (selectedIndex) {
         case SLVControllerIndexNodes: {
             self.selectedIndex = SLVControllerIndexNodes;
             break;

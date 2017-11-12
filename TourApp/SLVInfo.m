@@ -14,4 +14,13 @@
 @dynamic text;
 @dynamic image;
 
++ (instancetype)infoWithDictionary:(NSDictionary *)dict context:(NSManagedObjectContext *)context
+{
+    __block SLVInfo *info = nil;
+    info = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([self class]) inManagedObjectContext:context];
+    info.text = dict[@"text"];
+            
+    return info;
+}
+
 @end

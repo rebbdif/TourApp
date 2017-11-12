@@ -28,4 +28,9 @@ typedef void (^voidBlock)(void);
  */
 - (NSManagedObjectContext *)mainContext;
 
+/**
+ Сохраняет измения приватного контекста и его родительского
+ */
+- (void)savePrivateContext:(NSManagedObjectContext *)privateContext;
+
 @end

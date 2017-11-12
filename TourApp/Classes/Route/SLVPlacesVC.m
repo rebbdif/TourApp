@@ -7,6 +7,8 @@
 //
 
 #import "SLVPlacesVC.h"
+#import "SLVSegmentedController.h"
+
 #import "SLVMainVC.h"
 #import "SLVMapVC.h"
 #import "SLVNodesPresenter.h"
@@ -16,37 +18,52 @@
 #import "SLVInfo.h"
 #import "SLVLoadingAnimation.h"
 
-@interface SLVPlacesVC () <UITableViewDataSource, UITableViewDelegate>
+#import "UIView+SLVGradient.h"
+#import "SLVGradient.h"
+#import "SLVPlacesDataSource.h"
+
+
+@interface SLVPlacesVC () <UITableViewDelegate>
 
 @property (nonatomic, strong) SLVNodesPresenter *presenter;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) SLVLoadingAnimation *spinner;
-
+@property (nonatomic, strong) SLVPlacesDataSource *dataSource;
 
 @end
 
+
 @implementation SLVPlacesVC
 
-- (instancetype)initWithPresenter:(SLVNodesPresenter *)presenter {
+- (instancetype)initWithPresenter:(SLVNodesPresenter *)presenter
+{
     self = [super init];
-    if (self) {
+    if (self)
+    {
         _presenter = presenter;
     }
     return self;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
+    [self.view addGradient:[SLVGradient basicGradient]];
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame];
+    self.tableView.backgroundColor = UIColor.clearColor;
     self.tableView.delegate = self;
-    self.tableView.dataSource = self;
+    self.dataSource = [[SLVPlacesDataSource alloc] initWithPresenter:self.presenter controller:self];
+    self.tableView.dataSource = self.dataSource;
     [self.tableView registerClass:[SLVPlaceCell class] forCellReuseIdentifier:NSStringFromClass([SLVPlaceCell class])];
-    self.tableView.rowHeight = SLVCellHeight;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 10;
+    self.tableView.contentInset = UIEdgeInsetsMake(65, 0, 0, 0);
     [self.view addSubview:self.tableView];
     _spinner = [[SLVLoadingAnimation alloc] initWithCenter:self.view.center];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     [self.view addSubview:self.spinner];
     [self.spinner startAnimation];
@@ -58,37 +75,33 @@
     }];
 }
 
-#pragma Table View
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [(SLVSegmentedController *)(self.parentViewController) selectControllerWithIndex:SLVControllerIndexMap];
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSUInteger numberOfObjects = [self.presenter numberOfObjects];
-    return numberOfObjects;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    SLVPlaceCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SLVPlaceCell class])];
-    [self configureCell:cell forIndexPath:indexPath];
-    return cell;
-}
-
-- (void)configureCell:(SLVPlaceCell *)cell forIndexPath:(NSIndexPath *)indexPath {
-    SLVNode *currentNode = [self.presenter objectForIndex:indexPath.row];
-    cell.name.text = currentNode.name;
-    [cell layoutIfNeeded];
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    CGRect frame = self.view.frame;
-    UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(frame), 20)];
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 20)];
     return footer;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
     return 1;
+}
+
+
+#pragma mark - SLVPlaceCellDelegate
+
+- (IBAction)cellDidChangeState:(SLVPlaceCell *)cell
+{
+    [UIView animateWithDuration:0.5 animations:^{
+    [self.tableView beginUpdates];
+    [self.tableView endUpdates];
+    }];
 }
 
 @end

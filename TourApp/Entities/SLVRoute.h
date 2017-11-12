@@ -13,6 +13,9 @@
 @class SLVNode;
 @class SLVTag;
 
+static NSString * const SLVRouteEntityName = @"SLVRoute";
+
+
 @interface SLVRoute : NSManagedObject
 
 @property (nonatomic, copy) NSString *identifier;
@@ -24,5 +27,7 @@
 @property (nonatomic, copy) NSOrderedSet<SLVNode *> *nodes;
 @property (nonatomic, strong) SLVInfo *info;
 @property (nonatomic, copy) NSSet<SLVTag *> *tags;
+
++ (instancetype)routeWithDictionary:(NSDictionary *)dict context:(NSManagedObjectContext *)context;
 
 @end
