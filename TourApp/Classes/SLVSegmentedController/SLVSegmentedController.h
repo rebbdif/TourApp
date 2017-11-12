@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+
+typedef NS_ENUM(NSUInteger, SLVControllerIndex) {
+    SLVControllerIndexNodes,
+    SLVControllerIndexMap,
+    SLVControllerIndexMain,
+};
+
+
 @interface SLVSegmentedController : UITabBarController
+
+- (void)selectControllerWithIndex:(SLVControllerIndex)controllerIndex;
 
 @end

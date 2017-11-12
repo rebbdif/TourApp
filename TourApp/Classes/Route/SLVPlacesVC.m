@@ -7,6 +7,8 @@
 //
 
 #import "SLVPlacesVC.h"
+#import "SLVSegmentedController.h"
+
 #import "SLVMainVC.h"
 #import "SLVMapVC.h"
 #import "SLVNodesPresenter.h"
@@ -18,23 +20,26 @@
 
 #import "UIView+SLVGradient.h"
 #import "SLVGradient.h"
+#import "SLVPlacesDataSource.h"
 
 
-@interface SLVPlacesVC () <UITableViewDataSource, UITableViewDelegate>
+@interface SLVPlacesVC () <UITableViewDelegate>
 
 @property (nonatomic, strong) SLVNodesPresenter *presenter;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) SLVLoadingAnimation *spinner;
-
+@property (nonatomic, strong) SLVPlacesDataSource *dataSource;
 
 @end
+
 
 @implementation SLVPlacesVC
 
 - (instancetype)initWithPresenter:(SLVNodesPresenter *)presenter
 {
     self = [super init];
-    if (self) {
+    if (self)
+    {
         _presenter = presenter;
     }
     return self;
@@ -47,7 +52,8 @@
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame];
     self.tableView.backgroundColor = UIColor.clearColor;
     self.tableView.delegate = self;
-    self.tableView.dataSource = self;
+    self.dataSource = [[SLVPlacesDataSource alloc] initWithPresenter:self.presenter controller:self];
+    self.tableView.dataSource = self.dataSource;
     [self.tableView registerClass:[SLVPlaceCell class] forCellReuseIdentifier:NSStringFromClass([SLVPlaceCell class])];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 10;
@@ -69,39 +75,15 @@
     }];
 }
 
-#pragma Table View
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    NSUInteger numberOfObjects = [self.presenter numberOfObjects];
-    return numberOfObjects;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    SLVPlaceCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SLVPlaceCell class])];
-    [self configureCell:cell forIndexPath:indexPath];
-    return cell;
-}
-
-- (void)configureCell:(SLVPlaceCell *)cell forIndexPath:(NSIndexPath *)indexPath
-{
-    SLVNode *currentNode = [self.presenter objectForIndex:indexPath.row];
-    cell.delegate = self;
-    cell.name.text = currentNode.name;
-    cell.info.text = currentNode.info.text;
-    cell.thumbnail.image = currentNode.thumbnail ?: [UIImage imageNamed:@"eye"];
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [(SLVSegmentedController *)(self.parentViewController) selectControllerWithIndex:SLVControllerIndexMap];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    CGRect frame = self.view.frame;
-    UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(frame), 20)];
+    UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 20)];
     return footer;
 }
 
@@ -109,6 +91,7 @@
 {
     return 1;
 }
+
 
 #pragma mark - SLVPlaceCellDelegate
 

@@ -21,6 +21,7 @@
 		5ED6A4671FB746A200497146 /* SLVColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED6A4661FB746A200497146 /* SLVColors.m */; };
 		5ED6A46A1FB7533800497146 /* UIView+SLVGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED6A4691FB7533800497146 /* UIView+SLVGradient.m */; };
 		5ED6A46D1FB753A500497146 /* SLVGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED6A46C1FB753A500497146 /* SLVGradient.m */; };
+		5ED6A4701FB7DA6500497146 /* SLVPlacesDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED6A46F1FB7DA6500497146 /* SLVPlacesDataSource.m */; };
 		638F79A51F1FEDCA00F6E36C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 638F79A41F1FEDCA00F6E36C /* Assets.xcassets */; };
 		638F79B31F1FEDCB00F6E36C /* TourAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 638F79B21F1FEDCB00F6E36C /* TourAppTests.m */; };
 		638F79C31F1FEEFC00F6E36C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 638F79BF1F1FEEFC00F6E36C /* main.m */; };
@@ -87,6 +88,8 @@
 		5ED6A4691FB7533800497146 /* UIView+SLVGradient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIView+SLVGradient.m"; path = "Helpers/UIView+SLVGradient.m"; sourceTree = "<group>"; };
 		5ED6A46B1FB753A500497146 /* SLVGradient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SLVGradient.h; path = Helpers/SLVGradient.h; sourceTree = "<group>"; };
 		5ED6A46C1FB753A500497146 /* SLVGradient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SLVGradient.m; path = Helpers/SLVGradient.m; sourceTree = "<group>"; };
+		5ED6A46E1FB7DA6500497146 /* SLVPlacesDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SLVPlacesDataSource.h; path = Classes/Route/SLVPlacesDataSource.h; sourceTree = "<group>"; };
+		5ED6A46F1FB7DA6500497146 /* SLVPlacesDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SLVPlacesDataSource.m; path = Classes/Route/SLVPlacesDataSource.m; sourceTree = "<group>"; };
 		638F79951F1FEDC800F6E36C /* TourApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TourApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		638F79A41F1FEDCA00F6E36C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		638F79AE1F1FEDCB00F6E36C /* TourAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TourAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,6 +154,8 @@
 			children = (
 				5ED6A44E1FB6F8DA00497146 /* SLVLoadingAnimation.h */,
 				5ED6A44D1FB6F8DA00497146 /* SLVLoadingAnimation.m */,
+				5E135C6E1FB0B70D00DADA45 /* SLVPlaceCell.h */,
+				5E135C6D1FB0B70D00DADA45 /* SLVPlaceCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -262,12 +267,12 @@
 			children = (
 				5E135C691FB0B6C100DADA45 /* SLVPlacesVC.h */,
 				5E135C681FB0B6C100DADA45 /* SLVPlacesVC.m */,
+				5ED6A46E1FB7DA6500497146 /* SLVPlacesDataSource.h */,
+				5ED6A46F1FB7DA6500497146 /* SLVPlacesDataSource.m */,
 				638F79DC1F2004F900F6E36C /* SLVMapVC.h */,
 				638F79DD1F2004F900F6E36C /* SLVMapVC.m */,
 				638F79F71F203CE700F6E36C /* SLVNodesPresenter.h */,
 				638F79F81F203CE700F6E36C /* SLVNodesPresenter.m */,
-				5E135C6E1FB0B70D00DADA45 /* SLVPlaceCell.h */,
-				5E135C6D1FB0B70D00DADA45 /* SLVPlaceCell.m */,
 			);
 			name = Route;
 			sourceTree = "<group>";
@@ -481,6 +486,7 @@
 				5E135C6A1FB0B6C100DADA45 /* SLVPlacesVC.m in Sources */,
 				638F79F91F203CE700F6E36C /* SLVNodesPresenter.m in Sources */,
 				638F7A031F20467000F6E36C /* SLVNode.m in Sources */,
+				5ED6A4701FB7DA6500497146 /* SLVPlacesDataSource.m in Sources */,
 				5ED6A46A1FB7533800497146 /* UIView+SLVGradient.m in Sources */,
 				5E2C71FD1FB0DC8900521931 /* SLVPresenterFactory.m in Sources */,
 				5ED6A46D1FB753A500497146 /* SLVGradient.m in Sources */,
