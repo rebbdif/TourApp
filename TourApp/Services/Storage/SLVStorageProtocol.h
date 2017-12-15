@@ -9,13 +9,13 @@
 #import <Foundation/Foundation.h>
 @class NSManagedObjectContext;
 
-typedef void (^voidBlock)(void);
-
 @protocol SLVStorageProtocol <NSObject>
 
 - (id)fetchEntity:(NSString *)entity forKey:(NSString *)key;
 
 - (NSArray *)fetchEntities:(NSString *)entity forKey:(NSString *)key;
+
++ (NSArray *)fetchEntities:(NSString *)entity forKey:(NSString *)key inContext:(NSManagedObjectContext *)context;
 
 /**
  Сохраняет изменения главного контекста

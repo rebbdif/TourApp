@@ -49,6 +49,12 @@
 {
     [super viewDidLoad];
     [self.view addGradient:[SLVGradient basicGradient]];
+    [self createTableView];
+    _spinner = [[SLVLoadingAnimation alloc] initWithCenter:self.view.center];
+}
+
+- (void)createTableView
+{
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame];
     self.tableView.backgroundColor = UIColor.clearColor;
     self.tableView.delegate = self;
@@ -59,7 +65,6 @@
     self.tableView.estimatedRowHeight = 10;
     self.tableView.contentInset = UIEdgeInsetsMake(65, 0, 0, 0);
     [self.view addSubview:self.tableView];
-    _spinner = [[SLVLoadingAnimation alloc] initWithCenter:self.view.center];
 }
 
 - (void)viewWillAppear:(BOOL)animated

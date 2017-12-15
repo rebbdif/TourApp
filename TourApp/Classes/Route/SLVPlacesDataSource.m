@@ -19,7 +19,6 @@
 @interface SLVPlacesDataSource ()
 
 @property (nonatomic, weak) SLVNodesPresenter *presenter;
-@property (nonatomic, weak) UITableView *tableView;
 @property (nonatomic, weak) SLVLoadingAnimation *spinner;
 @property (nonatomic, weak) id<SLVPlaceCellDelegate> controller;
 

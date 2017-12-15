@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="15G1108" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13533" systemVersion="16G29" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="SLVInfo" representedClassName="SLVInfo" syncable="YES">
         <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photos" optional="YES" attributeType="Transformable" syncable="YES"/>
@@ -18,9 +18,11 @@
         <relationship name="route" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SLVRoute" inverseName="nodes" inverseEntity="SLVRoute" syncable="YES"/>
     </entity>
     <entity name="SLVRoute" representedClassName="SLVRoute" syncable="YES">
+        <attribute name="attribute" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="author" optional="YES" attributeType="String" defaultValueString="defaultRouteAuthor" syncable="YES"/>
         <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" defaultValueString="defaultRouteName" syncable="YES"/>
+        <attribute name="shortInfo" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="thumbnail" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="thumbnailURL" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="info" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SLVInfo" inverseName="route" inverseEntity="SLVInfo" syncable="YES"/>
@@ -34,8 +36,8 @@
     </entity>
     <elements>
         <element name="SLVInfo" positionX="63" positionY="-64" width="128" height="118"/>
-        <element name="SLVRoute" positionX="-180" positionY="-90" width="128" height="163"/>
         <element name="SLVNode" positionX="16" positionY="117" width="128" height="163"/>
+        <element name="SLVRoute" positionX="-180" positionY="-90" width="128" height="195"/>
         <element name="SLVTag" positionX="-218" positionY="137" width="128" height="88"/>
     </elements>
 </model>

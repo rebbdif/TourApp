@@ -49,7 +49,10 @@
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:entity];
     [request setReturnsObjectsAsFaults:NO];
     request.fetchBatchSize = 30;
-    request.predicate = [NSPredicate predicateWithFormat:@"identifier == %@", key];
+    if (key)
+    {
+        request.predicate = [NSPredicate predicateWithFormat:@"identifier == %@", key];
+    }
     NSError *error = nil;
     NSArray *fetchedArray = [self.mainContext executeFetchRequest:request error:&error];
     if (error) {
@@ -89,5 +92,24 @@
         }
     }];
 }
+
+
++ (NSArray *)fetchEntities:(NSString *)entity forKey:(NSString *)key inContext:(NSManagedObjectContext *)context
+{
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:entity];
+    [request setReturnsObjectsAsFaults:NO];
+    request.fetchBatchSize = 30;
+    if (key)
+    {
+        request.predicate = [NSPredicate predicateWithFormat:@"identifier == %@", key];
+    }
+    NSError *error = nil;
+    NSArray *fetchedArray = [context executeFetchRequest:request error:&error];
+    if (error) {
+        NSLog(@"storageService - error while fetching %@", error);
+    }
+    return fetchedArray;
+}
+
 
 @end

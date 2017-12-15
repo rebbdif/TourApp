@@ -111,6 +111,11 @@
 
 - (void)shouldShowAttribute
 {
+    if (!self.info)
+    {
+        self.attribute.hidden = YES;
+        return;
+    }
     CGSize maxSize = CGSizeMake(self.contentView.frame.size.width - SLVCellThumbnailHeight - SLVBigOffset, CGFLOAT_MAX);
     CGRect labelRect = [self.info.text boundingRectWithSize:maxSize
                                                     options:NSStringDrawingUsesLineFragmentOrigin

@@ -11,6 +11,9 @@
 #import "SLVPlacesVC.h"
 #import "SLVNodesPresenter.h"
 #import "SLVPresenterFactory.h"
+#import "SLVRouteStoreVC.h"
+#import "SLVRoutesPresenter.h"
+
 
 @interface SLVMainVC ()
 
@@ -40,8 +43,10 @@
     
 }
 
-- (IBAction)storeButtonPressed:(id)sender {
-
+- (IBAction)storeButtonPressed:(id)sender
+{
+    SLVRouteStoreVC *routeStoreVC = [[SLVRouteStoreVC alloc] initWithPresenter:[SLVPresenterFactory routesPresenter]];
+    [self.navigationController pushViewController:routeStoreVC animated:YES];
 }
 
 - (IBAction)createRouteButtonPressed:(id)sender {

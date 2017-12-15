@@ -15,5 +15,7 @@
 #import <Foundation/Foundation.h>
 #import "SLVConstants.h"
 
+typedef void (^voidBlock)(void);
+
 
 #endif /* PrefixHeader_pch */

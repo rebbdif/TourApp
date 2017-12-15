@@ -7,8 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SLVNetworkProtocol.h"
-#import "SLVStorageProtocol.h"
+
+
+@protocol SLVNetworkProtocol;
+@protocol SLVStorageProtocol;
+
 
 @interface SLVNodesPresenter : NSObject
 

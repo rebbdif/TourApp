@@ -9,6 +9,7 @@
 #import "SLVRoute.h"
 #import "SLVInfo.h"
 #import "SLVNode.h"
+#import "SLVStorageService.h"
 
 
 @implementation SLVRoute
@@ -18,6 +19,7 @@
 @dynamic author;
 @dynamic thumbnailURL;
 @dynamic thumbnail;
+@dynamic shortInfo;
 
 @dynamic nodes;
 @dynamic info;
@@ -25,16 +27,21 @@
 
 + (instancetype)routeWithDictionary:(NSDictionary *)dict context:(NSManagedObjectContext *)context
 {
-    NSString *routeId = dict[@"identifier"];
+    NSDictionary *routeDict = dict;
+                                
+    NSString *routeId = routeDict[@"identifier"];
     NSAssert(routeId, @"id shouldnt be nil");
-    __block SLVRoute *route = nil;
+    
+    __block SLVRoute *route = [self route:routeId existsInContext:context];
+    if (route) return route;
     
     [context performBlockAndWait:^{
         route = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([self class]) inManagedObjectContext:context];
         route.identifier = routeId;
-        route.name = dict[@"name"];
-        route.thumbnailURL = dict[@"thumbnailURL"];
-        route.author = dict[@"author"];
+        route.name = routeDict[@"name"];
+        route.thumbnailURL = routeDict[@"thumbnailURL"];
+        route.author = routeDict[@"author"];
+        route.shortInfo = routeDict[@"shortInfo"];
         NSError *error = nil;
         if (![context save:&error]) {
             NSLog(@"Error saving context: %@\n%@", [error localizedDescription], [error userInfo]);
@@ -42,6 +49,12 @@
         }
     }];
 return route;
+}
+
++ (SLVRoute *)route:(NSString *)identifier existsInContext:(NSManagedObjectContext *)context
+{
+   NSArray<SLVRoute *> *routes = [SLVStorageService fetchEntities:NSStringFromClass([self class]) forKey:identifier inContext:context];
+    return routes.lastObject;
 }
 
 @end

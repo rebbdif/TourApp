@@ -7,9 +7,14 @@
 //
 
 #import "SLVPresenterFactory.h"
-#import "SLVNodesPresenter.h"
 #import "SLVNetworkService.h"
 #import "SLVStorageService.h"
+
+#import "SLVNodesPresenter.h"
+#import "SLVRoutesPresenter.h"
+
+
+//TODO: сделать правильную инъекцию зависимостей
 
 @implementation SLVPresenterFactory
 
@@ -18,6 +23,13 @@
     SLVStorageService *storage = [SLVStorageService new];
     SLVNodesPresenter *nodesPresenter = [[SLVNodesPresenter alloc] initWithNetworkService:networkService storage:storage];
     return nodesPresenter;
+}
+
++ (id)routesPresenter {
+    SLVNetworkService *networkService = [SLVNetworkService new];
+    SLVStorageService *storage = [SLVStorageService new];
+    SLVRoutesPresenter *routesPresenter = [[SLVRoutesPresenter alloc] initWithNetworkService:networkService storage:storage];
+    return routesPresenter;
 }
 
 @end

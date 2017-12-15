@@ -9,8 +9,13 @@
 @import CoreData;
 
 #import "SLVNodesPresenter.h"
+
+#import "SLVNetworkProtocol.h"
+#import "SLVStorageProtocol.h"
+
 #import "SLVNode.h"
 #import "SLVRoute.h"
+
 
 @interface SLVNodesPresenter ()
 
@@ -39,14 +44,20 @@
 
 - (NSString *)currentRouteIdentifier
 {
-    NSString *currentRouteIdentifier = @"testRoute2";
+    NSString *currentRouteIdentifier = @"testRoute0";
     return currentRouteIdentifier;
 }
 
 - (void)getNodesWithCompletion:(voidBlock)completion
 {
     self.retryCount = 0;
-    NSArray<SLVNode *> *fetchedNodes = [self fetchNodes];
+    SLVRoute *fetchedRoute = [self fetchRoute];
+    if (!fetchedRoute)
+    {
+        [self downloadNodesWithCompletion:completion];
+        return;
+    }
+    NSArray<SLVNode *> *fetchedNodes = fetchedRoute.nodes.array;
     NSLog(@"fetched: %@", @(fetchedNodes.count));
     if (fetchedNodes.count == 0)
     {
@@ -57,12 +68,10 @@
     if (completion) completion();
 }
 
-- (NSArray<SLVNode *> *)fetchNodes
+- (SLVRoute *)fetchRoute
 {
     SLVRoute *currentRoute = [self.storage fetchEntity:SLVRouteEntityName forKey:self.currentRouteIdentifier];
-    NSArray<SLVNode *> *nodes = currentRoute.nodes.array;
-    NSLog(@"fetched %@ nodes", @(nodes.count));
-    return nodes;
+    return currentRoute;
 }
 
 - (void)downloadNodesWithCompletion:(voidBlock)completion

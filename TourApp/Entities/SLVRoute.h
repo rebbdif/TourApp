@@ -23,6 +23,8 @@ static NSString * const SLVRouteEntityName = @"SLVRoute";
 @property (nonatomic, copy) NSString *author;
 @property (nonatomic, strong) NSString *thumbnailURL;
 @property (nonatomic, strong) UIImage *thumbnail;
+@property (nonatomic, strong) NSString *shortInfo;
+
 
 @property (nonatomic, copy) NSOrderedSet<SLVNode *> *nodes;
 @property (nonatomic, strong) SLVInfo *info;

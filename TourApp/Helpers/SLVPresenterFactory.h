@@ -8,8 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface SLVPresenterFactory : NSObject
 
 + (id)nodesPresenter;
++ (id)routesPresenter;
+
 
 @end

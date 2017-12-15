@@ -50,6 +50,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
     self.segmentedControl.selectedSegmentIndex = 2;
 }
 
