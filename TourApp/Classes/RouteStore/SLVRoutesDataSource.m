@@ -61,6 +61,7 @@
     cell.routeName.text = route.name ?: @"Без названия";
     cell.routeAuthor.text = route.author ?: @"Без автора";
     cell.shortInfo.text = route.shortInfo;
+    [cell setImagesForCollectionView:route.images.allObjects];
 }
 
 @end

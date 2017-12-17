@@ -26,6 +26,9 @@
 		5ED6A46A1FB7533800497146 /* UIView+SLVGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED6A4691FB7533800497146 /* UIView+SLVGradient.m */; };
 		5ED6A46D1FB753A500497146 /* SLVGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED6A46C1FB753A500497146 /* SLVGradient.m */; };
 		5ED6A4701FB7DA6500497146 /* SLVPlacesDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED6A46F1FB7DA6500497146 /* SLVPlacesDataSource.m */; };
+		5EE5C8B01FE46FD4009006D4 /* SLVImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE5C8AF1FE46FD4009006D4 /* SLVImage.m */; };
+		5EE5C8B31FE473B8009006D4 /* SLVRouteCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE5C8B21FE473B8009006D4 /* SLVRouteCollectionView.m */; };
+		5EE5C8B61FE4807C009006D4 /* SLVRouteImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE5C8B51FE4807C009006D4 /* SLVRouteImageCell.m */; };
 		638F79A51F1FEDCA00F6E36C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 638F79A41F1FEDCA00F6E36C /* Assets.xcassets */; };
 		638F79B31F1FEDCB00F6E36C /* TourAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 638F79B21F1FEDCB00F6E36C /* TourAppTests.m */; };
 		638F79C31F1FEEFC00F6E36C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 638F79BF1F1FEEFC00F6E36C /* main.m */; };
@@ -102,6 +105,12 @@
 		5ED6A46C1FB753A500497146 /* SLVGradient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SLVGradient.m; path = Helpers/SLVGradient.m; sourceTree = "<group>"; };
 		5ED6A46E1FB7DA6500497146 /* SLVPlacesDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SLVPlacesDataSource.h; path = Classes/Route/SLVPlacesDataSource.h; sourceTree = "<group>"; };
 		5ED6A46F1FB7DA6500497146 /* SLVPlacesDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SLVPlacesDataSource.m; path = Classes/Route/SLVPlacesDataSource.m; sourceTree = "<group>"; };
+		5EE5C8AE1FE46FD4009006D4 /* SLVImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SLVImage.h; path = Entities/SLVImage.h; sourceTree = "<group>"; };
+		5EE5C8AF1FE46FD4009006D4 /* SLVImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SLVImage.m; path = Entities/SLVImage.m; sourceTree = "<group>"; };
+		5EE5C8B11FE473B8009006D4 /* SLVRouteCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SLVRouteCollectionView.h; path = Classes/RouteStore/SLVRouteCollectionView.h; sourceTree = "<group>"; };
+		5EE5C8B21FE473B8009006D4 /* SLVRouteCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SLVRouteCollectionView.m; path = Classes/RouteStore/SLVRouteCollectionView.m; sourceTree = "<group>"; };
+		5EE5C8B41FE4807C009006D4 /* SLVRouteImageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SLVRouteImageCell.h; path = Classes/RouteStore/SLVRouteImageCell.h; sourceTree = "<group>"; };
+		5EE5C8B51FE4807C009006D4 /* SLVRouteImageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SLVRouteImageCell.m; path = Classes/RouteStore/SLVRouteImageCell.m; sourceTree = "<group>"; };
 		638F79951F1FEDC800F6E36C /* TourApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TourApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		638F79A41F1FEDCA00F6E36C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		638F79AE1F1FEDCB00F6E36C /* TourAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TourAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,6 +179,19 @@
 				5E135C6D1FB0B70D00DADA45 /* SLVPlaceCell.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		5EE5C8B71FE693EE009006D4 /* RouteCell */ = {
+			isa = PBXGroup;
+			children = (
+				5E1487241FDB14BD00AEAA0B /* SLVRouteStoreCell.h */,
+				5E1487251FDB14BD00AEAA0B /* SLVRouteStoreCell.m */,
+				5EE5C8B11FE473B8009006D4 /* SLVRouteCollectionView.h */,
+				5EE5C8B21FE473B8009006D4 /* SLVRouteCollectionView.m */,
+				5EE5C8B41FE4807C009006D4 /* SLVRouteImageCell.h */,
+				5EE5C8B51FE4807C009006D4 /* SLVRouteImageCell.m */,
+			);
+			name = RouteCell;
 			sourceTree = "<group>";
 		};
 		638F798C1F1FEDC800F6E36C = {
@@ -276,8 +298,7 @@
 				5E14871B1FD1CA4900AEAA0B /* SLVRouteStoreVC.m */,
 				5E1487201FD29FBB00AEAA0B /* SLVRoutesPresenter.h */,
 				5E1487211FD29FBB00AEAA0B /* SLVRoutesPresenter.m */,
-				5E1487241FDB14BD00AEAA0B /* SLVRouteStoreCell.h */,
-				5E1487251FDB14BD00AEAA0B /* SLVRouteStoreCell.m */,
+				5EE5C8B71FE693EE009006D4 /* RouteCell */,
 			);
 			name = RouteStore;
 			sourceTree = "<group>";
@@ -369,6 +390,8 @@
 				638F7A051F20467D00F6E36C /* SLVInfo.m */,
 				638F7A071F20468900F6E36C /* SLVTag.h */,
 				638F7A081F20468900F6E36C /* SLVTag.m */,
+				5EE5C8AE1FE46FD4009006D4 /* SLVImage.h */,
+				5EE5C8AF1FE46FD4009006D4 /* SLVImage.m */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -506,7 +529,9 @@
 				5E1487221FD29FBB00AEAA0B /* SLVRoutesPresenter.m in Sources */,
 				5E135C6A1FB0B6C100DADA45 /* SLVPlacesVC.m in Sources */,
 				638F79F91F203CE700F6E36C /* SLVNodesPresenter.m in Sources */,
+				5EE5C8B01FE46FD4009006D4 /* SLVImage.m in Sources */,
 				638F7A031F20467000F6E36C /* SLVNode.m in Sources */,
+				5EE5C8B61FE4807C009006D4 /* SLVRouteImageCell.m in Sources */,
 				5ED6A4701FB7DA6500497146 /* SLVPlacesDataSource.m in Sources */,
 				5ED6A46A1FB7533800497146 /* UIView+SLVGradient.m in Sources */,
 				5E1487261FDB14BD00AEAA0B /* SLVRouteStoreCell.m in Sources */,
@@ -521,6 +546,7 @@
 				638F79DE1F2004F900F6E36C /* SLVMapVC.m in Sources */,
 				5ED6A44F1FB6F8DA00497146 /* SLVLoadingAnimation.m in Sources */,
 				5E135C6F1FB0B70D00DADA45 /* SLVPlaceCell.m in Sources */,
+				5EE5C8B31FE473B8009006D4 /* SLVRouteCollectionView.m in Sources */,
 				638F79F51F203BE800F6E36C /* SLVCoreDataStack.m in Sources */,
 				638F7A091F20468900F6E36C /* SLVTag.m in Sources */,
 				638F7A061F20467D00F6E36C /* SLVInfo.m in Sources */,

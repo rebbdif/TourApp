@@ -9,6 +9,7 @@
 #import "SLVRoute.h"
 #import "SLVInfo.h"
 #import "SLVNode.h"
+#import "SLVImage.h"
 #import "SLVStorageService.h"
 
 
@@ -17,8 +18,7 @@
 @dynamic identifier;
 @dynamic name;
 @dynamic author;
-@dynamic thumbnailURL;
-@dynamic thumbnail;
+@dynamic images;
 @dynamic shortInfo;
 
 @dynamic nodes;
@@ -39,7 +39,6 @@
         route = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([self class]) inManagedObjectContext:context];
         route.identifier = routeId;
         route.name = routeDict[@"name"];
-        route.thumbnailURL = routeDict[@"thumbnailURL"];
         route.author = routeDict[@"author"];
         route.shortInfo = routeDict[@"shortInfo"];
         NSError *error = nil;

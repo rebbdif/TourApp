@@ -8,12 +8,17 @@
 
 #import "SLVRouteStoreCell.h"
 #import "UIColor+SLVColor.h"
+#import "SLVRouteCollectionView.h"
 
 @import Masonry;
 
 
-@implementation SLVRouteStoreCell
+@interface SLVRouteStoreCell()
 
+@end
+
+
+@implementation SLVRouteStoreCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -36,9 +41,9 @@
         _shortInfo.textAlignment = NSTextAlignmentNatural;
         [self.contentView addSubview:_shortInfo];
         
-        UICollectionViewLayout *layout = [UICollectionViewFlowLayout new];
-        _images = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
-        [self.contentView addSubview:_images];
+        _collectionView = [SLVRouteCollectionView new];
+        _collectionView.backgroundColor = UIColor.clearColor;
+        [self.contentView addSubview:_collectionView];
 
         _moreButton = [UIButton new];
         [_moreButton addTarget:self action:@selector(moreButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -54,8 +59,6 @@
         _downloadButton.layer.borderColor = UIColor.lightGrayColor.CGColor;
         _downloadButton.layer.borderWidth = 1;
         _downloadButton.layer.cornerRadius = 8;
-        
-        [self layoutDebug];
     }
     return self;
 }
@@ -63,12 +66,12 @@
 
 - (IBAction)moreButtonPressed:(id)sender
 {
-    
+    //TODO: менюшка с "поделиться" и "заблокировать"
 }
 
 - (IBAction)downloadButtonPressed:(id)sender
 {
-    
+    //TODO: загружаем маршрут и переходим к его отображению
 }
 
 - (void)updateConstraints
@@ -77,14 +80,14 @@
     
     [_moreButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(contentView.mas_top).with.offset(SLVBigOffset);
-        make.right.mas_equalTo(contentView.mas_right).offset(- SLVBigOffset);
+        make.right.mas_equalTo(contentView.mas_right).offset(-SLVBigOffset);
         make.height.mas_equalTo(21);
         make.width.mas_equalTo(6);
     }];
     
     [_downloadButton mas_makeConstraints:^(MASConstraintMaker *make) {
     make.top.mas_equalTo(_moreButton.mas_bottom).with.offset(SLVBigOffset);
-        make.right.mas_equalTo(contentView.mas_right).offset(- SLVBigOffset);
+        make.right.mas_equalTo(contentView.mas_right).offset(-SLVBigOffset);
         make.height.mas_equalTo(25);
         make.width.mas_equalTo(72);
     }];
@@ -92,44 +95,46 @@
     [_routeName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(contentView.mas_top).with.offset(SLVStandardOffset);
         make.left.mas_equalTo(contentView.mas_left).with.offset(SLVStandardOffset);
-        make.right.mas_equalTo(_downloadButton.mas_left).offset( - SLVBigOffset);
+        make.right.mas_equalTo(_downloadButton.mas_left).offset(-SLVBigOffset);
         make.height.mas_equalTo(48);
     }];
     
     [_routeAuthor mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(_routeName.mas_bottom).with.offset(SLVSmallOffset);
         make.left.mas_equalTo(contentView.mas_left).with.offset(SLVStandardOffset);
-        make.right.mas_equalTo(_downloadButton.mas_left).offset( - SLVBigOffset);
+        make.right.mas_equalTo(_downloadButton.mas_left).offset(-SLVBigOffset);
         make.height.mas_equalTo(22);
     }];
     
-    [_images mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(_routeAuthor.mas_bottom).with.offset(SLVStandardOffset);
         make.left.mas_equalTo(contentView.mas_left).with.offset(SLVSmallOffset);
-        make.right.mas_equalTo(contentView.mas_right).offset( - SLVBigOffset);
+        make.right.mas_equalTo(contentView.mas_right).offset(-SLVBigOffset);
         make.height.mas_equalTo(105);
     }];
     
     [_shortInfo mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(_images.mas_bottom).with.offset(SLVSmallOffset);
+        make.top.mas_equalTo(_collectionView.mas_bottom).with.offset(SLVSmallOffset);
         make.left.mas_equalTo(contentView.mas_left).with.offset(SLVStandardOffset);
-        make.right.mas_equalTo(contentView.mas_right).offset(- SLVBigOffset);
+        make.right.mas_equalTo(contentView.mas_right).offset(-SLVBigOffset);
         make.height.mas_lessThanOrEqualTo(150).with.priorityMedium();
-        make.bottom.mas_equalTo(contentView.mas_bottom).with.offset(- SLVBigOffset);
+        make.bottom.mas_equalTo(contentView.mas_bottom).with.offset(-SLVBigOffset);
     }];
     
     [super updateConstraints];
 }
+
+- (void)setImagesForCollectionView:(NSArray<SLVImage *> *)images
+{
+    self.collectionView.images = images;
+    [self.collectionView reloadData];
+}
+
 
 + (BOOL)requiresConstraintBasedLayout
 {
     return YES;
 }
 
-
-- (void)layoutDebug
-{
-    _images.backgroundColor = [UIColor.redColor colorWithAlphaComponent:0.2];
-}
 
 @end
