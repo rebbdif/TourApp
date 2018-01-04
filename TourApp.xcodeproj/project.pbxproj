@@ -16,19 +16,21 @@
 		5E1487261FDB14BD00AEAA0B /* SLVRouteStoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1487251FDB14BD00AEAA0B /* SLVRouteStoreCell.m */; };
 		5E1487291FDB205900AEAA0B /* UIColor+SLVColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1487281FDB205900AEAA0B /* UIColor+SLVColor.m */; };
 		5E2C71FD1FB0DC8900521931 /* SLVPresenterFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2C71FC1FB0DC8900521931 /* SLVPresenterFactory.m */; };
+		5E99DCE71FFD5C26002F8881 /* SLVTagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E99DCE61FFD5C26002F8881 /* SLVTagCell.m */; };
 		5ED6A44F1FB6F8DA00497146 /* SLVLoadingAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED6A44D1FB6F8DA00497146 /* SLVLoadingAnimation.m */; };
 		5ED6A4521FB6F90A00497146 /* SLVSegmentedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED6A4511FB6F90A00497146 /* SLVSegmentedController.m */; };
-		5ED6A4561FB6FEF300497146 /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 638F79E21F20373700F6E36C /* Mapbox.framework */; };
-		5ED6A4591FB6FEFD00497146 /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 638F79E01F20370600F6E36C /* Masonry.framework */; };
-		5ED6A4601FB6FFE700497146 /* MapboxDirections.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5ED6A4571FB6FEF700497146 /* MapboxDirections.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5ED6A4631FB7121E00497146 /* SLVNodesPresenterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED6A4621FB7121E00497146 /* SLVNodesPresenterTests.m */; };
-		5ED6A4641FB7157E00497146 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 638F79E41F20373F00F6E36C /* OCMock.framework */; };
 		5ED6A46A1FB7533800497146 /* UIView+SLVGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED6A4691FB7533800497146 /* UIView+SLVGradient.m */; };
 		5ED6A46D1FB753A500497146 /* SLVGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED6A46C1FB753A500497146 /* SLVGradient.m */; };
 		5ED6A4701FB7DA6500497146 /* SLVPlacesDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED6A46F1FB7DA6500497146 /* SLVPlacesDataSource.m */; };
 		5EE5C8B01FE46FD4009006D4 /* SLVImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE5C8AF1FE46FD4009006D4 /* SLVImage.m */; };
 		5EE5C8B31FE473B8009006D4 /* SLVRouteCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE5C8B21FE473B8009006D4 /* SLVRouteCollectionView.m */; };
 		5EE5C8B61FE4807C009006D4 /* SLVRouteImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE5C8B51FE4807C009006D4 /* SLVRouteImageCell.m */; };
+		5EE5C8BD1FE6C890009006D4 /* SLVTagsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE5C8BC1FE6C890009006D4 /* SLVTagsView.m */; };
+		5EE5C8D31FFBB612009006D4 /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EE5C8C71FFBB12E009006D4 /* Masonry.framework */; };
+		5EE5C8D41FFBB618009006D4 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EE5C8C91FFBB133009006D4 /* OCMock.framework */; };
+		5EF018B61FFCF23200794B0B /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EE5C8CD1FFBB4CC009006D4 /* Mapbox.framework */; };
+		5EF018B71FFCF23F00794B0B /* MapboxDirections.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EE5C8C51FFBB12B009006D4 /* MapboxDirections.framework */; };
 		638F79A51F1FEDCA00F6E36C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 638F79A41F1FEDCA00F6E36C /* Assets.xcassets */; };
 		638F79B31F1FEDCB00F6E36C /* TourAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 638F79B21F1FEDCB00F6E36C /* TourAppTests.m */; };
 		638F79C31F1FEEFC00F6E36C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 638F79BF1F1FEEFC00F6E36C /* main.m */; };
@@ -44,7 +46,6 @@
 		638F7A031F20467000F6E36C /* SLVNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 638F7A021F20467000F6E36C /* SLVNode.m */; };
 		638F7A061F20467D00F6E36C /* SLVInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 638F7A051F20467D00F6E36C /* SLVInfo.m */; };
 		638F7A091F20468900F6E36C /* SLVTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 638F7A081F20468900F6E36C /* SLVTag.m */; };
-		638F7A0B1F205A3900F6E36C /* Polyline.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 638F79E81F203AE300F6E36C /* Polyline.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,21 +57,6 @@
 			remoteInfo = TourApp;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		638F7A0C1F205A3900F6E36C /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				638F7A0B1F205A3900F6E36C /* Polyline.framework in Embed Frameworks */,
-				5ED6A4601FB6FFE700497146 /* MapboxDirections.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		5E135C661FB0B64D00DADA45 /* TourApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TourApp.xcdatamodel; sourceTree = "<group>"; };
@@ -90,12 +76,13 @@
 		5E1487281FDB205900AEAA0B /* UIColor+SLVColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIColor+SLVColor.m"; path = "Helpers/UIColor+SLVColor.m"; sourceTree = "<group>"; };
 		5E2C71FB1FB0DC8900521931 /* SLVPresenterFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVPresenterFactory.h; path = Helpers/SLVPresenterFactory.h; sourceTree = "<group>"; };
 		5E2C71FC1FB0DC8900521931 /* SLVPresenterFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVPresenterFactory.m; path = Helpers/SLVPresenterFactory.m; sourceTree = "<group>"; };
+		5E99DCE51FFD5C26002F8881 /* SLVTagCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SLVTagCell.h; path = Classes/CommonViews/SLVTagCell.h; sourceTree = "<group>"; };
+		5E99DCE61FFD5C26002F8881 /* SLVTagCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SLVTagCell.m; path = Classes/CommonViews/SLVTagCell.m; sourceTree = "<group>"; };
 		5ED6A44D1FB6F8DA00497146 /* SLVLoadingAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLVLoadingAnimation.m; sourceTree = "<group>"; };
 		5ED6A44E1FB6F8DA00497146 /* SLVLoadingAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVLoadingAnimation.h; sourceTree = "<group>"; };
 		5ED6A4501FB6F90A00497146 /* SLVSegmentedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVSegmentedController.h; path = Classes/SLVSegmentedController/SLVSegmentedController.h; sourceTree = "<group>"; };
 		5ED6A4511FB6F90A00497146 /* SLVSegmentedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVSegmentedController.m; path = Classes/SLVSegmentedController/SLVSegmentedController.m; sourceTree = "<group>"; };
 		5ED6A4531FB6F96700497146 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
-		5ED6A4571FB6FEF700497146 /* MapboxDirections.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapboxDirections.framework; path = Carthage/Build/iOS/MapboxDirections.framework; sourceTree = "<group>"; };
 		5ED6A45C1FB6FF7000497146 /* MapboxDirections.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = MapboxDirections.framework.dSYM; path = Carthage/Build/iOS/MapboxDirections.framework.dSYM; sourceTree = "<group>"; };
 		5ED6A4611FB7121E00497146 /* TestsPrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestsPrefixHeader.pch; sourceTree = "<group>"; };
 		5ED6A4621FB7121E00497146 /* SLVNodesPresenterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLVNodesPresenterTests.m; sourceTree = "<group>"; };
@@ -111,6 +98,14 @@
 		5EE5C8B21FE473B8009006D4 /* SLVRouteCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SLVRouteCollectionView.m; path = Classes/RouteStore/SLVRouteCollectionView.m; sourceTree = "<group>"; };
 		5EE5C8B41FE4807C009006D4 /* SLVRouteImageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SLVRouteImageCell.h; path = Classes/RouteStore/SLVRouteImageCell.h; sourceTree = "<group>"; };
 		5EE5C8B51FE4807C009006D4 /* SLVRouteImageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SLVRouteImageCell.m; path = Classes/RouteStore/SLVRouteImageCell.m; sourceTree = "<group>"; };
+		5EE5C8BB1FE6C890009006D4 /* SLVTagsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SLVTagsView.h; path = Classes/RouteStore/SLVTagsView.h; sourceTree = "<group>"; };
+		5EE5C8BC1FE6C890009006D4 /* SLVTagsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SLVTagsView.m; path = Classes/RouteStore/SLVTagsView.m; sourceTree = "<group>"; };
+		5EE5C8C31FFBB11C009006D4 /* Mapbox.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Mapbox.framework.dSYM; path = Carthage/Build/iOS/Mapbox.framework.dSYM; sourceTree = "<group>"; };
+		5EE5C8C51FFBB12B009006D4 /* MapboxDirections.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapboxDirections.framework; path = Carthage/Build/iOS/MapboxDirections.framework; sourceTree = "<group>"; };
+		5EE5C8C71FFBB12E009006D4 /* Masonry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Masonry.framework; path = Carthage/Build/iOS/Masonry.framework; sourceTree = "<group>"; };
+		5EE5C8C91FFBB133009006D4 /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = Carthage/Build/iOS/OCMock.framework; sourceTree = "<group>"; };
+		5EE5C8CB1FFBB136009006D4 /* Polyline.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Polyline.framework; path = Carthage/Build/iOS/Polyline.framework; sourceTree = "<group>"; };
+		5EE5C8CD1FFBB4CC009006D4 /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mapbox.framework; path = Carthage/Build/iOS/Mapbox.framework; sourceTree = "<group>"; };
 		638F79951F1FEDC800F6E36C /* TourApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TourApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		638F79A41F1FEDCA00F6E36C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		638F79AE1F1FEDCB00F6E36C /* TourAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TourAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,10 +120,6 @@
 		638F79DA1F20025600F6E36C /* SLVMainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVMainVC.m; path = Classes/MainMenu/SLVMainVC.m; sourceTree = "<group>"; };
 		638F79DC1F2004F900F6E36C /* SLVMapVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVMapVC.h; path = Classes/Route/SLVMapVC.h; sourceTree = "<group>"; };
 		638F79DD1F2004F900F6E36C /* SLVMapVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVMapVC.m; path = Classes/Route/SLVMapVC.m; sourceTree = "<group>"; };
-		638F79E01F20370600F6E36C /* Masonry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Masonry.framework; path = Carthage/Build/iOS/Masonry.framework; sourceTree = "<group>"; };
-		638F79E21F20373700F6E36C /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mapbox.framework; path = Carthage/Build/iOS/Mapbox.framework; sourceTree = "<group>"; };
-		638F79E41F20373F00F6E36C /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = Carthage/Build/iOS/OCMock.framework; sourceTree = "<group>"; };
-		638F79E81F203AE300F6E36C /* Polyline.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Polyline.framework; path = Carthage/Build/iOS/Polyline.framework; sourceTree = "<group>"; };
 		638F79EB1F203BE800F6E36C /* SLVNetworkProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVNetworkProtocol.h; sourceTree = "<group>"; };
 		638F79EC1F203BE800F6E36C /* SLVNetworkService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVNetworkService.h; sourceTree = "<group>"; };
 		638F79ED1F203BE800F6E36C /* SLVNetworkService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLVNetworkService.m; sourceTree = "<group>"; };
@@ -154,8 +145,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5ED6A4561FB6FEF300497146 /* Mapbox.framework in Frameworks */,
-				5ED6A4591FB6FEFD00497146 /* Masonry.framework in Frameworks */,
+				5EF018B71FFCF23F00794B0B /* MapboxDirections.framework in Frameworks */,
+				5EE5C8D31FFBB612009006D4 /* Masonry.framework in Frameworks */,
+				5EE5C8D41FFBB618009006D4 /* OCMock.framework in Frameworks */,
+				5EF018B61FFCF23200794B0B /* Mapbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,13 +156,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5ED6A4641FB7157E00497146 /* OCMock.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5E99DCE41FFD5541002F8881 /* RouteSearch */ = {
+			isa = PBXGroup;
+			children = (
+				5EE5C8BB1FE6C890009006D4 /* SLVTagsView.h */,
+				5EE5C8BC1FE6C890009006D4 /* SLVTagsView.m */,
+			);
+			name = RouteSearch;
+			sourceTree = "<group>";
+		};
 		5ED6A44C1FB6F8C300497146 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,6 +178,8 @@
 				5ED6A44D1FB6F8DA00497146 /* SLVLoadingAnimation.m */,
 				5E135C6E1FB0B70D00DADA45 /* SLVPlaceCell.h */,
 				5E135C6D1FB0B70D00DADA45 /* SLVPlaceCell.m */,
+				5E99DCE51FFD5C26002F8881 /* SLVTagCell.h */,
+				5E99DCE61FFD5C26002F8881 /* SLVTagCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 				5E14871B1FD1CA4900AEAA0B /* SLVRouteStoreVC.m */,
 				5E1487201FD29FBB00AEAA0B /* SLVRoutesPresenter.h */,
 				5E1487211FD29FBB00AEAA0B /* SLVRoutesPresenter.m */,
+				5E99DCE41FFD5541002F8881 /* RouteSearch */,
 				5EE5C8B71FE693EE009006D4 /* RouteCell */,
 			);
 			name = RouteStore;
@@ -344,12 +348,13 @@
 		638F79DF1F20370600F6E36C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5EE5C8CD1FFBB4CC009006D4 /* Mapbox.framework */,
+				5EE5C8CB1FFBB136009006D4 /* Polyline.framework */,
+				5EE5C8C91FFBB133009006D4 /* OCMock.framework */,
+				5EE5C8C71FFBB12E009006D4 /* Masonry.framework */,
+				5EE5C8C51FFBB12B009006D4 /* MapboxDirections.framework */,
+				5EE5C8C31FFBB11C009006D4 /* Mapbox.framework.dSYM */,
 				5ED6A45C1FB6FF7000497146 /* MapboxDirections.framework.dSYM */,
-				5ED6A4571FB6FEF700497146 /* MapboxDirections.framework */,
-				638F79E81F203AE300F6E36C /* Polyline.framework */,
-				638F79E41F20373F00F6E36C /* OCMock.framework */,
-				638F79E21F20373700F6E36C /* Mapbox.framework */,
-				638F79E01F20370600F6E36C /* Masonry.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -407,7 +412,6 @@
 				638F79921F1FEDC800F6E36C /* Frameworks */,
 				638F79931F1FEDC800F6E36C /* Resources */,
 				638F79E71F20377B00F6E36C /* ShellScript */,
-				638F7A0C1F205A3900F6E36C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -538,6 +542,7 @@
 				5E2C71FD1FB0DC8900521931 /* SLVPresenterFactory.m in Sources */,
 				5E14871C1FD1CA4900AEAA0B /* SLVRouteStoreVC.m in Sources */,
 				5E14871F1FD29C2D00AEAA0B /* SLVRoutesDataSource.m in Sources */,
+				5E99DCE71FFD5C26002F8881 /* SLVTagCell.m in Sources */,
 				5E1487291FDB205900AEAA0B /* UIColor+SLVColor.m in Sources */,
 				5ED6A46D1FB753A500497146 /* SLVGradient.m in Sources */,
 				5E135C671FB0B64D00DADA45 /* TourApp.xcdatamodeld in Sources */,
@@ -549,6 +554,7 @@
 				5EE5C8B31FE473B8009006D4 /* SLVRouteCollectionView.m in Sources */,
 				638F79F51F203BE800F6E36C /* SLVCoreDataStack.m in Sources */,
 				638F7A091F20468900F6E36C /* SLVTag.m in Sources */,
+				5EE5C8BD1FE6C890009006D4 /* SLVTagsView.m in Sources */,
 				638F7A061F20467D00F6E36C /* SLVInfo.m in Sources */,
 				638F79C41F1FEEFC00F6E36C /* SLVAppDelegate.m in Sources */,
 				638F79C31F1FEEFC00F6E36C /* main.m in Sources */,
@@ -615,7 +621,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -657,7 +663,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -668,8 +674,12 @@
 		638F79B81F1FEDCB00F6E36C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4BVAFGEHDW;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -681,14 +691,19 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = serebryanyy.TourApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
 		638F79B91F1FEDCB00F6E36C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4BVAFGEHDW;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -700,6 +715,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = serebryanyy.TourApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};

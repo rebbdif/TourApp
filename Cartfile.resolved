@@ -1,4 +1,4 @@
-binary "https://www.mapbox.com/ios-sdk/Mapbox-iOS-SDK.json" "3.6.4"
+binary "https://www.mapbox.com/ios-sdk/Mapbox-iOS-SDK.json" "3.7.2"
 github "Snapkit/Masonry" "v1.1.0"
 github "erikdoe/ocmock" "v3.4.1"
 github "mapbox/MapboxDirections.swift" "v0.10.6"

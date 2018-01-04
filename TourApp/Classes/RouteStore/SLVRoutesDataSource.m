@@ -43,6 +43,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    return 0;
     NSUInteger numberOfObjects = [self.presenter numberOfObjects];
     return numberOfObjects;
 }

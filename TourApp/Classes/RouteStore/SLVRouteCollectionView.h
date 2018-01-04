@@ -10,6 +10,17 @@
 
 
 @class SLVImage;
+@class SLVRouteImageCell;
+
+
+/**
+ Протокол СollectionView в ячейке
+ */
+@protocol SLVRouteCollectionViewProtocol
+
+- (void)didSelectCollectionViewCell:(SLVRouteImageCell *)cell;
+
+@end
 
 
 @interface SLVRouteCollectionView : UICollectionView <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>

@@ -11,6 +11,18 @@
 
 @class SLVRouteCollectionView;
 @class SLVImage;
+@class SLVRoute;
+
+
+@protocol SLVRouteStoreCellProtocol
+
+- (void)showImage:(UIImage *)image;
+- (IBAction)moreButtonPressed:(id)sender;
+
+@optional
+- (IBAction)downloadRoute:(SLVRoute *)route;
+
+@end
 
 
 @interface SLVRouteStoreCell : UITableViewCell

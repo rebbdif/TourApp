@@ -10,7 +10,14 @@
 
 @implementation SLVTag
 
-@dynamic identifier;
-@dynamic name;
+//@dynamic identifier;
+//@dynamic name;
+
++ (instancetype)tagWithName:(NSString *)name
+{
+    SLVTag *tag = [SLVTag new];
+    tag.name = name;
+    return tag;
+}
 
 @end

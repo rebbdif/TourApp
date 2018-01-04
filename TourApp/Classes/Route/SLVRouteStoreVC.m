@@ -13,14 +13,19 @@
 #import "SLVGradient.h"
 #import "SLVRoutesDataSource.h"
 #import "SLVRouteStoreCell.h"
+#import "SLVTagsView.h"
+#import "SLVTag.h"
 
 
-@interface SLVRouteStoreVC () <UITableViewDelegate>
+@interface SLVRouteStoreVC () <UITableViewDelegate, SLVTagsViewDelegate, UISearchResultsUpdating>
 
 @property (nonatomic, strong) SLVRoutesPresenter *presenter;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) SLVLoadingAnimation *spinner;
 @property (nonatomic, strong) SLVRoutesDataSource *dataSource;
+
+@property (nonatomic, assign, getter=isSearchModeEnabled) BOOL searchModeEnabled;
+@property (nonatomic, strong) SLVTagsView *searchView;
 
 @end
 
@@ -44,20 +49,28 @@
     [self createTableView];
     [self configureNavigationBar];
     _spinner = [[SLVLoadingAnimation alloc] initWithCenter:self.view.center];
+    
+    _searchView = [[SLVTagsView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 20)];
+    _searchView.delegate = self;
+    [_searchView addTags:@[
+                           [SLVTag tagWithName:@"Moscow"],
+                           [SLVTag tagWithName:@"Interesting"],
+                           [SLVTag tagWithName:@"Удивительное"],
+                           [SLVTag tagWithName:@"Космос"],
+                           ]];
 }
 
 - (void)configureNavigationBar
 {
     self.title = @"Магазин Маршрутов";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Фильтры" style:UIBarButtonItemStylePlain target:self action:@selector(filterButtonPressed:)];
-    //TODO: backButton с русским текстом
-//    UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle:@"Назад" style:UIBarButtonItemStylePlain target:nil action:nil];
-//    self.navigationController.navigationItem.leftBarButtonItem = newBackButton;
+    if (@available(iOS 11.0, *)) {
+        self.navigationItem.largeTitleDisplayMode = YES;
+    }
 }
 
 - (void)createTableView
 {
-    self.tableView = [[UITableView alloc] initWithFrame:self.view.frame];
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];
     self.tableView.backgroundColor = UIColor.clearColor;
     self.tableView.delegate = self;
     self.dataSource = [[SLVRoutesDataSource alloc] initWithPresenter:self.presenter controller:self];
@@ -65,7 +78,6 @@
     [self.tableView registerClass:[SLVRouteStoreCell class] forCellReuseIdentifier:NSStringFromClass([SLVRouteStoreCell class])];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 10;
-  //  self.tableView.contentInset = UIEdgeInsetsMake(65, 0, 0, 0);
     [self.view addSubview:self.tableView];
 }
 
@@ -89,6 +101,11 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 300;
+}
+
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 20)];
@@ -100,18 +117,56 @@
     return 1;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    return 300;
+    return self.searchView;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return self.searchView.height;
+}
+
 
 #pragma mark - Actions
 
 - (IBAction)filterButtonPressed:(id)sender
 {
-    NSLog(@"filter");
+    self.searchModeEnabled = !self.searchModeEnabled;
+    [self.tableView beginUpdates];
+    [self.tableView endUpdates];
 }
 
 
+#pragma mark SLVTagsViewDelegate
+
+- (void)didPressSearchButton
+{
+    UISearchBar *searchBar = [UISearchBar new];
+    searchBar.barTintColor = UIColor.whiteColor;
+    [self.view addSubview:searchBar];
+    UILayoutGuide *margins = self.view.layoutMarginsGuide;
+    searchBar.translatesAutoresizingMaskIntoConstraints = NO;
+    [searchBar.leadingAnchor constraintEqualToAnchor:margins.leadingAnchor constant:SLVStandardOffset].active = YES;
+    [searchBar.trailingAnchor constraintEqualToAnchor:margins.trailingAnchor constant:-SLVStandardOffset].active = YES;
+    [searchBar.topAnchor constraintEqualToAnchor:margins.topAnchor constant:150].active = YES;
+    [searchBar.heightAnchor constraintEqualToConstant:40].active = YES;
+    
+    UISearchController *searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    searchController.searchResultsUpdater = self;
+    searchController.obscuresBackgroundDuringPresentation = YES;
+    searchController.searchBar.placeholder = @"Search Candies";
+    if (@available(iOS 11.0, *)) {
+        self.navigationItem.searchController = searchController;
+    } else {
+        // Fallback on earlier versions
+    }
+    self.definesPresentationContext = true;
+}
+
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController
+{
+    
+}
 
 @end

@@ -23,7 +23,8 @@
 
 @implementation SLVMainVC
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
@@ -33,24 +34,10 @@
     [self addButtons];
 }
 
-- (IBAction)clearDatabase:(id)sender {
-    [self deleteAllEntities: @"Route"];
-    [self deleteAllEntities:@"RouteNode"];
-    [self deleteAllEntities:@"MyDescription"];
-}
-
-- (void)deleteAllEntities:(NSString *)nameEntity {
-    
-}
-
 - (IBAction)storeButtonPressed:(id)sender
 {
     SLVRouteStoreVC *routeStoreVC = [[SLVRouteStoreVC alloc] initWithPresenter:[SLVPresenterFactory routesPresenter]];
     [self.navigationController pushViewController:routeStoreVC animated:YES];
-}
-
-- (IBAction)createRouteButtonPressed:(id)sender {
-
 }
 
 - (void)addButtons {
@@ -78,23 +65,6 @@
     [createRouteButton addTarget:self action:@selector(createRouteButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:createRouteButton];
     
-    UIButton *toMapButton=[[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 120, self.view.frame.size.height / 2 + 40, 240, 60)] ;
-    toMapButton.backgroundColor = [UIColor redColor];
-    toMapButton.layer.opacity = 0.7;
-    [toMapButton setTitle:@"Временная: к карте" forState:UIControlStateNormal];
-    [toMapButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [toMapButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
-    //[toMapButton addTarget:self action:@selector(goToMap:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:toMapButton];
-    
-    UIButton *clearDatabaseButton=[[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2-120,self.view.frame.size.height/2+110,240,60)] ;
-    clearDatabaseButton.backgroundColor=[UIColor lightGrayColor];
-    clearDatabaseButton.layer.opacity=0.7;
-    [clearDatabaseButton setTitle:@"Временная: очистить память" forState:UIControlStateNormal];
-    [clearDatabaseButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [clearDatabaseButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
-    [clearDatabaseButton addTarget:self action:@selector(clearDatabase:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:clearDatabaseButton];
 }
 
 @end
