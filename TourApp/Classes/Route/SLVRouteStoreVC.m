@@ -15,9 +15,10 @@
 #import "SLVRouteStoreCell.h"
 #import "SLVTagsView.h"
 #import "SLVTag.h"
+#import "SLVRouteSearchManager.h"
 
 
-@interface SLVRouteStoreVC () <UITableViewDelegate, SLVTagsViewDelegate, UISearchResultsUpdating>
+@interface SLVRouteStoreVC () <UITableViewDelegate, SLVTagsViewDelegate>
 
 @property (nonatomic, strong) SLVRoutesPresenter *presenter;
 @property (nonatomic, strong) UITableView *tableView;
@@ -26,6 +27,7 @@
 
 @property (nonatomic, assign, getter=isSearchModeEnabled) BOOL searchModeEnabled;
 @property (nonatomic, strong) SLVTagsView *searchView;
+@property (nonatomic, strong) SLVRouteSearchManager *searchManager;
 
 @end
 
@@ -142,8 +144,17 @@
 
 - (void)didPressSearchButton
 {
+    [self addSearchBar];
+}
+
+- (void)addSearchBar
+{
     UISearchBar *searchBar = [UISearchBar new];
     searchBar.barTintColor = UIColor.whiteColor;
+    searchBar.barStyle = UISearchBarStyleProminent;
+    searchBar.translucent = NO;
+    searchBar.layer.borderColor = UIColor.blackColor.CGColor;
+    searchBar.layer.borderWidth = 1;
     [self.view addSubview:searchBar];
     UILayoutGuide *margins = self.view.layoutMarginsGuide;
     searchBar.translatesAutoresizingMaskIntoConstraints = NO;
@@ -152,16 +163,8 @@
     [searchBar.topAnchor constraintEqualToAnchor:margins.topAnchor constant:150].active = YES;
     [searchBar.heightAnchor constraintEqualToConstant:40].active = YES;
     
-    UISearchController *searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
-    searchController.searchResultsUpdater = self;
-    searchController.obscuresBackgroundDuringPresentation = YES;
-    searchController.searchBar.placeholder = @"Search Candies";
-    if (@available(iOS 11.0, *)) {
-        self.navigationItem.searchController = searchController;
-    } else {
-        // Fallback on earlier versions
-    }
-    self.definesPresentationContext = true;
+    self.searchManager = [SLVRouteSearchManager new];
+    searchBar.delegate = self.searchManager;
 }
 
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController

@@ -17,6 +17,7 @@
 		5E1487291FDB205900AEAA0B /* UIColor+SLVColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1487281FDB205900AEAA0B /* UIColor+SLVColor.m */; };
 		5E2C71FD1FB0DC8900521931 /* SLVPresenterFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2C71FC1FB0DC8900521931 /* SLVPresenterFactory.m */; };
 		5E99DCE71FFD5C26002F8881 /* SLVTagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E99DCE61FFD5C26002F8881 /* SLVTagCell.m */; };
+		5E99DCED1FFEEF66002F8881 /* SLVRouteSearchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E99DCEC1FFEEF66002F8881 /* SLVRouteSearchManager.m */; };
 		5ED6A44F1FB6F8DA00497146 /* SLVLoadingAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED6A44D1FB6F8DA00497146 /* SLVLoadingAnimation.m */; };
 		5ED6A4521FB6F90A00497146 /* SLVSegmentedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED6A4511FB6F90A00497146 /* SLVSegmentedController.m */; };
 		5ED6A4631FB7121E00497146 /* SLVNodesPresenterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED6A4621FB7121E00497146 /* SLVNodesPresenterTests.m */; };
@@ -78,6 +79,8 @@
 		5E2C71FC1FB0DC8900521931 /* SLVPresenterFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVPresenterFactory.m; path = Helpers/SLVPresenterFactory.m; sourceTree = "<group>"; };
 		5E99DCE51FFD5C26002F8881 /* SLVTagCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SLVTagCell.h; path = Classes/CommonViews/SLVTagCell.h; sourceTree = "<group>"; };
 		5E99DCE61FFD5C26002F8881 /* SLVTagCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SLVTagCell.m; path = Classes/CommonViews/SLVTagCell.m; sourceTree = "<group>"; };
+		5E99DCEB1FFEEF66002F8881 /* SLVRouteSearchManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SLVRouteSearchManager.h; path = Classes/RouteStore/SLVRouteSearchManager.h; sourceTree = "<group>"; };
+		5E99DCEC1FFEEF66002F8881 /* SLVRouteSearchManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SLVRouteSearchManager.m; path = Classes/RouteStore/SLVRouteSearchManager.m; sourceTree = "<group>"; };
 		5ED6A44D1FB6F8DA00497146 /* SLVLoadingAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLVLoadingAnimation.m; sourceTree = "<group>"; };
 		5ED6A44E1FB6F8DA00497146 /* SLVLoadingAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVLoadingAnimation.h; sourceTree = "<group>"; };
 		5ED6A4501FB6F90A00497146 /* SLVSegmentedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVSegmentedController.h; path = Classes/SLVSegmentedController/SLVSegmentedController.h; sourceTree = "<group>"; };
@@ -167,6 +170,8 @@
 			children = (
 				5EE5C8BB1FE6C890009006D4 /* SLVTagsView.h */,
 				5EE5C8BC1FE6C890009006D4 /* SLVTagsView.m */,
+				5E99DCEB1FFEEF66002F8881 /* SLVRouteSearchManager.h */,
+				5E99DCEC1FFEEF66002F8881 /* SLVRouteSearchManager.m */,
 			);
 			name = RouteSearch;
 			sourceTree = "<group>";
@@ -534,6 +539,7 @@
 				5E135C6A1FB0B6C100DADA45 /* SLVPlacesVC.m in Sources */,
 				638F79F91F203CE700F6E36C /* SLVNodesPresenter.m in Sources */,
 				5EE5C8B01FE46FD4009006D4 /* SLVImage.m in Sources */,
+				5E99DCED1FFEEF66002F8881 /* SLVRouteSearchManager.m in Sources */,
 				638F7A031F20467000F6E36C /* SLVNode.m in Sources */,
 				5EE5C8B61FE4807C009006D4 /* SLVRouteImageCell.m in Sources */,
 				5ED6A4701FB7DA6500497146 /* SLVPlacesDataSource.m in Sources */,
