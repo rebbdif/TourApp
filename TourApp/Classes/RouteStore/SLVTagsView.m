@@ -7,7 +7,7 @@
 //
 
 #import "SLVTagsView.h"
-#import "SLVTagCell.h"
+#import "SLVTagCollectionCell.h"
 @import Masonry;
 
 
@@ -46,7 +46,7 @@ static CGFloat const SLVSearchButtonHeight = 30;
     UICollectionViewFlowLayout *tagsLayout = [UICollectionViewFlowLayout new];
     _tagsCollection = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:tagsLayout];
     tagsLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    [_tagsCollection registerClass:[SLVTagCell class] forCellWithReuseIdentifier:@"SLVTag"];
+    [_tagsCollection registerClass:[SLVTagCollectionCell class] forCellWithReuseIdentifier:@"SLVTag"];
     _tagsCollection.delegate = self;
     _tagsCollection.dataSource = self;
     _tagsCollection.backgroundColor = UIColor.clearColor;
@@ -121,7 +121,7 @@ static CGFloat const SLVSearchButtonHeight = 30;
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    SLVTagCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"SLVTag" forIndexPath:indexPath];
+    SLVTagCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"SLVTag" forIndexPath:indexPath];
     
     SLVTag *tag = self.tags.allObjects[indexPath.item];
     [cell setTag:tag];
@@ -136,7 +136,7 @@ static CGFloat const insetBetweenCells = 12.0;
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     SLVTag *tag = self.tags.allObjects[indexPath.item];
-    return [SLVTagCell sizeForTag:tag];
+    return [SLVTagCollectionCell sizeForTag:tag];
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section

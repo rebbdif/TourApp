@@ -16,18 +16,21 @@
 #import "SLVTagsView.h"
 #import "SLVTag.h"
 #import "SLVRouteSearchManager.h"
+#import "UIColor+SLVColor.h"
+#import "SLVSearchView.h"
 
 
-@interface SLVRouteStoreVC () <UITableViewDelegate, SLVTagsViewDelegate>
+@interface SLVRouteStoreVC () <UITableViewDelegate, SLVTagsViewDelegate, SLVSearchViewDelegate>
 
 @property (nonatomic, strong) SLVRoutesPresenter *presenter;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) SLVLoadingAnimation *spinner;
 @property (nonatomic, strong) SLVRoutesDataSource *dataSource;
 
-@property (nonatomic, assign, getter=isSearchModeEnabled) BOOL searchModeEnabled;
-@property (nonatomic, strong) SLVTagsView *searchView;
+@property (nonatomic, strong) SLVTagsView *tagsView;
 @property (nonatomic, strong) SLVRouteSearchManager *searchManager;
+@property (nonatomic, assign) BOOL searchInProgress;
+@property (nonatomic, strong) SLVSearchView *searchView;
 
 @end
 
@@ -49,12 +52,13 @@
     [super viewDidLoad];
     [self.view addGradient:[SLVGradient basicGradient]];
     [self createTableView];
+    [self createSearchView];
     [self configureNavigationBar];
     _spinner = [[SLVLoadingAnimation alloc] initWithCenter:self.view.center];
     
-    _searchView = [[SLVTagsView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 20)];
-    _searchView.delegate = self;
-    [_searchView addTags:@[
+    _tagsView = [[SLVTagsView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 20)];
+    _tagsView.delegate = self;
+    [_tagsView addTags:@[
                            [SLVTag tagWithName:@"Moscow"],
                            [SLVTag tagWithName:@"Interesting"],
                            [SLVTag tagWithName:@"Удивительное"],
@@ -68,6 +72,13 @@
     if (@available(iOS 11.0, *)) {
         self.navigationItem.largeTitleDisplayMode = YES;
     }
+}
+
+- (void)createSearchView
+{
+    self.searchManager = [SLVRouteSearchManager new];
+    self.searchView = [[SLVSearchView alloc] initWithManager:self.searchManager];
+    self.searchView.delegate = self;
 }
 
 - (void)createTableView
@@ -121,55 +132,47 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    return self.searchView;
+    return self.tagsView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return self.searchView.height;
+    return self.tagsView.height;
 }
 
-
-#pragma mark - Actions
-
-- (IBAction)filterButtonPressed:(id)sender
-{
-    self.searchModeEnabled = !self.searchModeEnabled;
-    [self.tableView beginUpdates];
-    [self.tableView endUpdates];
-}
-
-
-#pragma mark SLVTagsViewDelegate
+#pragma mark Search
 
 - (void)didPressSearchButton
 {
-    [self addSearchBar];
+    self.searchInProgress ? [self hideSearchBar] : [self addSearchBar];
 }
 
 - (void)addSearchBar
 {
-    UISearchBar *searchBar = [UISearchBar new];
-    searchBar.barTintColor = UIColor.whiteColor;
-    searchBar.barStyle = UISearchBarStyleProminent;
-    searchBar.translucent = NO;
-    searchBar.layer.borderColor = UIColor.blackColor.CGColor;
-    searchBar.layer.borderWidth = 1;
-    [self.view addSubview:searchBar];
-    UILayoutGuide *margins = self.view.layoutMarginsGuide;
-    searchBar.translatesAutoresizingMaskIntoConstraints = NO;
-    [searchBar.leadingAnchor constraintEqualToAnchor:margins.leadingAnchor constant:SLVStandardOffset].active = YES;
-    [searchBar.trailingAnchor constraintEqualToAnchor:margins.trailingAnchor constant:-SLVStandardOffset].active = YES;
-    [searchBar.topAnchor constraintEqualToAnchor:margins.topAnchor constant:150].active = YES;
-    [searchBar.heightAnchor constraintEqualToConstant:40].active = YES;
+    [self.tableView scrollsToTop];
+    self.tableView.scrollEnabled = NO;
+
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
     
-    self.searchManager = [SLVRouteSearchManager new];
-    searchBar.delegate = self.searchManager;
+    [self.view addSubview:self.searchView];
+    UILayoutGuide *margins = self.view.layoutMarginsGuide;
+    self.searchView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.searchView.bottomAnchor constraintEqualToAnchor:margins.bottomAnchor].active = YES;
+    [self.searchView.leftAnchor constraintEqualToAnchor:self.view.leftAnchor].active = YES;
+    [self.searchView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor].active = YES;
+    [self.searchView.topAnchor constraintEqualToAnchor:margins.topAnchor constant:self.tagsView.height].active = YES;
+    
+    [self.searchView becomeFirstResponder];
+
+    self.searchInProgress = YES;
 }
 
-- (void)updateSearchResultsForSearchController:(UISearchController *)searchController
+- (void)hideSearchBar
 {
-    
+    self.tableView.scrollEnabled = YES;
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.searchView removeFromSuperview];
+    self.searchInProgress = NO;
 }
 
 @end

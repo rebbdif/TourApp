@@ -16,4 +16,10 @@
 //приводит цвет заданный в обычном формате к эппловскому
 + (UIColor *)createColorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha;
 
++ (UIColor *)blueSearchColor;
+
++ (UIColor *)graySearchBackgroundColor;
+
++ (UIColor *)backgroundColorForTagWithText:(NSString *)text;
+
 @end

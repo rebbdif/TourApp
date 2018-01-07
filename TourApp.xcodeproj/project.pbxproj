@@ -16,8 +16,10 @@
 		5E1487261FDB14BD00AEAA0B /* SLVRouteStoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1487251FDB14BD00AEAA0B /* SLVRouteStoreCell.m */; };
 		5E1487291FDB205900AEAA0B /* UIColor+SLVColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1487281FDB205900AEAA0B /* UIColor+SLVColor.m */; };
 		5E2C71FD1FB0DC8900521931 /* SLVPresenterFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2C71FC1FB0DC8900521931 /* SLVPresenterFactory.m */; };
-		5E99DCE71FFD5C26002F8881 /* SLVTagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E99DCE61FFD5C26002F8881 /* SLVTagCell.m */; };
+		5E99DCE71FFD5C26002F8881 /* SLVTagCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E99DCE61FFD5C26002F8881 /* SLVTagCollectionCell.m */; };
 		5E99DCED1FFEEF66002F8881 /* SLVRouteSearchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E99DCEC1FFEEF66002F8881 /* SLVRouteSearchManager.m */; };
+		5ECDC60F1FFF829C006B6CF6 /* SLVSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECDC60E1FFF829C006B6CF6 /* SLVSearchView.m */; };
+		5ECDC6122002702C006B6CF6 /* SLVTagTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECDC6112002702B006B6CF6 /* SLVTagTableCell.m */; };
 		5ED6A44F1FB6F8DA00497146 /* SLVLoadingAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED6A44D1FB6F8DA00497146 /* SLVLoadingAnimation.m */; };
 		5ED6A4521FB6F90A00497146 /* SLVSegmentedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED6A4511FB6F90A00497146 /* SLVSegmentedController.m */; };
 		5ED6A4631FB7121E00497146 /* SLVNodesPresenterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED6A4621FB7121E00497146 /* SLVNodesPresenterTests.m */; };
@@ -77,10 +79,14 @@
 		5E1487281FDB205900AEAA0B /* UIColor+SLVColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIColor+SLVColor.m"; path = "Helpers/UIColor+SLVColor.m"; sourceTree = "<group>"; };
 		5E2C71FB1FB0DC8900521931 /* SLVPresenterFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVPresenterFactory.h; path = Helpers/SLVPresenterFactory.h; sourceTree = "<group>"; };
 		5E2C71FC1FB0DC8900521931 /* SLVPresenterFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVPresenterFactory.m; path = Helpers/SLVPresenterFactory.m; sourceTree = "<group>"; };
-		5E99DCE51FFD5C26002F8881 /* SLVTagCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SLVTagCell.h; path = Classes/CommonViews/SLVTagCell.h; sourceTree = "<group>"; };
-		5E99DCE61FFD5C26002F8881 /* SLVTagCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SLVTagCell.m; path = Classes/CommonViews/SLVTagCell.m; sourceTree = "<group>"; };
+		5E99DCE51FFD5C26002F8881 /* SLVTagCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SLVTagCollectionCell.h; path = Classes/CommonViews/SLVTagCollectionCell.h; sourceTree = "<group>"; };
+		5E99DCE61FFD5C26002F8881 /* SLVTagCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SLVTagCollectionCell.m; path = Classes/CommonViews/SLVTagCollectionCell.m; sourceTree = "<group>"; };
 		5E99DCEB1FFEEF66002F8881 /* SLVRouteSearchManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SLVRouteSearchManager.h; path = Classes/RouteStore/SLVRouteSearchManager.h; sourceTree = "<group>"; };
 		5E99DCEC1FFEEF66002F8881 /* SLVRouteSearchManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SLVRouteSearchManager.m; path = Classes/RouteStore/SLVRouteSearchManager.m; sourceTree = "<group>"; };
+		5ECDC60D1FFF829C006B6CF6 /* SLVSearchView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SLVSearchView.h; path = Classes/RouteStore/SLVSearchView.h; sourceTree = "<group>"; };
+		5ECDC60E1FFF829C006B6CF6 /* SLVSearchView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SLVSearchView.m; path = Classes/RouteStore/SLVSearchView.m; sourceTree = "<group>"; };
+		5ECDC6102002702B006B6CF6 /* SLVTagTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SLVTagTableCell.h; path = Classes/CommonViews/SLVTagTableCell.h; sourceTree = "<group>"; };
+		5ECDC6112002702B006B6CF6 /* SLVTagTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SLVTagTableCell.m; path = Classes/CommonViews/SLVTagTableCell.m; sourceTree = "<group>"; };
 		5ED6A44D1FB6F8DA00497146 /* SLVLoadingAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLVLoadingAnimation.m; sourceTree = "<group>"; };
 		5ED6A44E1FB6F8DA00497146 /* SLVLoadingAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVLoadingAnimation.h; sourceTree = "<group>"; };
 		5ED6A4501FB6F90A00497146 /* SLVSegmentedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVSegmentedController.h; path = Classes/SLVSegmentedController/SLVSegmentedController.h; sourceTree = "<group>"; };
@@ -168,6 +174,8 @@
 		5E99DCE41FFD5541002F8881 /* RouteSearch */ = {
 			isa = PBXGroup;
 			children = (
+				5ECDC60D1FFF829C006B6CF6 /* SLVSearchView.h */,
+				5ECDC60E1FFF829C006B6CF6 /* SLVSearchView.m */,
 				5EE5C8BB1FE6C890009006D4 /* SLVTagsView.h */,
 				5EE5C8BC1FE6C890009006D4 /* SLVTagsView.m */,
 				5E99DCEB1FFEEF66002F8881 /* SLVRouteSearchManager.h */,
@@ -183,8 +191,10 @@
 				5ED6A44D1FB6F8DA00497146 /* SLVLoadingAnimation.m */,
 				5E135C6E1FB0B70D00DADA45 /* SLVPlaceCell.h */,
 				5E135C6D1FB0B70D00DADA45 /* SLVPlaceCell.m */,
-				5E99DCE51FFD5C26002F8881 /* SLVTagCell.h */,
-				5E99DCE61FFD5C26002F8881 /* SLVTagCell.m */,
+				5E99DCE51FFD5C26002F8881 /* SLVTagCollectionCell.h */,
+				5E99DCE61FFD5C26002F8881 /* SLVTagCollectionCell.m */,
+				5ECDC6102002702B006B6CF6 /* SLVTagTableCell.h */,
+				5ECDC6112002702B006B6CF6 /* SLVTagTableCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -533,6 +543,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5ED6A4521FB6F90A00497146 /* SLVSegmentedController.m in Sources */,
+				5ECDC6122002702C006B6CF6 /* SLVTagTableCell.m in Sources */,
 				638F79DB1F20025600F6E36C /* SLVMainVC.m in Sources */,
 				638F79F61F203BE800F6E36C /* SLVStorageService.m in Sources */,
 				5E1487221FD29FBB00AEAA0B /* SLVRoutesPresenter.m in Sources */,
@@ -546,9 +557,10 @@
 				5ED6A46A1FB7533800497146 /* UIView+SLVGradient.m in Sources */,
 				5E1487261FDB14BD00AEAA0B /* SLVRouteStoreCell.m in Sources */,
 				5E2C71FD1FB0DC8900521931 /* SLVPresenterFactory.m in Sources */,
+				5ECDC60F1FFF829C006B6CF6 /* SLVSearchView.m in Sources */,
 				5E14871C1FD1CA4900AEAA0B /* SLVRouteStoreVC.m in Sources */,
 				5E14871F1FD29C2D00AEAA0B /* SLVRoutesDataSource.m in Sources */,
-				5E99DCE71FFD5C26002F8881 /* SLVTagCell.m in Sources */,
+				5E99DCE71FFD5C26002F8881 /* SLVTagCollectionCell.m in Sources */,
 				5E1487291FDB205900AEAA0B /* UIColor+SLVColor.m in Sources */,
 				5ED6A46D1FB753A500497146 /* SLVGradient.m in Sources */,
 				5E135C671FB0B64D00DADA45 /* TourApp.xcdatamodeld in Sources */,

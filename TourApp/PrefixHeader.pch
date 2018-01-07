@@ -14,6 +14,7 @@
 
 #import <Foundation/Foundation.h>
 #import "SLVConstants.h"
+#import "UIColor+SLVColor.h"
 
 typedef void (^voidBlock)(void);
 
