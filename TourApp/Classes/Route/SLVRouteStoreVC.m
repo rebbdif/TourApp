@@ -15,12 +15,12 @@
 #import "SLVRouteStoreCell.h"
 #import "SLVTagsView.h"
 #import "SLVTag.h"
-#import "SLVRouteSearchManager.h"
+#import "SLVTagsSearchManager.h"
 #import "UIColor+SLVColor.h"
 #import "SLVSearchView.h"
 
 
-@interface SLVRouteStoreVC () <UITableViewDelegate, SLVTagsViewDelegate, SLVSearchViewDelegate>
+@interface SLVRouteStoreVC () <UITableViewDelegate, SLVTagsViewDelegate, SLVTagsSearchDelegate>
 
 @property (nonatomic, strong) SLVRoutesPresenter *presenter;
 @property (nonatomic, strong) UITableView *tableView;
@@ -28,7 +28,7 @@
 @property (nonatomic, strong) SLVRoutesDataSource *dataSource;
 
 @property (nonatomic, strong) SLVTagsView *tagsView;
-@property (nonatomic, strong) SLVRouteSearchManager *searchManager;
+@property (nonatomic, strong) SLVTagsSearchManager *tagsSearchManager;
 @property (nonatomic, assign) BOOL searchInProgress;
 @property (nonatomic, strong) SLVSearchView *searchView;
 
@@ -76,9 +76,10 @@
 
 - (void)createSearchView
 {
-    self.searchManager = [SLVRouteSearchManager new];
-    self.searchView = [[SLVSearchView alloc] initWithManager:self.searchManager];
-    self.searchView.delegate = self;
+    self.tagsSearchManager = [SLVTagsSearchManager new];
+    self.tagsSearchManager.delegate = self;
+    self.searchView = [[SLVSearchView alloc] initWithManager:self.tagsSearchManager];
+    self.tagsSearchManager.searchView = self.searchView;
 }
 
 - (void)createTableView
@@ -173,6 +174,11 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.searchView removeFromSuperview];
     self.searchInProgress = NO;
+}
+
+- (void)addedTag:(SLVTag *)tag
+{
+    [self.tagsView addTag:tag];
 }
 
 @end

@@ -11,4 +11,6 @@
 
 #import <OCMock/OCMock.h>
 
+typedef void (^voidBlock)(void);
+
 #endif /* TestsPrefixHeader_pch */

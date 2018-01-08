@@ -15,9 +15,26 @@
 
 + (instancetype)tagWithName:(NSString *)name
 {
-    SLVTag *tag = [SLVTag new];
-    tag.name = name;
-    return tag;
+	SLVTag *tag = [SLVTag new];
+	tag.name = name;
+	return tag;
+}
+
+- (NSString *)description
+{
+	return self.name;
+}
+
+- (id)valueForKey:(NSString *)key
+{
+	return self.name;
+}
+
+- (BOOL)isEqual:(id)object
+{
+	SLVTag *tag = (SLVTag *)object;
+	BOOL equalNames = [self.name isEqualToString:tag.name];
+	return equalNames;
 }
 
 @end

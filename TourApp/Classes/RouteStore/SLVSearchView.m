@@ -8,30 +8,34 @@
 
 #import "SLVSearchView.h"
 #import "UIColor+SLVColor.h"
-#import "SLVRouteSearchManager.h"
+#import "SLVTagsSearchManager.h"
 #import "SLVTagTableCell.h"
 
+
+static CGFloat const SLVSearchResultTableViewRowHeight = 44;
 
 
 @interface SLVSearchView () <UITableViewDelegate>
 
-@property (nonatomic, weak) SLVRouteSearchManager *searchManager;
+@property (nonatomic, weak) SLVTagsSearchManager *searchManager;
 @property (nonatomic, strong) UISearchBar *searchBar;
 @property (nonatomic, strong) UIButton *stopSearchButton;
 @property (nonatomic, strong) UITableView *resultsTableView;
 
+@property (nonatomic, strong) NSMutableArray <NSLayoutConstraint *> *constraintsToChange;
 
 @end
 
 
 @implementation SLVSearchView
 
-- (instancetype)initWithManager:(SLVRouteSearchManager *)manager
+- (instancetype)initWithManager:(SLVTagsSearchManager *)manager
 {
     self = [super initWithFrame:CGRectZero];
     if (self)
     {
         _searchManager = manager;
+        _constraintsToChange = [NSMutableArray new];
         [self createSearchBar];
         [self addResultsTableView];
     }
@@ -48,7 +52,8 @@
     searchBar.layer.borderColor = [UIColor graySearchBackgroundColor].CGColor;
     searchBar.layer.borderWidth = 1;
     searchBar.translatesAutoresizingMaskIntoConstraints = NO;
-    searchBar.layer.zPosition = CGFLOAT_MAX;
+    searchBar.layer.zPosition = FLT_MAX;
+    searchBar.delegate = self.searchManager;
     self.searchBar = searchBar;
     [self addSubview:self.searchBar];
    
@@ -68,6 +73,8 @@
 
 - (void)updateConstraints
 {
+    [NSLayoutConstraint deactivateConstraints:[self.constraintsToChange copy]];
+    
     UILayoutGuide *margins = self.layoutMarginsGuide;
 
     self.stopSearchButton.translatesAutoresizingMaskIntoConstraints = NO;
@@ -84,7 +91,9 @@
     [self.resultsTableView.topAnchor constraintEqualToAnchor:self.searchBar.bottomAnchor].active = YES;
     [self.resultsTableView.leadingAnchor constraintEqualToAnchor:self.searchBar.leadingAnchor constant:SLVBigOffset].active = YES;
     [self.resultsTableView.trailingAnchor constraintEqualToAnchor:self.searchBar.trailingAnchor constant:- SLVBigOffset].active = YES;
-    [self.resultsTableView.heightAnchor constraintEqualToConstant:100].active = YES;
+    NSLayoutConstraint *heightConstraint = [self.resultsTableView.heightAnchor constraintEqualToConstant:[self heightForTableView]];
+    heightConstraint.active = YES;
+    [self.constraintsToChange addObject:heightConstraint];
     
     [super updateConstraints];
 }
@@ -94,7 +103,11 @@
     self.resultsTableView = [UITableView new];
     self.resultsTableView.delegate = self;
     self.resultsTableView.dataSource = self.searchManager;
-    self.resultsTableView.rowHeight = 44;
+    self.resultsTableView.rowHeight = SLVSearchResultTableViewRowHeight;
+    self.resultsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 1)];
+    self.resultsTableView.layer.borderColor = [UIColor createColorWithRed:151 green:151 blue:151 alpha:50].CGColor;
+    self.resultsTableView.layer.borderWidth = 1;
+    self.resultsTableView.layer.cornerRadius = 4;
     [self addSubview:self.resultsTableView];
     self.resultsTableView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.resultsTableView registerClass:[SLVTagTableCell class] forCellReuseIdentifier:SLVStoreSearchTableCellReuseId];
@@ -107,7 +120,28 @@
 
 - (void)hideSearchBar
 {
-    [self.delegate hideSearchBar];
+    [self.searchManager searchOver];
+    self.searchBar.text = nil;
+}
+
+- (void)reloadData
+{
+    [self.resultsTableView reloadData];
+    [self setNeedsUpdateConstraints];
+}
+
+- (CGFloat)heightForTableView
+{
+    NSUInteger numberOfRows = [self.searchManager tableView:self.resultsTableView numberOfRowsInSection:0];
+    return numberOfRows * SLVSearchResultTableViewRowHeight;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.searchManager addedTagAtIndex:indexPath.row];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    self.searchBar.text = nil;
+    [self reloadData];
 }
 
 @end

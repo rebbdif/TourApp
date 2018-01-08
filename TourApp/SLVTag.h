@@ -8,7 +8,7 @@
 
 #import <CoreData/CoreData.h>
 
-@interface SLVTag : NSObject
+@interface SLVTag : NSObject 
 
 @property (nonatomic, copy) NSString *identifier;
 @property (nonatomic, copy) NSString *name;

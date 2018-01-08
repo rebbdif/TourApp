@@ -9,20 +9,15 @@
 #import <UIKit/UIKit.h>
 
 
-@class SLVRouteSearchManager;
-
-
-@protocol SLVSearchViewDelegate
-
-- (void)hideSearchBar;
-
-@end
-
+@class SLVTagsSearchManager;
 
 @interface SLVSearchView : UIView
 
-@property (nonatomic, weak) id<SLVSearchViewDelegate> delegate;
+- (instancetype)initWithManager:(SLVTagsSearchManager *)manager;
+- (instancetype)init NS_UNAVAILABLE;
+- (instancetype)initWithFrame:(CGRect)frame NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
 
-- (instancetype)initWithManager:(SLVRouteSearchManager *)manager;
+- (void)reloadData;
 
 @end

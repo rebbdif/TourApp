@@ -6,45 +6,41 @@
 //  Copyright © 2018 serebryanyy. All rights reserved.
 //
 
-#import "SLVRouteSearchManager.h"
+#import "SLVTagsSearchManager.h"
 #import "SLVSearchView.h"
 #import "SLVTag.h"
 #import "SLVTagTableCell.h"
 
 
-@interface SLVRouteSearchManager ()
+@interface SLVTagsSearchManager ()
 
+@property (nonatomic, strong) NSArray<SLVTag *> *allTags;
 @property (nonatomic, strong) NSArray<SLVTag *> *tags;
 
 @end
 
 
-@implementation SLVRouteSearchManager
+@implementation SLVTagsSearchManager
 
 - (instancetype)init
 {
     self = [super init];
     if (self)
     {
-        _tags = @[
+        _allTags = @[
                   [SLVTag tagWithName:@"One"],
                   [SLVTag tagWithName:@"Two"],
                   [SLVTag tagWithName:@"Three"],
                   [SLVTag tagWithName:@"Four"],
                   [SLVTag tagWithName:@"Five"],
                   ];
+        _tags = [NSArray new];
     }
     return self;
 }
 
 
--(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
-{
-    if (searchBar.text.length > 0)
-    {
-      //  [self.searchView shouldShowTableView:YES];
-    }
-}
+#pragma mark - SearchBar
 
 // called when keyboard search button pressed
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
@@ -55,9 +51,29 @@
 // called when text changes (including clear)
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    
+    [self search:searchBar.text];
+    [self.searchView reloadData];
 }
 
+- (NSArray *)search:(NSString *)text
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"content BEGINSWITH[c] %@", text];
+    NSArray *results = [self.allTags filteredArrayUsingPredicate:predicate];
+    self.tags = results;
+    return results;
+}
+
+- (void)addedTagAtIndex:(NSUInteger)tag
+{
+    SLVTag *addedTag = self.tags[tag];
+    [self.delegate addedTag:addedTag];
+    self.tags = [NSArray new];
+}
+
+- (void)searchOver
+{
+    [self.delegate hideSearchBar];
+}
 
 #pragma mark - SearchTableViewDatasourse
 

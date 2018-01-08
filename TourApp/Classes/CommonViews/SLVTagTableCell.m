@@ -53,8 +53,8 @@
     [self.label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self).offset(20);
         make.right.mas_equalTo(self).offset(-33);
-        make.top.mas_equalTo(SLVStandardOffset);
-        make.bottom.mas_equalTo(-SLVSmallOffset);
+        make.centerY.mas_equalTo(self.contentView.mas_centerY);
+        make.height.mas_equalTo(30);
     }];
     [super updateConstraints];
 }

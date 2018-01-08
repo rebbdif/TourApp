@@ -17,9 +17,10 @@
 		5E1487291FDB205900AEAA0B /* UIColor+SLVColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1487281FDB205900AEAA0B /* UIColor+SLVColor.m */; };
 		5E2C71FD1FB0DC8900521931 /* SLVPresenterFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2C71FC1FB0DC8900521931 /* SLVPresenterFactory.m */; };
 		5E99DCE71FFD5C26002F8881 /* SLVTagCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E99DCE61FFD5C26002F8881 /* SLVTagCollectionCell.m */; };
-		5E99DCED1FFEEF66002F8881 /* SLVRouteSearchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E99DCEC1FFEEF66002F8881 /* SLVRouteSearchManager.m */; };
+		5E99DCED1FFEEF66002F8881 /* SLVTagsSearchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E99DCEC1FFEEF66002F8881 /* SLVTagsSearchManager.m */; };
 		5ECDC60F1FFF829C006B6CF6 /* SLVSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECDC60E1FFF829C006B6CF6 /* SLVSearchView.m */; };
 		5ECDC6122002702C006B6CF6 /* SLVTagTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECDC6112002702B006B6CF6 /* SLVTagTableCell.m */; };
+		5ECDC6142002D71D006B6CF6 /* SLVStoreSearchManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECDC6132002D71D006B6CF6 /* SLVStoreSearchManagerTests.m */; };
 		5ED6A44F1FB6F8DA00497146 /* SLVLoadingAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED6A44D1FB6F8DA00497146 /* SLVLoadingAnimation.m */; };
 		5ED6A4521FB6F90A00497146 /* SLVSegmentedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED6A4511FB6F90A00497146 /* SLVSegmentedController.m */; };
 		5ED6A4631FB7121E00497146 /* SLVNodesPresenterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED6A4621FB7121E00497146 /* SLVNodesPresenterTests.m */; };
@@ -35,7 +36,6 @@
 		5EF018B61FFCF23200794B0B /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EE5C8CD1FFBB4CC009006D4 /* Mapbox.framework */; };
 		5EF018B71FFCF23F00794B0B /* MapboxDirections.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EE5C8C51FFBB12B009006D4 /* MapboxDirections.framework */; };
 		638F79A51F1FEDCA00F6E36C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 638F79A41F1FEDCA00F6E36C /* Assets.xcassets */; };
-		638F79B31F1FEDCB00F6E36C /* TourAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 638F79B21F1FEDCB00F6E36C /* TourAppTests.m */; };
 		638F79C31F1FEEFC00F6E36C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 638F79BF1F1FEEFC00F6E36C /* main.m */; };
 		638F79C41F1FEEFC00F6E36C /* SLVAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 638F79C11F1FEEFC00F6E36C /* SLVAppDelegate.m */; };
 		638F79C91F1FEF4F00F6E36C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 638F79C81F1FEF4F00F6E36C /* LaunchScreen.storyboard */; };
@@ -81,12 +81,13 @@
 		5E2C71FC1FB0DC8900521931 /* SLVPresenterFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVPresenterFactory.m; path = Helpers/SLVPresenterFactory.m; sourceTree = "<group>"; };
 		5E99DCE51FFD5C26002F8881 /* SLVTagCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SLVTagCollectionCell.h; path = Classes/CommonViews/SLVTagCollectionCell.h; sourceTree = "<group>"; };
 		5E99DCE61FFD5C26002F8881 /* SLVTagCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SLVTagCollectionCell.m; path = Classes/CommonViews/SLVTagCollectionCell.m; sourceTree = "<group>"; };
-		5E99DCEB1FFEEF66002F8881 /* SLVRouteSearchManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SLVRouteSearchManager.h; path = Classes/RouteStore/SLVRouteSearchManager.h; sourceTree = "<group>"; };
-		5E99DCEC1FFEEF66002F8881 /* SLVRouteSearchManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SLVRouteSearchManager.m; path = Classes/RouteStore/SLVRouteSearchManager.m; sourceTree = "<group>"; };
+		5E99DCEB1FFEEF66002F8881 /* SLVTagsSearchManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SLVTagsSearchManager.h; path = Classes/RouteStore/SLVTagsSearchManager.h; sourceTree = "<group>"; };
+		5E99DCEC1FFEEF66002F8881 /* SLVTagsSearchManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SLVTagsSearchManager.m; path = Classes/RouteStore/SLVTagsSearchManager.m; sourceTree = "<group>"; };
 		5ECDC60D1FFF829C006B6CF6 /* SLVSearchView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SLVSearchView.h; path = Classes/RouteStore/SLVSearchView.h; sourceTree = "<group>"; };
 		5ECDC60E1FFF829C006B6CF6 /* SLVSearchView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SLVSearchView.m; path = Classes/RouteStore/SLVSearchView.m; sourceTree = "<group>"; };
 		5ECDC6102002702B006B6CF6 /* SLVTagTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SLVTagTableCell.h; path = Classes/CommonViews/SLVTagTableCell.h; sourceTree = "<group>"; };
 		5ECDC6112002702B006B6CF6 /* SLVTagTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SLVTagTableCell.m; path = Classes/CommonViews/SLVTagTableCell.m; sourceTree = "<group>"; };
+		5ECDC6132002D71D006B6CF6 /* SLVStoreSearchManagerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLVStoreSearchManagerTests.m; sourceTree = "<group>"; usesTabs = 1; };
 		5ED6A44D1FB6F8DA00497146 /* SLVLoadingAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLVLoadingAnimation.m; sourceTree = "<group>"; };
 		5ED6A44E1FB6F8DA00497146 /* SLVLoadingAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVLoadingAnimation.h; sourceTree = "<group>"; };
 		5ED6A4501FB6F90A00497146 /* SLVSegmentedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVSegmentedController.h; path = Classes/SLVSegmentedController/SLVSegmentedController.h; sourceTree = "<group>"; };
@@ -118,7 +119,6 @@
 		638F79951F1FEDC800F6E36C /* TourApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TourApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		638F79A41F1FEDCA00F6E36C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		638F79AE1F1FEDCB00F6E36C /* TourAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TourAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		638F79B21F1FEDCB00F6E36C /* TourAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TourAppTests.m; sourceTree = "<group>"; };
 		638F79B41F1FEDCB00F6E36C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		638F79BE1F1FEEFC00F6E36C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Application/Info.plist; sourceTree = "<group>"; };
 		638F79BF1F1FEEFC00F6E36C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Application/main.m; sourceTree = "<group>"; };
@@ -146,7 +146,7 @@
 		638F7A041F20467D00F6E36C /* SLVInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVInfo.h; sourceTree = "<group>"; };
 		638F7A051F20467D00F6E36C /* SLVInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLVInfo.m; sourceTree = "<group>"; };
 		638F7A071F20468900F6E36C /* SLVTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVTag.h; sourceTree = "<group>"; };
-		638F7A081F20468900F6E36C /* SLVTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLVTag.m; sourceTree = "<group>"; };
+		638F7A081F20468900F6E36C /* SLVTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLVTag.m; sourceTree = "<group>"; usesTabs = 1; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,8 +178,8 @@
 				5ECDC60E1FFF829C006B6CF6 /* SLVSearchView.m */,
 				5EE5C8BB1FE6C890009006D4 /* SLVTagsView.h */,
 				5EE5C8BC1FE6C890009006D4 /* SLVTagsView.m */,
-				5E99DCEB1FFEEF66002F8881 /* SLVRouteSearchManager.h */,
-				5E99DCEC1FFEEF66002F8881 /* SLVRouteSearchManager.m */,
+				5E99DCEB1FFEEF66002F8881 /* SLVTagsSearchManager.h */,
+				5E99DCEC1FFEEF66002F8881 /* SLVTagsSearchManager.m */,
 			);
 			name = RouteSearch;
 			sourceTree = "<group>";
@@ -247,9 +247,9 @@
 		638F79B11F1FEDCB00F6E36C /* TourAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				5ECDC6132002D71D006B6CF6 /* SLVStoreSearchManagerTests.m */,
 				5ED6A4621FB7121E00497146 /* SLVNodesPresenterTests.m */,
 				5ED6A4611FB7121E00497146 /* TestsPrefixHeader.pch */,
-				638F79B21F1FEDCB00F6E36C /* TourAppTests.m */,
 				638F79B41F1FEDCB00F6E36C /* Info.plist */,
 			);
 			path = TourAppTests;
@@ -550,7 +550,7 @@
 				5E135C6A1FB0B6C100DADA45 /* SLVPlacesVC.m in Sources */,
 				638F79F91F203CE700F6E36C /* SLVNodesPresenter.m in Sources */,
 				5EE5C8B01FE46FD4009006D4 /* SLVImage.m in Sources */,
-				5E99DCED1FFEEF66002F8881 /* SLVRouteSearchManager.m in Sources */,
+				5E99DCED1FFEEF66002F8881 /* SLVTagsSearchManager.m in Sources */,
 				638F7A031F20467000F6E36C /* SLVNode.m in Sources */,
 				5EE5C8B61FE4807C009006D4 /* SLVRouteImageCell.m in Sources */,
 				5ED6A4701FB7DA6500497146 /* SLVPlacesDataSource.m in Sources */,
@@ -583,8 +583,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5ECDC6142002D71D006B6CF6 /* SLVStoreSearchManagerTests.m in Sources */,
 				5ED6A4631FB7121E00497146 /* SLVNodesPresenterTests.m in Sources */,
-				638F79B31F1FEDCB00F6E36C /* TourAppTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
