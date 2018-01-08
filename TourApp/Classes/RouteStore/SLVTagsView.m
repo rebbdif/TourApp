@@ -21,7 +21,7 @@ static CGFloat const SLVSearchButtonHeight = 30;
 @property (nonatomic, strong) UIButton *searchButton;
 
 //TagsViewModel
-@property (nonatomic, strong) NSMutableSet<SLVTag *> *tags;
+@property (nonatomic, strong) NSMutableOrderedSet<SLVTag *> *tags;
 
 @end
 
@@ -36,7 +36,7 @@ static CGFloat const SLVSearchButtonHeight = 30;
         [self addCollectionView];
         [self addSearchButton];
         
-        _tags = [NSMutableSet new];
+        _tags = [NSMutableOrderedSet new];
     }
     return self;
 }
@@ -95,8 +95,20 @@ static CGFloat const SLVSearchButtonHeight = 30;
 
 - (void)addTag:(SLVTag *)tag
 {
-    [self.tags addObject:tag];
-    [self.tagsCollection reloadData];
+	NSUInteger addedElementIndex;
+	if ([self.tags containsObject:tag])
+	{
+		addedElementIndex = [self.tags indexOfObject:tag];
+	}
+	else
+	{
+		[self.tags addObject:tag];
+		[self.tagsCollection reloadData];
+		addedElementIndex = self.tags.count - 1;
+	}
+	
+	NSIndexPath *addedItemIndexPath = [NSIndexPath indexPathForItem:addedElementIndex inSection:0];
+	[self.tagsCollection scrollToItemAtIndexPath:addedItemIndexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
 }
 
 - (void)addTags:(NSArray<SLVTag *> *)tags
@@ -123,7 +135,7 @@ static CGFloat const SLVSearchButtonHeight = 30;
 {
     SLVTagCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"SLVTag" forIndexPath:indexPath];
     
-    SLVTag *tag = self.tags.allObjects[indexPath.item];
+    SLVTag *tag = self.tags[indexPath.item];
     [cell setTag:tag];
     return cell;
 }
@@ -135,7 +147,7 @@ static CGFloat const insetBetweenCells = 12.0;
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    SLVTag *tag = self.tags.allObjects[indexPath.item];
+    SLVTag *tag = self.tags[indexPath.item];
     return [SLVTagCollectionCell sizeForTag:tag];
 }
 

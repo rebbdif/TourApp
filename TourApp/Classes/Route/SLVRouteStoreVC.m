@@ -110,6 +110,9 @@
     }];
 }
 
+
+#pragma mark - TableView
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -141,6 +144,7 @@
     return self.tagsView.height;
 }
 
+
 #pragma mark Search
 
 - (void)didPressSearchButton
@@ -152,7 +156,7 @@
 {
     [self.tableView scrollsToTop];
     self.tableView.scrollEnabled = NO;
-
+	
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     
     [self.view addSubview:self.searchView];
