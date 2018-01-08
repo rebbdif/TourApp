@@ -16,6 +16,7 @@
 		5E1487261FDB14BD00AEAA0B /* SLVRouteStoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1487251FDB14BD00AEAA0B /* SLVRouteStoreCell.m */; };
 		5E1487291FDB205900AEAA0B /* UIColor+SLVColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1487281FDB205900AEAA0B /* UIColor+SLVColor.m */; };
 		5E2C71FD1FB0DC8900521931 /* SLVPresenterFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2C71FC1FB0DC8900521931 /* SLVPresenterFactory.m */; };
+		5E8800FD2003A19500FDD295 /* SLVTagsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E8800FC2003A19500FDD295 /* SLVTagsService.m */; };
 		5E99DCE71FFD5C26002F8881 /* SLVTagCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E99DCE61FFD5C26002F8881 /* SLVTagCollectionCell.m */; };
 		5E99DCED1FFEEF66002F8881 /* SLVTagsSearchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E99DCEC1FFEEF66002F8881 /* SLVTagsSearchManager.m */; };
 		5ECDC60F1FFF829C006B6CF6 /* SLVSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECDC60E1FFF829C006B6CF6 /* SLVSearchView.m */; };
@@ -79,6 +80,8 @@
 		5E1487281FDB205900AEAA0B /* UIColor+SLVColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIColor+SLVColor.m"; path = "Helpers/UIColor+SLVColor.m"; sourceTree = "<group>"; };
 		5E2C71FB1FB0DC8900521931 /* SLVPresenterFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVPresenterFactory.h; path = Helpers/SLVPresenterFactory.h; sourceTree = "<group>"; };
 		5E2C71FC1FB0DC8900521931 /* SLVPresenterFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVPresenterFactory.m; path = Helpers/SLVPresenterFactory.m; sourceTree = "<group>"; };
+		5E8800FB2003A19500FDD295 /* SLVTagsService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SLVTagsService.h; path = Classes/RouteStore/SLVTagsService.h; sourceTree = "<group>"; };
+		5E8800FC2003A19500FDD295 /* SLVTagsService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SLVTagsService.m; path = Classes/RouteStore/SLVTagsService.m; sourceTree = "<group>"; };
 		5E99DCE51FFD5C26002F8881 /* SLVTagCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SLVTagCollectionCell.h; path = Classes/CommonViews/SLVTagCollectionCell.h; sourceTree = "<group>"; };
 		5E99DCE61FFD5C26002F8881 /* SLVTagCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SLVTagCollectionCell.m; path = Classes/CommonViews/SLVTagCollectionCell.m; sourceTree = "<group>"; };
 		5E99DCEB1FFEEF66002F8881 /* SLVTagsSearchManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SLVTagsSearchManager.h; path = Classes/RouteStore/SLVTagsSearchManager.h; sourceTree = "<group>"; };
@@ -171,17 +174,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5E99DCE41FFD5541002F8881 /* RouteSearch */ = {
+		5E99DCE41FFD5541002F8881 /* TagsSearch */ = {
 			isa = PBXGroup;
 			children = (
 				5ECDC60D1FFF829C006B6CF6 /* SLVSearchView.h */,
 				5ECDC60E1FFF829C006B6CF6 /* SLVSearchView.m */,
-				5EE5C8BB1FE6C890009006D4 /* SLVTagsView.h */,
-				5EE5C8BC1FE6C890009006D4 /* SLVTagsView.m */,
 				5E99DCEB1FFEEF66002F8881 /* SLVTagsSearchManager.h */,
 				5E99DCEC1FFEEF66002F8881 /* SLVTagsSearchManager.m */,
 			);
-			name = RouteSearch;
+			name = TagsSearch;
 			sourceTree = "<group>";
 		};
 		5ED6A44C1FB6F8C300497146 /* Views */ = {
@@ -221,6 +222,7 @@
 				638F79DF1F20370600F6E36C /* Frameworks */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		638F79961F1FEDC800F6E36C /* Products */ = {
 			isa = PBXGroup;
@@ -316,7 +318,11 @@
 				5E14871B1FD1CA4900AEAA0B /* SLVRouteStoreVC.m */,
 				5E1487201FD29FBB00AEAA0B /* SLVRoutesPresenter.h */,
 				5E1487211FD29FBB00AEAA0B /* SLVRoutesPresenter.m */,
-				5E99DCE41FFD5541002F8881 /* RouteSearch */,
+				5EE5C8BB1FE6C890009006D4 /* SLVTagsView.h */,
+				5EE5C8BC1FE6C890009006D4 /* SLVTagsView.m */,
+				5E8800FB2003A19500FDD295 /* SLVTagsService.h */,
+				5E8800FC2003A19500FDD295 /* SLVTagsService.m */,
+				5E99DCE41FFD5541002F8881 /* TagsSearch */,
 				5EE5C8B71FE693EE009006D4 /* RouteCell */,
 			);
 			name = RouteStore;
@@ -565,6 +571,7 @@
 				5ED6A46D1FB753A500497146 /* SLVGradient.m in Sources */,
 				5E135C671FB0B64D00DADA45 /* TourApp.xcdatamodeld in Sources */,
 				638F7A001F20465E00F6E36C /* SLVRoute.m in Sources */,
+				5E8800FD2003A19500FDD295 /* SLVTagsService.m in Sources */,
 				638F79F41F203BE800F6E36C /* SLVNetworkService.m in Sources */,
 				638F79DE1F2004F900F6E36C /* SLVMapVC.m in Sources */,
 				5ED6A44F1FB6F8DA00497146 /* SLVLoadingAnimation.m in Sources */,
